@@ -59,11 +59,12 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     public void onLoadHomePageHeadDataSuccess(List<HomepageHeadData.DataBean> datas) {
         HomepageViewPagerAdapter adapter = new HomepageViewPagerAdapter(getContext(), datas);
         viewpagerHomepageHead.setAdapter(adapter);
+        viewpagerHomepageHeadIndicator.removeAllViews();
         ViewPagerIndicator viewPagerIndicator = new ViewPagerIndicator(getContext()
                 , viewpagerHomepageHead, viewpagerHomepageHeadIndicator, datas.size());
-        viewPagerIndicator.setDotHeightByDp(4);
-        viewPagerIndicator.setDotWidthByDp(4);
-        viewPagerIndicator.setMarginByDp(4);
+        viewPagerIndicator.setDotHeightByDp(6);
+        viewPagerIndicator.setDotWidthByDp(6);
+        viewPagerIndicator.setMarginByDp(6);
         viewPagerIndicator.create();
     }
 
@@ -74,7 +75,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
         return rootView;
