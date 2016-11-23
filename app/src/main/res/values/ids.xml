@@ -6,4 +6,7 @@
     <item name="ownersay" type="id" />
     <item name="personage" type="id" />
     <item name="message" type="id" />
+    <item name="viewpager_homepage_head" type="id" />
+    <item name="viewpager_homepage_head_indicator" type="id" />
+    <item name="simpleDraweeView_homepage_viewpager_item" type="id" />
 </resources>

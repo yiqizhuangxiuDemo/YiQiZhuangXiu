@@ -15,6 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gui.activity.CompanyActivity"/>
+        <activity android:name=".gui.activity.ActivitiesActivity"/>
+        <activity android:name=".gui.activity.SchoolActivity"/>
+        <activity android:name=".gui.activity.BudgetActivity"/>
+        <activity android:name=".gui.activity.FitmentActivity"/>
+        <activity android:name=".gui.activity.EffectActivity"/>
+        <activity android:name=".gui.activity.BookingActivity"/>
+        <activity android:name=".gui.activity.DesignActivity"/>
     </application>
 
 </manifest>
