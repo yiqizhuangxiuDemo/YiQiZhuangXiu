@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">YiQiZhuangXiu</string>
+    <string name="homepage_text_tab">首页</string>
+    <string name="ownersay_text_tab">业主说</string>
+    <string name="message_text_tab">消息</string>
+    <string name="personagw_text_tab">我的</string>
 </resources>

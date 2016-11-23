@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="viewpager_main" type="id" />
+    <item name="tab_linearlayout_main" type="id" />
+    <item name="homepage" type="id" />
+    <item name="ownersay" type="id" />
+    <item name="personage" type="id" />
+    <item name="message" type="id" />
+</resources>
