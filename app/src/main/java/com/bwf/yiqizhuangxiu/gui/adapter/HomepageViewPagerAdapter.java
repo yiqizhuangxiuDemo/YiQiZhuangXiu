@@ -47,8 +47,8 @@ public class HomepageViewPagerAdapter extends PagerAdapter {
         View view = views.get(position);
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(
                 R.id.simpleDraweeView_homepage_viewpager_item);
-        simpleDraweeView.setImageURI(Uri.parse(datas.get(position).getBanner_url()));
-        simpleDraweeView.setTag(datas.get(position).getImagesrc2());
+        simpleDraweeView.setImageURI(Uri.parse(datas.get(position).getImagesrc2()));
+        simpleDraweeView.setTag(datas.get(position).getBanner_url());
         simpleDraweeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

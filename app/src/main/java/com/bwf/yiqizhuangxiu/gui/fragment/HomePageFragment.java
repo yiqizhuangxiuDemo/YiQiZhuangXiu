@@ -62,8 +62,8 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
         viewpagerHomepageHeadIndicator.removeAllViews();
         ViewPagerIndicator viewPagerIndicator = new ViewPagerIndicator(getContext()
                 , viewpagerHomepageHead, viewpagerHomepageHeadIndicator, datas.size());
-        viewPagerIndicator.setDotHeightByDp(6);
-        viewPagerIndicator.setDotWidthByDp(6);
+        viewPagerIndicator.setDotHeightByDp(8);
+        viewPagerIndicator.setDotWidthByDp(8);
         viewPagerIndicator.setMarginByDp(6);
         viewPagerIndicator.create();
     }

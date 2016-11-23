@@ -9,4 +9,14 @@
     <item name="viewpager_homepage_head" type="id" />
     <item name="viewpager_homepage_head_indicator" type="id" />
     <item name="simpleDraweeView_homepage_viewpager_item" type="id" />
+    <item name="recyclerview_homepage" type="id" />
+    <item name="titlebar_back" type="id" />
+    <item name="webview_articledetails" type="id" />
+    <item name="title_articledetatils_text" type="id" />
+    <item name="time_articledetails_text" type="id" />
+    <item name="simpleDraweeView_articledetails" type="id" />
+    <item name="comment_articledetails" type="id" />
+    <item name="look_articledetails" type="id" />
+    <item name="simpleDraweeView_articledetails_head" type="id" />
+    <item name="name_articledetails" type="id" />
 </resources>
