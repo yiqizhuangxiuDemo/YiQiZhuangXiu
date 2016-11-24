@@ -40,12 +40,15 @@ public class IndicatorDefultView extends CheckedTextView {
             radius = (width > height ? height : width - 4) / 2;
         }
         if (isChecked()) {
+            paint.setColor(0xff888888);
             paint.setStyle(Paint.Style.FILL);
             canvas.drawCircle(width / 2, height / 2, radius, paint);
         } else {
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(4);
-            canvas.drawCircle(width / 2, height / 2, radius - 2, paint);
+            paint.setColor(0xffffffff);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(width / 2, height / 2, radius, paint);
+//            paint.setStrokeWidth(4);
+//            canvas.drawCircle(width / 2, height / 2, radius - 2, paint);
         }
     }
 

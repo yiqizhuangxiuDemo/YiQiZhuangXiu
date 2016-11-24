@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_package_new"
+                android:gravity="center_horizontal"
+                android:text="@string/title_company"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_activities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_activity"
+                android:gravity="center_horizontal"
+                android:text="@string/title_activities"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_school"
+                android:gravity="center_horizontal"
+                android:text="@string/title_school"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_my_budget"
+                android:gravity="center_horizontal"
+                android:text="@string/title_budget"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_fitment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_category"
+                android:gravity="center_horizontal"
+                android:text="@string/title_fitment"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_renderings_new"
+                android:gravity="center_horizontal"
+                android:text="@string/title_effect"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_self_order"
+                android:gravity="center_horizontal"
+                android:text="@string/title_booking"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_design"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/mainfunctiondim"
+                android:drawableTop="@drawable/home_feature_design_measure"
+                android:gravity="center_horizontal"
+                android:text="@string/title_design"
+                android:textSize="@dimen/textsize12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

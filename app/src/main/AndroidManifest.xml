@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bwf.yiqizhuangxiu">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".application.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,6 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gui.activity.CompanyActivity" />
+        <activity android:name=".gui.activity.ActivitiesActivity" />
+        <activity android:name=".gui.activity.SchoolActivity" />
+        <activity android:name=".gui.activity.BudgetActivity" />
+        <activity android:name=".gui.activity.FitmentActivity" />
+        <activity android:name=".gui.activity.EffectActivity" />
+        <activity android:name=".gui.activity.BookingActivity" />
+        <activity android:name=".gui.activity.DesignActivity" />
     </application>
 
 </manifest>

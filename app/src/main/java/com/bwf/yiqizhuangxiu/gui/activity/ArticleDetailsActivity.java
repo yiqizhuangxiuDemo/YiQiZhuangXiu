@@ -1,5 +1,7 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import com.bwf.yiqizhuangxiu.R;
+
 /**
  * Created by Administrator on 2016/11/23.
  */
@@ -7,7 +9,7 @@ package com.bwf.yiqizhuangxiu.gui.activity;
 public class ArticleDetailsActivity extends BaseActivity{
     @Override
     protected int getContentViewResId() {
-        return 0;
+        return R.layout.activity_articledetails;
     }
 
     @Override

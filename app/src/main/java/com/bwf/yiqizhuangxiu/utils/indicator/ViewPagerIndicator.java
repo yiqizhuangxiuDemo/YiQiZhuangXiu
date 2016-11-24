@@ -86,7 +86,6 @@ public class ViewPagerIndicator {
         this.dotContainer = dotContainer;
         dotWidth = dotContainer.getWidth() / dotNum;
         dotHeight = dotContainer.getHeight();
-        dotContainer.setGravity(Gravity.CENTER);
         dotContainer.setOrientation(LinearLayout.HORIZONTAL);
     }
 

@@ -4,4 +4,12 @@
     <string name="ownersay_text_tab">业主说</string>
     <string name="message_text_tab">消息</string>
     <string name="personagw_text_tab">我的</string>
+    <string name="title_company">装修公司</string>
+    <string name="title_activities">同城活动</string>
+    <string name="title_school">装修学堂</string>
+    <string name="title_budget">装修预算</string>
+    <string name="title_fitment">建材家具</string>
+    <string name="title_effect">效果图</string>
+    <string name="title_booking">自助下单</string>
+    <string name="title_design">设计量房</string>
 </resources>
