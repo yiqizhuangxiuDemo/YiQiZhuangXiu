@@ -6,4 +6,5 @@ package com.bwf.yiqizhuangxiu.mvp.presenter;
 
 public interface PresenterHomepageContentData {
     void loadData();
+    void setPage(int page);
 }

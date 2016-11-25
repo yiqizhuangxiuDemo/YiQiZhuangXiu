@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.bwf.yiqizhuangxiu.gui.custom.CustomRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/custom_RefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@id/root"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:orientation="vertical">
 
-        <com.bwf.yiqizhuangxiu.gui.custom.AutoScrollViewPager
-            android:id="@id/viewpager_homepage_head"
+        <com.bwf.yiqizhuangxiu.gui.custom.CustomScrollView
+            android:id="@id/scrollView_homepage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true">
 
-        <LinearLayout
-            android:id="@id/viewpager_homepage_head_indicator"
-            android:layout_width="100dp"
-            android:layout_height="12dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="6dp"
-            android:layout_marginRight="6dp"
-            android:gravity="right" />
-    </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/recyclerview_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <include layout="@layout/fragment_homepage_mainfunctionarea" />
+        </com.bwf.yiqizhuangxiu.gui.custom.CustomScrollView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@id/recyclerview_homepage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-</LinearLayout>
+        <ImageView
+            android:id="@id/go_top_homepage"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_go_top" />
+
+        <include layout="@layout/fragment_homepage_titlebar" />
+    </FrameLayout>
+
+</com.bwf.yiqizhuangxiu.gui.custom.CustomRefreshLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
@@ -24,6 +24,7 @@
             android:layout_centerVertical="true"
             android:clickable="true"
             android:scaleType="centerCrop"
+            app:roundAsCircle="true"
             app:placeholderImage="@drawable/place_holder" />
 
         <TextView
@@ -59,8 +60,11 @@
         android:id="@id/title_articledetatils_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -77,16 +81,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
 
         <TextView
+            android:id="@id/from_articledetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
             android:layout_marginLeft="12dp"
             android:text="精选自北京装修论坛>"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@id/comment_articledetails"
@@ -100,7 +105,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@id/look_articledetails"
+            android:id="@id/view_articledetails_Nums"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

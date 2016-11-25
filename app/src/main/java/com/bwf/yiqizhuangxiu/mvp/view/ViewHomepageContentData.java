@@ -12,4 +12,6 @@ public interface ViewHomepageContentData {
     void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas);
 
     void onLoadHomePageContentDataFaied(String info);
+
+    void isNoMoreData();
 }

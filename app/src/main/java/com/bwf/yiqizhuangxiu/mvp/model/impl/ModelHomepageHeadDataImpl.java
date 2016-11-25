@@ -31,7 +31,7 @@ public class ModelHomepageHeadDataImpl implements ModelHomepageHeadData {
                     @Override
                     public void onResponse(String response, int id) {
                         HomepageHeadData data = JSON.parseObject(response, HomepageHeadData.class);
-                        if (data.getError() == 0){
+                        if (data != null && data.getError() == 0){
                             callBack.onLoadHomePageHeadDataSuccess(data.getData());
                         }else {
                             callBack.onLoadHomePageHeadDataFaied(data.getMessage());
