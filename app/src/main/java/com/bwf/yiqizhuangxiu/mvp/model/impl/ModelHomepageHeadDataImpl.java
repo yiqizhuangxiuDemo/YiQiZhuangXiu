@@ -33,8 +33,10 @@ public class ModelHomepageHeadDataImpl implements ModelHomepageHeadData {
                         HomepageHeadData data = JSON.parseObject(response, HomepageHeadData.class);
                         if (data != null && data.getError() == 0){
                             callBack.onLoadHomePageHeadDataSuccess(data.getData());
-                        }else {
+                        }else if (data!=null){
                             callBack.onLoadHomePageHeadDataFaied(data.getMessage());
+                        }else {
+                            callBack.onLoadHomePageHeadDataFaied("网络连接出现错误");
                         }
                     }
                 });

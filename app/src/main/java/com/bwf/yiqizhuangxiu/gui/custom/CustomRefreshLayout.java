@@ -76,6 +76,9 @@ public class CustomRefreshLayout extends FrameLayout {
             case MotionEvent.ACTION_MOVE:
                 if (Math.abs(ev.getY() - touchY) > Math.abs(ev.getX() - touchX) && ev.getY() - touchY > 50 && isEnable && isBodyTopLimit() && !isRefreshing) {
                     touchY = ev.getY();
+                    if (onTouchByUserListener != null) {
+                        onTouchByUserListener.onTouchByUser();
+                    }
                     return true;
                 }
                 break;
@@ -108,6 +111,9 @@ public class CustomRefreshLayout extends FrameLayout {
                 if (distanceY >= headerHeight) {
                     infoView.setText("一起装修网，省钱有保障");
                     ViewCompat.setRotation(upView, 180);
+                } else {
+                    infoView.setText("下拉刷新");
+                    ViewCompat.setRotation(upView, 0);
                 }
                 ViewCompat.setTranslationY(bodyView, distanceY);
                 ViewCompat.setTranslationY(headerView, distanceY - headerHeight);
@@ -116,6 +122,9 @@ public class CustomRefreshLayout extends FrameLayout {
                 distanceY = (event.getY() - touchY) / 3;
                 if (distanceY < headerHeight) {
                     smoothScroll(ViewCompat.getTranslationY(headerView), -headerHeight);
+                    if (onRecoverListener != null) {
+                        onRecoverListener.onRecover();
+                    }
                 } else {
                     startRefreshOnce();
                 }
@@ -174,6 +183,9 @@ public class CustomRefreshLayout extends FrameLayout {
         upView.setVisibility(View.VISIBLE);
         infoView.setText("下拉刷新");
         ViewCompat.setRotation(upView, 0);
+        if (onRecoverListener != null) {
+            onRecoverListener.onRecover();
+        }
     }
 
     /**
@@ -229,5 +241,33 @@ public class CustomRefreshLayout extends FrameLayout {
      */
     public void setOnFinishRefreshListener(OnFinishRefreshListener onFinishRefreshListener) {
         this.onFinishRefreshListener = onFinishRefreshListener;
+    }
+
+    /**
+     * 设置拖动接口监听
+     */
+    public interface OnTouchByUserListener {
+        void onTouchByUser();
+    }
+
+    ;
+    private OnTouchByUserListener onTouchByUserListener;
+
+    public void setOnTouchByUserListener(OnTouchByUserListener onTouchByUserListener) {
+        this.onTouchByUserListener = onTouchByUserListener;
+    }
+
+    /**
+     * 设置恢复正常接口监听
+     */
+    public interface OnRecoverListener {
+        void onRecover();
+    }
+
+    ;
+    private OnRecoverListener onRecoverListener;
+
+    public void setOnRecoverListener(OnRecoverListener onRecoverListener) {
+        this.onRecoverListener = onRecoverListener;
     }
 }

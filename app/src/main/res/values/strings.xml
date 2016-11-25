@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YiQiZhuangXiu</string>
+    <string name="app_name">一起装修</string>
     <string name="homepage_text_tab">首页</string>
     <string name="ownersay_text_tab">业主说</string>
     <string name="message_text_tab">消息</string>
@@ -17,6 +17,11 @@
     <string name="restoreData">加载失败，点击重试</string>
     <string name="search_info">搜索用户/帖子</string>
     <string name="location_citiname">北京</string>
+    <string name="likeinfi_postdetails">赞(%1$d)</string>
+    <string name="comments_postdetails">回帖(%1$d)</string>
+    <string name="house_classify">%1$s室%2$s厅</string>
+    <string name="house_area">%1$d平</string>
+    <string name="house_budget">%1$d万</string>
     <string-array name="location">
         <item>北京</item>
         <item>天津</item>
@@ -28,5 +33,13 @@
         <item>哈尔滨</item>
         <item>大连</item>
         <item>济南</item>
+    </string-array>
+    <string-array name="numberToLetter">
+        <item>一</item>
+        <item>两</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
     </string-array>
 </resources>

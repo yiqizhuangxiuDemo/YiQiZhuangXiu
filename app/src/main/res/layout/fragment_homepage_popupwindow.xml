@@ -5,7 +5,35 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/textview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dddddd"
+        android:padding="16dp"
+        android:text="GPS定位城市"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bbbbbb" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:padding="16dp"
+        android:text="成都"
+        android:textColor="@android:color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bbbbbb" />
+
+    <TextView
+        android:id="@+id/textview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#dddddd"

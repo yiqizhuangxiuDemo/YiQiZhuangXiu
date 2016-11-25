@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -13,8 +15,6 @@
             android:id="@+id/upImage"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
             android:scaleType="centerInside"
             android:src="@drawable/kf5_ic_pulltorefresh_arrow" />
 
@@ -23,17 +23,18 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
             android:scaleType="centerInside"
-            android:visibility="gone"
-            android:src="@drawable/refresh_web_nor" />
+            android:src="@drawable/refresh_web_nor"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
     <TextView
         android:id="@+id/infoText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_height="24dp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="6dp"
         android:text="下拉刷新" />
 </LinearLayout>

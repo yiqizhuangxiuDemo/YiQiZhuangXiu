@@ -43,4 +43,26 @@
     <item name="progressbar" type="id" />
     <item name="buttombar_refresh" type="id" />
     <item name="appbarlayout_appbar_fragment_homepage" type="id" />
+    <item name="titlebar_like" type="id" />
+    <item name="titlebar_collect" type="id" />
+    <item name="headimag_simpleDraweeView" type="id" />
+    <item name="name_textview" type="id" />
+    <item name="title_postdetails" type="id" />
+    <item name="from_postdetails" type="id" />
+    <item name="time_postdetails" type="id" />
+    <item name="content_container_postdetails" type="id" />
+    <item name="likeimg_container" type="id" />
+    <item name="refresh_postdetails" type="id" />
+    <item name="tag_postdetails" type="id" />
+    <item name="tag_container_postdetails" type="id" />
+    <item name="houseinfo_textview" type="id" />
+    <item name="likenum_postdetails" type="id" />
+    <item name="commentnum_postdetails" type="id" />
+    <item name="commentnum_container_postdetails" type="id" />
+    <item name="time_textview" type="id" />
+    <item name="bean" type="id" />
+    <item name="conten_textview" type="id" />
+    <item name="show_reply" type="id" />
+    <item name="reply_obj_bean" type="id" />
+    <item name="reply_content" type="id" />
 </resources>

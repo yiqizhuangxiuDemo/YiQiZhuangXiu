@@ -26,6 +26,7 @@ public class DetailsPageActivity extends BaseActivity {
     ProgressBar progressbar;
 
     private String url;
+    public final static String TAG_URL_EXTRA = "URL";
 
     @Override
     protected int getContentViewResId() {
@@ -59,8 +60,10 @@ public class DetailsPageActivity extends BaseActivity {
                 }
             }
         });
-        url = getIntent().getStringExtra("url");
-        webviewDetailspage.loadUrl(url);
+        url = getIntent().getStringExtra(TAG_URL_EXTRA);
+        if (url != null) {
+            webviewDetailspage.loadUrl(url);
+        }
     }
 
     @Override
