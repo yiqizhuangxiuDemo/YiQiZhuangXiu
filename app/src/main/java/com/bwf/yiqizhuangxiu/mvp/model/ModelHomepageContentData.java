@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface ModelHomepageContentData {
-    void loadHomePageContentData(int page, int type, int id, CallBack callBack);
+    void loadHomePageContentData(int page, int type, String id, CallBack callBack);
 
     public interface CallBack {
         void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas);

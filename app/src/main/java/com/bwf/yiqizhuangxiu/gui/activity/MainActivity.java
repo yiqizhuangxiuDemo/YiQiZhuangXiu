@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity {
         fragments = getFragmentsList();
         mAdapter = new MainActivityFragmentPagerAdapter(fragments, getSupportFragmentManager());
         viewpagerMain.setAdapter(mAdapter);
+        viewpagerMain.setOffscreenPageLimit(3);
     }
 
     private List<Fragment> getFragmentsList() {
@@ -76,6 +77,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (fragments.get(0) instanceof HomePageFragment) {
+            HomePageFragment fragment = (HomePageFragment) fragments.get(0);
+            if (fragment.setPopupWindowDismiss()) {
+                return;
+            }
+        }
         if (isExit) {
             super.onBackPressed();
         } else {

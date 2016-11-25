@@ -20,7 +20,7 @@ public abstract class RecyclerViewWithHeaderOrFooterAdapter<T> extends RecyclerV
 
     protected List<T> datas;
     protected LayoutInflater inflater;
-    private Context context;
+    protected Context context;
 
     public RecyclerViewWithHeaderOrFooterAdapter(Context context) {
         this.datas = new ArrayList<>();

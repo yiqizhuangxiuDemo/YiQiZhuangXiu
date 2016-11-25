@@ -18,9 +18,9 @@ import okhttp3.Call;
 public class ModelHomepageContentDataImpl implements ModelHomepageContentData {
 
     @Override
-    public void loadHomePageContentData(int page, int type, int id, final CallBack callBack) {
+    public void loadHomePageContentData(int page, int type, String id, final CallBack callBack) {
         String url = "";
-        if (page != 1) {
+        if (page == 1) {
             url = Apis.API_HOMEPAGE_CONTENT_FIRST_PAGE;
         } else {
             url = UrlHandler.handleURL(Apis.API_HOMEPAGE_CONTENT, page, type, id);
@@ -38,7 +38,11 @@ public class ModelHomepageContentDataImpl implements ModelHomepageContentData {
                     @Override
                     public void onResponse(String response, int id) {
                         HomepageContentData data = JSON.parseObject(response, HomepageContentData.class);
-                        callBack.onLoadHomePageContentDataSuccess(data.getData());
+                        if (data != null && "0".equals(data.getError())) {
+                            callBack.onLoadHomePageContentDataSuccess(data.getData());
+                        } else {
+                            callBack.onLoadHomePageContentDataFaied("网络连接出现错误");
+                        }
                     }
                 });
     }

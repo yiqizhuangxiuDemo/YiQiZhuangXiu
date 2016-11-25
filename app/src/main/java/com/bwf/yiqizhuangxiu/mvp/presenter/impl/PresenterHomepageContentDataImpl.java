@@ -17,7 +17,7 @@ public class PresenterHomepageContentDataImpl implements PresenterHomepageConten
     private ModelHomepageContentData model;
     private int page;
     private int type;
-    private int id;
+    private String id;
 
     public PresenterHomepageContentDataImpl(ViewHomepageContentData view) {
         this.view = view;
@@ -33,9 +33,14 @@ public class PresenterHomepageContentDataImpl implements PresenterHomepageConten
     @Override
     public void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas) {
         if (datas != null && datas.size() > 0) {
+            type = datas.get(datas.size() - 1).getType();
+            id = datas.get(datas.size() - 1).getId();
             view.onLoadHomePageContentDataSuccess(datas);
         } else {
             onLoadHomePageContentDataFaied("意外错误，获取到的内容为空");
+        }
+        if (page == 15) {
+            view.isNoMoreData();
         }
     }
 
@@ -43,5 +48,9 @@ public class PresenterHomepageContentDataImpl implements PresenterHomepageConten
     public void onLoadHomePageContentDataFaied(String info) {
         page--;
         view.onLoadHomePageContentDataFaied(info);
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 }

@@ -26,4 +26,21 @@
     <string name="desing_name">汪洋</string>
     <string name="design_tag">设计师</string>
     <string name="decroate_explem">装修案例：</string>
+    <string name="homepage_post">精选自%1$s></string>
+    <string name="noMoreData">没有更多数据了哟 ~</string>
+    <string name="restoreData">加载失败，点击重试</string>
+    <string name="search_info">搜索用户/帖子</string>
+    <string name="location_citiname">北京</string>
+    <string-array name="location">
+        <item>北京</item>
+        <item>天津</item>
+        <item>上海</item>
+        <item>石家庄</item>
+        <item>西安</item>
+        <item>武汉</item>
+        <item>成都</item>
+        <item>哈尔滨</item>
+        <item>大连</item>
+        <item>济南</item>
+    </string-array>
 </resources>

@@ -10,4 +10,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="myToolBatStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+    </style>
 </resources>
