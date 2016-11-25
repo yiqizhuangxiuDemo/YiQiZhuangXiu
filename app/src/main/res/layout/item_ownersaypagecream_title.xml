@@ -5,6 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <LinearLayout
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal"
         android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         android:scaleType="centerCrop"
         app:roundAsCircle="true"/>
     <LinearLayout
+        android:layout_marginLeft="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
