@@ -12,4 +12,18 @@
     <string name="title_effect">效果图</string>
     <string name="title_booking">自助下单</string>
     <string name="title_design">设计量房</string>
+    <string name="_677_m">677元/m²</string>
+    <string name="new_house">新房装修</string>
+    <string name="old_house">老房装修</string>
+    <string name="old_price">677+117元/m²</string>
+    <string name="workspace">看现场</string>
+    <string name="workspace_playing">工地直播</string>
+    <string name="together_team">一起团队</string>
+    <string name="compan_decorator">装修公司</string>
+    <string name="yuyue">我要预约</string>
+    <string name="online_answer">    在线答疑</string>
+    <string name="noMoreDate">没有更多数据</string>
+    <string name="desing_name">汪洋</string>
+    <string name="design_tag">设计师</string>
+    <string name="decroate_explem">装修案例：</string>
 </resources>

@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include
+        layout="@layout/titlebar_back"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                layout="@layout/company_viewpager"/>
+            <include
+                layout="@layout/new_and_old_house"/>
+            <View
+                android:background="#e9e4e4"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+            <include
+                layout="@layout/workspace_team"/>
+            <View
+                android:background="#e9e4e4"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+            <include
+                layout="@layout/decorate_playing"/>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

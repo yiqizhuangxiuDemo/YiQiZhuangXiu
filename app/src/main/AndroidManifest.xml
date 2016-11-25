@@ -23,8 +23,10 @@
         <activity android:name=".gui.activity.BudgetActivity" />
         <activity android:name=".gui.activity.FitmentActivity" />
         <activity android:name=".gui.activity.EffectActivity" />
-        <activity android:name=".gui.activity.BookingActivity" />
         <activity android:name=".gui.activity.DesignActivity" />
+        <activity android:name=".gui.activity.HouseOfNewActivity"/>
+        <activity android:name=".gui.activity.WorkSpacePlaying"/>
+        <activity android:name=".gui.activity.TogetherTream"/>
     </application>
 
 </manifest>
