@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Administrator on 2016/11/23.
  */
 
-public class OwnerSayFragment extends BaseFragment {
+public class OwnerSayFragment extends BaseFragment{
     private TabLayout mTabLayoout;
     private ViewPager mViewPager;
 
@@ -29,7 +29,7 @@ public class OwnerSayFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         init();
 
-        OwnerSayFragmentAdapter adapter = new OwnerSayFragmentAdapter(getFragmentManager(),mFragmentList,mTitleList);
+        OwnerSayFragmentAdapter adapter = new OwnerSayFragmentAdapter(getFragmentManager(),mTitleList,mFragmentList);
         Log.d("OwnerSayFragment", "mViewPager:" + mViewPager);
         mViewPager.setAdapter(adapter);
         mTabLayoout.setupWithViewPager(mViewPager);

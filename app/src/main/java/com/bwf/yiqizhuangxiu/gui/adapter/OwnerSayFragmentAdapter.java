@@ -14,10 +14,10 @@ public class OwnerSayFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragmentList;
     private List<String> mTitleList;
 
-    public OwnerSayFragmentAdapter(FragmentManager fm, List<Fragment> mFragmentList, List<String> mTitleList) {
+    public OwnerSayFragmentAdapter(FragmentManager fm, List<String> mTitleList,List<Fragment> mFragmentList) {
         super(fm);
-        this.mFragmentList = mFragmentList;
         this.mTitleList = mTitleList;
+        this.mFragmentList = mFragmentList;
     }
 
     @Override
