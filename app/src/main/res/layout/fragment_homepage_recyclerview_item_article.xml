@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
@@ -38,7 +38,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:drawableLeft="@drawable/item_divider"
-            android:textSize="16sp" />
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -53,14 +56,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp">
 
         <TextView
             android:id="@id/time_articledetails_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="12dp"
             android:text="time"
             android:textSize="14sp" />
@@ -70,6 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_marginRight="16dp"
             android:drawableLeft="@drawable/comment_hui"
             android:drawablePadding="5dp"
@@ -77,10 +81,11 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@id/look_articledetails"
+            android:id="@id/viewNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_marginRight="80dp"
             android:drawableLeft="@drawable/looked_hui"
             android:drawablePadding="5dp"

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@id/buttombar_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/buttombar_webforword_selector" />
+
+    <ImageView
+        android:id="@id/buttombar_forword"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/buttombar_back"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/buttombar_webback_selector" />
+
+    <ImageView
+        android:id="@id/buttombar_refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/buttombar_webrefresh_selector" />
+</RelativeLayout>

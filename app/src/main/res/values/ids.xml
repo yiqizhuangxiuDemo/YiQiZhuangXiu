@@ -19,4 +19,28 @@
     <item name="look_articledetails" type="id" />
     <item name="simpleDraweeView_articledetails_head" type="id" />
     <item name="name_articledetails" type="id" />
+    <item name="from_articledetails" type="id" />
+    <item name="view_articledetails" type="id" />
+    <item name="viewNum" type="id" />
+    <item name="view_articledetails_Nums" type="id" />
+    <item name="location_hpmepage_titlebar" type="id" />
+    <item name="search_hpmepage_titlebar" type="id" />
+    <item name="zxing_hpmepage_titlebar" type="id" />
+    <item name="go_top_homepage" type="id" />
+    <item name="root_hemepage_titlbar" type="id" />
+    <item name="layout_subview_recycleview_loadfooter" type="id" />
+    <item name="progressbar_subview_recycleview_loadfooter" type="id" />
+    <item name="textview_subview_recycleview_loadfooter" type="id" />
+    <item name="custom_RefreshLayout" type="id" />
+    <item name="listview_popupwindow_homepage" type="id" />
+    <item name="root" type="id" />
+    <item name="scrollView_homepage" type="id" />
+    <item name="titlebar_back_textview" type="id" />
+    <item name="titlebar_share" type="id" />
+    <item name="buttombar_back" type="id" />
+    <item name="buttombar_forword" type="id" />
+    <item name="webview_detailspage" type="id" />
+    <item name="progressbar" type="id" />
+    <item name="buttombar_refresh" type="id" />
+    <item name="appbarlayout_appbar_fragment_homepage" type="id" />
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.bwf.yiqizhuangxiu.gui.custom.AutoScrollViewPager
+            android:id="@id/viewpager_homepage_head"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@id/viewpager_homepage_head_indicator"
+            android:layout_width="100dp"
+            android:layout_height="12dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="6dp"
+            android:gravity="right"
+            android:orientation="horizontal" />
+    </RelativeLayout>
+
+    <include layout="@layout/fragment_homepage_mainfunctionarea" />
+</LinearLayout>

@@ -12,4 +12,21 @@
     <string name="title_effect">效果图</string>
     <string name="title_booking">自助下单</string>
     <string name="title_design">设计量房</string>
+    <string name="homepage_post">精选自%1$s></string>
+    <string name="noMoreData">没有更多数据了哟 ~</string>
+    <string name="restoreData">加载失败，点击重试</string>
+    <string name="search_info">搜索用户/帖子</string>
+    <string name="location_citiname">北京</string>
+    <string-array name="location">
+        <item>北京</item>
+        <item>天津</item>
+        <item>上海</item>
+        <item>石家庄</item>
+        <item>西安</item>
+        <item>武汉</item>
+        <item>成都</item>
+        <item>哈尔滨</item>
+        <item>大连</item>
+        <item>济南</item>
+    </string-array>
 </resources>
