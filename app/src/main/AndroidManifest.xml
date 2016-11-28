@@ -25,14 +25,17 @@
         <activity android:name=".gui.activity.BudgetActivity" />
         <activity android:name=".gui.activity.FitmentActivity" />
         <activity android:name=".gui.activity.EffectActivity" />
-        <activity android:name=".gui.activity.BookingActivity" />
         <activity android:name=".gui.activity.DesignActivity" />
+        <activity android:name=".gui.activity.HouseOfNewActivity" />
+        <activity android:name=".gui.activity.WorkSpacePlaying" />
         <activity android:name=".gui.activity.ZxingActivity" />
         <activity android:name=".gui.activity.SearchActivity" />
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".gui.activity.PostDetailsActivity" />
+        <activity
+            android:name=".gui.activity.PostDetailsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".gui.activity.DetailsPageActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

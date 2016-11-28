@@ -1,15 +1,13 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
-import com.bwf.yiqizhuangxiu.R;
-
 /**
- * Created by Administrator on 2016/11/23.
+ * Created by Administrator on 2016/11/24 0024.
  */
 
-public class BookingActivity extends BaseActivity{
+public class BookingActivity extends BaseActivity {
     @Override
     protected int getContentViewResId() {
-        return R.layout.activity_booking;
+        return 0;
     }
 
     @Override

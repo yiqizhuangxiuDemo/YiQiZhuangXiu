@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/ownersaypagecream_content_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginTop="10dp"
+        android:id="@+id/ownersaypagecream_content_img"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:text="精选自北京装修论坛 >"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

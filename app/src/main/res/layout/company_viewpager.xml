@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v4.view.ViewPager
+        android:id="@id/company_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorPrimary"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:id="@id/linear_indicator"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:gravity="center"
+        />
+
+</FrameLayout>

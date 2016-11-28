@@ -19,6 +19,35 @@
     <item name="look_articledetails" type="id" />
     <item name="simpleDraweeView_articledetails_head" type="id" />
     <item name="name_articledetails" type="id" />
+    <item name="company_viewPager" type="id" />
+    <item name="linear_indicator" type="id" />
+    <item name="viewpager_image" type="id" />
+    <item name="new_house_decorate" type="id" />
+    <item name="old_house_decorate" type="id" />
+    <item name="image_site_playing" type="id" />
+    <item name="decortae_playing_recycle_view" type="id" />
+    <item name="linear_look_up_work" type="id" />
+    <item name="linear_yiqi_team" type="id" />
+    <item name="imageView_indicator_dot" type="id" />
+    <item name="image_decorator" type="id" />
+    <item name="text_title_big" type="id" />
+    <item name="text_title_little" type="id" />
+    <item name="text_appointment" type="id" />
+    <item name="text_online_answer" type="id" />
+    <item name="linear_online_answer" type="id" />
+    <item name="linear_appointment" type="id" />
+    <item name="new_old_house_webview" type="id" />
+    <item name="linear_design_people" type="id" />
+    <item name="image_design" type="id" />
+    <item name="text_design" type="id" />
+    <item name="text_design_tag" type="id" />
+    <item name="layout_frame" type="id" />
+    <item name="text_together_title" type="id" />
+    <item name="together_view" type="id" />
+    <item name="linear_tream" type="id" />
+    <item name="togeter_viewpager" type="id" />
+    <item name="gridview_togeter" type="id" />
+    <item name="togeter_iamge" type="id" />
     <item name="from_articledetails" type="id" />
     <item name="view_articledetails" type="id" />
     <item name="viewNum" type="id" />

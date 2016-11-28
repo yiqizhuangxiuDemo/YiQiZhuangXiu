@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:id="@id/linear_appointment"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="#04944e"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@id/text_appointment"
+                android:gravity="center"
+                android:text="@string/yuyue"
+                android:textColor="#ffff"
+                android:textSize="18sp"
+                android:drawablePadding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/yuyue_icon"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@id/linear_online_answer"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@id/text_online_answer"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#04944e"
+                android:text="@string/online_answer"
+                android:layout_height="match_parent"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/zixun_icon_selected"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

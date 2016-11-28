@@ -18,7 +18,7 @@ public abstract class RecyclerViewWithHeaderOrFooterAdapter<T> extends RecyclerV
     public final static int TYPE_FOOTER = 1;
     public final static int TYPE_HEADER = 2;
 
-    private List<T> datas;
+    protected List<T> datas;
     protected LayoutInflater inflater;
     protected Context context;
 
