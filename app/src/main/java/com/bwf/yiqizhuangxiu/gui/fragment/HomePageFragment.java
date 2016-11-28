@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -114,16 +115,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
         locationHpmepageTitlebar.setText(getContext().getSharedPreferences(SP_CONFIG
                 , Context.MODE_PRIVATE).getString(SP_CONFIG_CITY_KEY, getString(R.string.location_citiname)));
-
-        popupWindow = new PopupWindow(getContext());
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                rootHemepageTitlbar.setEnabled(true);
-                locationHpmepageTitlebar.setText(getContext().getSharedPreferences("config"
-                        , Context.MODE_PRIVATE).getString("location", getString(R.string.location_citiname)));
-            }
-        });
 
         //presenter  head
         presenterHomepageHeadData = new PresenterHomepageHeadDataImpl(this);
@@ -372,72 +363,81 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
      * 显示popupwindow
      */
     private void showLocationPopupWindow() {
-        rootHemepageTitlbar.setEnabled(false);
-        View view = View.inflate(getContext(), R.layout.fragment_homepage_popupwindow, null);
-        ListView listView = (ListView) view.findViewById(R.id.listview_popupwindow_homepage);
-        final String[] locationContent = getResources().getStringArray(R.array.location);
-        List<Map<String, String>> list = new ArrayList<>();
-        Map<String, String> map = null;
-        for (int i = 0; i < locationContent.length; i++) {
-            map = new HashMap<>();
-            map.put("location", locationContent[i]);
-            list.add(map);
-        }
-        SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.fragment_homepage_popupwindow_item
-                , new String[]{"location"}, new int[]{R.id.text});
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
-                editor.commit();
-                popupWindow.dismiss();
+        if (popupWindow == null) {
+            popupWindow = new PopupWindow(getContext());
+            popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                    locationHpmepageTitlebar.setText(getContext().getSharedPreferences("config"
+                            , Context.MODE_PRIVATE).getString("location", getString(R.string.location_citiname)));
+                }
+            });
+            View view = View.inflate(getContext(), R.layout.fragment_homepage_popupwindow, null);
+            ListView listView = (ListView) view.findViewById(R.id.listview_popupwindow_homepage);
+            final String[] locationContent = getResources().getStringArray(R.array.location);
+            List<Map<String, String>> list = new ArrayList<>();
+            Map<String, String> map = null;
+            for (int i = 0; i < locationContent.length; i++) {
+                map = new HashMap<>();
+                map.put("location", locationContent[i]);
+                list.add(map);
             }
-        });
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-        View textview1 = view.findViewById(R.id.textview1);
-        textview1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        View textview2 = view.findViewById(R.id.textview1);
-        textview2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        View text = view.findViewById(R.id.text);
-        text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                TextView view = (TextView) v;
-                editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());
-                editor.commit();
-                popupWindow.dismiss();
-            }
-        });
-        view.setPadding(view.getPaddingLeft(), rootHemepageTitlbar.getHeight()
-                , view.getPaddingRight(), view.getPaddingBottom());
-        popupWindow.setContentView(view);
-        popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+            SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.fragment_homepage_popupwindow_item
+                    , new String[]{"location"}, new int[]{R.id.text});
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
+                    editor.commit();
+                    popupWindow.dismiss();
+                }
+            });
+            final View text = view.findViewById(R.id.text);
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    TextView view = (TextView) v;
+                    editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());
+                    editor.commit();
+                    popupWindow.dismiss();
+                }
+            });
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (popupWindow.isShowing())
+                        popupWindow.dismiss();
+                    return false;
+                }
+            });
+            LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll);
+            ll.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+            view.setPadding(view.getPaddingLeft(), rootHemepageTitlbar.getHeight()
+                    , view.getPaddingRight(), view.getPaddingBottom());
+            popupWindow.setContentView(view);
+            popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //        popupWindow.setHeight(customRefreshLayout.getHeight()-rootHemepageTitlbar.getHeight());
-        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
 //        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.popupwindoe_homepage));
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(customRefreshLayout, Gravity.TOP, 0, 0);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+        }
+        if (popupWindow.isShowing()) {
+            popupWindow.dismiss();
+        } else {
+            popupWindow.showAtLocation(customRefreshLayout, Gravity.TOP, 0, 0);
+        }
     }
 
     public boolean setPopupWindowDismiss() {

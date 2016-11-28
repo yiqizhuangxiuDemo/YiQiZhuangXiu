@@ -3,6 +3,9 @@ package com.bwf.yiqizhuangxiu.gui.activity;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import com.bwf.yiqizhuangxiu.gui.custom.CustomRefreshLayout;
 import com.bwf.yiqizhuangxiu.mvp.presenter.PresenterPostDetails;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterPostDetailsImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewPostDetails;
+import com.bwf.yiqizhuangxiu.utils.LogUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
@@ -98,22 +102,53 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
     }
 
     @Override
-    public void onLoadContentFailed(PostDetailsContentDataBean.DataBean data) {
+    public void onLoadContentSuccess(PostDetailsContentDataBean.DataBean data) {
+        LogUtils.e("onLoadContentSuccess");
         refreshPostdetails.finishRefresh();
         isRefreshing = false;
         setAuthorInfo(data);
         setPostInfo(data);
+        setContentInfo(data);
         setTagInfo(data);
+    }
+
+    private void setContentInfo(PostDetailsContentDataBean.DataBean data) {
+        List<PostDetailsContentDataBean.DataBean.MessageBean> messages = data.getMessage();
+        if (messages != null && messages.size() > 0) {
+            for (PostDetailsContentDataBean.DataBean.MessageBean message : messages) {
+                if (message.getMsgType() == 0) {
+                    LogUtils.e("msgtype==0");
+                    WebView webView = new WebView(this);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(0, 60, 0, 0);
+                    webView.setLayoutParams(params);
+                    webView.loadDataWithBaseURL(null, message.getMsg(), "text/html", "utf-8", null);
+                    contentContainerPostdetails.addView(webView);
+                } else if (message.getMsgType() == 1) {
+                    LogUtils.e("msgtype==1");
+                    SimpleDraweeView sdv = new SimpleDraweeView(this);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(0, 60, 0, 0);
+                    sdv.setLayoutParams(params);
+                    sdv.setAspectRatio(message.getWidth() / (float) message.getHeight());
+                    sdv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    sdv.setImageURI(Uri.parse(message.getMsg()));
+                    contentContainerPostdetails.addView(sdv);
+                }
+            }
+        }
     }
 
     @Override
     public void onLoadContentFailed(String message) {
+        LogUtils.e("onLoadContentFailed");
         refreshPostdetails.finishRefresh();
         isRefreshing = false;
     }
 
     @Override
     public void onLoadLikeSuccess(PostDetailsLikeData data) {
+        LogUtils.e("onLoadLikeSuccess");
         refreshPostdetails.finishRefresh();
         isRefreshing = false;
         likenumPostdetails.setText(getString(R.string.likeinfi_postdetails, data.getTotalCount()));
@@ -121,7 +156,7 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
             likeimgContainer.removeAllViews();
             for (PostDetailsLikeData.DataBean like : data.getData()) {
                 SimpleDraweeView simpleDraweeView = (SimpleDraweeView) View.inflate(this
-                        , R.layout.postdetails_likeimg_item, likeimgContainer);
+                        , R.layout.postdetails_likeimg_item, null);
                 simpleDraweeView.setImageURI(Uri.parse(like.getAvtUrl()));
                 likeimgContainer.addView(simpleDraweeView);
             }
@@ -130,6 +165,7 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
 
     @Override
     public void onLoadLikeFailed(String message) {
+        LogUtils.e("onLoadLikeFailed");
         refreshPostdetails.finishRefresh();
         isRefreshing = false;
     }

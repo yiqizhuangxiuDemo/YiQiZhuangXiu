@@ -94,4 +94,21 @@
     <item name="show_reply" type="id" />
     <item name="reply_obj_bean" type="id" />
     <item name="reply_content" type="id" />
+    <item name="titlebar_call" type="id" />
+    <item name="titlebar_tablayout" type="id" />
+    <item name="viewpager_design" type="id" />
+    <item name="redPacket" type="id" />
+    <item name="webview" type="id" />
+    <item name="refresh" type="id" />
+    <item name="appbarlayout" type="id" />
+    <item name="tabLayout" type="id" />
+    <item name="viewpager" type="id" />
+    <item name="gridview" type="id" />
+    <item name="simpleDraweeView" type="id" />
+    <item name="textview" type="id" />
+    <item name="scrim" type="id" />
+    <item name="scrim_text" type="id" />
+    <item name="recyclerview" type="id" />
+    <item name="discription" type="id" />
+    <item name="design_popupwindow_textview_content" type="id" />
 </resources>

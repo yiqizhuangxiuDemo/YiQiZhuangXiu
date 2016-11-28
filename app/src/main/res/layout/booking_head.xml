@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/school_banner" />
+
+    <TextView
+        android:id="@id/discription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_expand_more_black_12dp"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:text="@string/booking_head_text"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@drawable/duigou"
+            android:drawablePadding="6dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/booking_head_select_refund"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textsize12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@drawable/duigou"
+            android:drawablePadding="6dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/booking_head_select_security"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textsize12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@drawable/duigou"
+            android:drawablePadding="6dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/booking_head_select_compensate"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textsize12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:drawableLeft="@drawable/duigou"
+            android:drawablePadding="6dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/booking_head_select_floorprice"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textsize12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/gray_light" />
+</LinearLayout>

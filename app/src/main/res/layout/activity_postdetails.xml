@@ -42,8 +42,9 @@
                     android:id="@id/content_container_postdetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:paddingBottom="16dp"
+                    android:gravity="center_horizontal"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp" />
 

@@ -22,13 +22,13 @@ public class PresenterPostDetailsImpl implements PresenterPostDetails, ModelPost
 
     @Override
     public void loadPostDetailsData(String id) {
-        model.loadPostDetailsContentData(id, this);
+        model.loadAllData(id,this);
     }
 
     @Override
     public void onLoadContentSuccess(PostDetailsContentDataBean.DataBean data) {
         if (data != null) {
-            view.onLoadContentFailed(data);
+            view.onLoadContentSuccess(data);
         } else {
             view.onLoadContentFailed("网络连接失败");
         }

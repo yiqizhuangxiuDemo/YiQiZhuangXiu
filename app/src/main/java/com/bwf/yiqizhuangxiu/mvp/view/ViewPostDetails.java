@@ -8,7 +8,7 @@ import com.bwf.yiqizhuangxiu.entity.PostDetailsLikeData;
  */
 
 public interface ViewPostDetails {
-    void onLoadContentFailed(PostDetailsContentDataBean.DataBean data);
+    void onLoadContentSuccess(PostDetailsContentDataBean.DataBean data);
 
     void onLoadContentFailed(String message);
 

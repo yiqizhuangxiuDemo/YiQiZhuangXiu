@@ -51,6 +51,6 @@
         android:drawablePadding="3dp"
         android:drawableTop="@drawable/add_attention"
         android:text="加关注"
-        android:textColor="#22ff22"
+        android:textColor="@color/mainGreen"
         android:textSize="12sp" />
 </RelativeLayout>
