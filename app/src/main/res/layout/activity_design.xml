@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@id/titlebar_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/titlebar_back_selector" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@id/titlebar_tablayout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@android:color/white"
+            app:tabBackground="@android:color/white"
+            app:tabIndicatorColor="@color/mainGreen"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/mainGreen"
+            app:tabTextAppearance="@style/titlebar_text_style"
+            app:tabTextColor="@android:color/black" />
+
+        <ImageView
+            android:id="@id/titlebar_call"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:padding="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_free_call" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@id/viewpager_design"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <include layout="@layout/yuyue" />
 </LinearLayout>

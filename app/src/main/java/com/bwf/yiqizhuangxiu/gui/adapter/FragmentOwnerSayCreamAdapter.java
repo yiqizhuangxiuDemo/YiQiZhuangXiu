@@ -48,7 +48,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
         OwnerSayCreamPageData.DataBean dataBean = datas.get(position);
             myViewHolder.ownersaypagecreamTitleImg.setImageURI(Uri.parse(dataBean.getAvtUrl()));
             myViewHolder.ownersaypagecreamTitleName.setText(dataBean.getAuthor());
-            Log.d("FragmentOwnerSayCreamAd", "datas.get(i).getHouseInfo():" + dataBean.getHouseInfo());
+            Log.d("FragmentOwnerSayCreamAd", "business.get(i).getHouseInfo():" + dataBean.getHouseInfo());
             if (dataBean.getHouseInfo() != null) {
                 myViewHolder.ownersaypagecreamTitleContent.setText(
                         dataBean.getHouseInfo().getArea()+"平、"
@@ -57,7 +57,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
             myViewHolder.ownersaypagecreamContentText.setText(dataBean.getSubject());
             myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
-            Log.d("F---------------", "datas.get(i).getZan():" + dataBean.getZan());
+            Log.d("F---------------", "business.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan()+"");
             myViewHolder.itemOwnersaypagecreamBottomCommentText.setText(dataBean.getReplies());
     }

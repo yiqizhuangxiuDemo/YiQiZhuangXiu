@@ -91,7 +91,12 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
             PostViewHolder viewHolder = (PostViewHolder) holder;
             HomepageContentData.DataBean itemData = getItemData(position);
             viewHolder.simpleDraweeViewArticledetailsHead.setImageURI(Uri.parse(itemData.getAvtUrl()));
-            viewHolder.simpleDraweeViewArticledetails.setImageURI(Uri.parse(itemData.getPath()));
+            if (itemData.getPath()!=null){
+                viewHolder.simpleDraweeViewArticledetails.setVisibility(View.VISIBLE);
+                viewHolder.simpleDraweeViewArticledetails.setImageURI(Uri.parse(itemData.getPath()));
+            }else {
+                viewHolder.simpleDraweeViewArticledetails.setVisibility(View.GONE);
+            }
             viewHolder.nameArticledetails.setText(itemData.getAuthor());
             viewHolder.timeArticledetailsText.setText(itemData.getDateline());
             viewHolder.commentArticledetails.setText(itemData.getReplies() + "");

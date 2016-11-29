@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@id/simpleDraweeView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/booking_gridview_item_bg"
+            android:scaleType="centerInside"
+            app:actualImageScaleType="centerInside" />
+
+        <View
+            android:id="@id/scrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#44888888" />
+
+        <TextView
+            android:id="@id/scrim_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:background="#00ffffff"
+            android:gravity="center"
+            android:text="@string/booking_gridview_item_info"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textsize12sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+</LinearLayout>

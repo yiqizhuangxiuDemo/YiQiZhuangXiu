@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@id/headimag_simpleDraweeView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:clickable="true"
+        android:scaleType="centerCrop"
+        app:placeholderImage="@drawable/place_holder"
+        app:roundAsCircle="true" />
+
+    <TextView
+        android:id="@id/name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/headimag_simpleDraweeView"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/textsize12sp" />
+
+    <TextView
+        android:id="@id/conten_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/name_textview"
+        android:layout_below="@id/name_textview"
+        android:layout_marginTop="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@id/bean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/name_textview"
+        android:layout_below="@id/conten_textview"
+        android:layout_marginTop="@dimen/textsize12sp">
+
+        <TextView
+            android:id="@id/time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@id/show_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_more_comment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/show_reply"
+            android:background="@drawable/reply_bg"
+            android:drawableLeft="@drawable/ic_comment"
+            android:drawablePadding="4dp"
+            android:padding="4dp"
+            android:text="回复"
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/reply_obj_bean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/name_textview"
+        android:layout_below="@id/bean"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="6dp"
+            android:layout_below="@id/bean"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/headimag_simpleDraweeView"
+            android:background="@drawable/bottom_coner"
+            android:rotation="180" />
+
+        <TextView
+            android:id="@id/reply_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/reply_content_bg"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:text="agioshgisaghiosahag" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray" />
+</RelativeLayout>
