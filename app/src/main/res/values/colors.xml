@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="windowBackground">#1b73d7</color>
+    <color name="tabIndicatorColor">#ff30971c</color>
+    <color name="tabSelectedTextColor">#ff30971c</color>
+    <color name="tabTextColor">#ff848484</color>
+
 </resources>

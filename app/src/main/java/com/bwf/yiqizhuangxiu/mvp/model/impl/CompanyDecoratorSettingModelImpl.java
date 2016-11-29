@@ -19,7 +19,10 @@ public class CompanyDecoratorSettingModelImpl implements CompanyDecoratorSetting
     @Override
     public void loadDecoratorPlayingData(final DecoratorPlayingCallBack callBack) {
         String url = Apis.URL_COMPANT_DECORTAR;
-        OkHttpUtils.get().url(url).build().execute(new StringCallback() {
+        OkHttpUtils.post().url(url).addParams("token","DAB088BA50C9405E84C789055D657614")
+                .addParams("city_id","2").addParams("cityName","成都")
+                .addParams("app_version","app_version")
+                .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.loadFail(e.toString());
