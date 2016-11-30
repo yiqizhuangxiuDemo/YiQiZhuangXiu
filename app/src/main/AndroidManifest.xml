@@ -32,6 +32,9 @@
         <activity android:name=".gui.activity.WorkSpacePlaying" />
         <activity android:name=".gui.activity.ZxingActivity" />
         <activity android:name=".gui.activity.SearchActivity" />
+        <activity android:name=".gui.activity.TogetherTream"/>
+        <activity android:name=".gui.activity.TogetherPeople"/>
+
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
             android:launchMode="singleTop"

@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include
         layout="@layout/titlebar_back"/>
-    <FrameLayout
-        android:id="@id/layout_frame"
+    <android.support.design.widget.TabLayout
+        android:id="@id/tabLayout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v4.app.FragmentTabHost
-            android:id="@android:id/tabhost"
-            android:layout_gravity="top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
+        android:layout_height="35dp"
+        app:tabIndicatorColor="@color/tabIndicatorColor"
+        app:tabSelectedTextColor="@color/tabSelectedTextColor"
+        app:tabTextColor="@color/tabTextColor">
+    </android.support.design.widget.TabLayout>
 
-        </android.support.v4.app.FragmentTabHost>
-
-    </FrameLayout>
     <android.support.v4.view.ViewPager
+        android:layout_weight="1"
         android:id="@id/togeter_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
     </android.support.v4.view.ViewPager>
+    <include
+        layout="@layout/yuyue"/>
 
 </LinearLayout>

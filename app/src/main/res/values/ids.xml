@@ -72,6 +72,24 @@
     <item name="progressbar" type="id" />
     <item name="buttombar_refresh" type="id" />
     <item name="appbarlayout_appbar_fragment_homepage" type="id" />
+    <item name="tabLayout_main" type="id" />
+    <item name="togeter_gridview" type="id" />
+    <item name="item_image_together" type="id" />
+    <item name="text_design_num" type="id" />
+    <item name="desin_text_name" type="id" />
+    <item name="text_zhuangxiu_anli" type="id" />
+    <item name="pingfen" type="id" />
+    <item name="score" type="id" />
+    <item name="together_recycle_view" type="id" />
+    <item name="text_person_anli" type="id" />
+    <item name="text_news" type="id" />
+    <item name="tetle_together_people" type="id" />
+    <item name="effcet_title_tablayout" type="id" />
+    <item name="effect_viewpager" type="id" />
+    <item name="effect_recycle_view" type="id" />
+    <item name="effect_image_sd" type="id" />
+    <item name="text_effect_title" type="id" />
+    <item name="text_effect_content" type="id" />
     <item name="titlebar_like" type="id" />
     <item name="titlebar_collect" type="id" />
     <item name="headimag_simpleDraweeView" type="id" />

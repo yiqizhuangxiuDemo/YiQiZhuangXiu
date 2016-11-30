@@ -31,6 +31,9 @@
     <string name="restoreData">加载失败，点击重试</string>
     <string name="search_info">搜索用户/帖子</string>
     <string name="location_citiname">北京</string>
+    <string name="caseNumber" >装修案例：%1$s</string>
+    <string name="personanli">装修案例(%1$s)</string>
+    <string name="worknews">工地消息：%1$s</string>
     <string name="likeinfi_postdetails">赞(%1$d)</string>
     <string name="comments_postdetails">回帖(%1$d)</string>
     <string name="house_classify">%1$s室%2$s厅</string>
