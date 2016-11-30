@@ -28,4 +28,8 @@
         <item name="android:windowEnterAnimation">@anim/popupwindow_show_scale</item>
         <item name="android:windowExitAnimation">@anim/popupwindow_hidden_scale</item>
     </style>
+
+    <style name="titlebar_text_style_beautif">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

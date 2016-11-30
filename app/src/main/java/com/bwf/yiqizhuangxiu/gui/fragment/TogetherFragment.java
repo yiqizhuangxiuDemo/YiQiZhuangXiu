@@ -49,7 +49,7 @@ public class TogetherFragment extends BaseFragment implements CompanyTogetherVie
         fragment.setArguments(bundle);
         return fragment;
     }
-
+    private  boolean isLoading;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -60,6 +60,7 @@ public class TogetherFragment extends BaseFragment implements CompanyTogetherVie
         adapter = new CompanyGridAdapter(getContext());
         togeterGridview.setAdapter(adapter);
         presenter.loadData();
+        isLoading=true;
         togeterGridview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -68,8 +69,18 @@ public class TogetherFragment extends BaseFragment implements CompanyTogetherVie
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                if(!isLoading &&firstVisibleItem + visibleItemCount == totalItemCount -1){
+//                    isLoading = true;
+//                    presenter.loadData();
+////                }
+//                if (!isLoading && togeterGridview.getLastVisiblePosition()>=togeterGridview.getChildCount()-2){
+//                    LogUtils.d("isLoading",isLoading+"");
+//                    isLoading=true;
+//                    presenter.loadData();
+//                }
             }
         });
+
         togeterGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,11 +99,12 @@ public class TogetherFragment extends BaseFragment implements CompanyTogetherVie
     @Override
     public void showCompanyTogetherData(List<CompanyTogtherData.DataBean> dataBeen) {
         adapter.addData(dataBeen);
+        isLoading =false;
     }
 
     @Override
     public void showCompanyTogetherFial() {
-
+        isLoading =false;
     }
 
     @Override

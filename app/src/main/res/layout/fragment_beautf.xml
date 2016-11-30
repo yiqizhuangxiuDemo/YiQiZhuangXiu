@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@id/linear_beautiful_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:id="@+id/relativie_space"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <CheckedTextView
+                android:id="@id/checked_textview_space"
+                android:layout_centerInParent="true"
+                android:text="空间"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="@color/beautiful_title_text_select"
+                android:drawableRight="@drawable/beautf_title_select"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <View
+                android:background="#beb2b2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="1dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativie_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <CheckedTextView
+                android:id="@id/checked_textview_style"
+                android:layout_centerInParent="true"
+                android:text="风格"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="@color/beautiful_title_text_select"
+                android:drawableRight="@drawable/beautf_title_select"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <View
+                android:background="#beb2b2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="1dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativie_local"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <CheckedTextView
+                android:id="@id/checked_textview_local"
+                android:layout_centerInParent="true"
+                android:text="局部"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="@color/beautiful_title_text_select"
+                android:drawableRight="@drawable/beautf_title_select"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <View
+                android:background="#beb2b2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="1dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativie_color"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <CheckedTextView
+                android:id="@id/checked_textview_color"
+                android:layout_centerInParent="true"
+                android:text="颜色"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="@color/beautiful_title_text_select"
+                android:drawableRight="@drawable/beautf_title_select"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <View
+                android:background="#beb2b2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="1dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+    </LinearLayout>
+    <GridView
+        android:id="@id/beautiful_grid_view"
+        android:numColumns="2"
+        android:horizontalSpacing="3dp"
+        android:verticalSpacing="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
