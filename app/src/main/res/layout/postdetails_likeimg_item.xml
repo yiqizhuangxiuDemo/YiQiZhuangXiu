@@ -5,6 +5,7 @@
     android:layout_height="20dp"
     android:layout_marginLeft="8dp"
     app:placeholderImageScaleType="centerInside"
+    app:actualImageScaleType="centerInside"
     app:roundAsCircle="true">
 
 </com.facebook.drawee.view.SimpleDraweeView>

@@ -124,6 +124,11 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
     public void loadBookingFailed(String message) {
         refresh.finishRefresh();
         isRefreshing = false;
+        if (message != null && !"".equals(message)) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "网络连接出现错误", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick({R.id.titlebar_back, R.id.discription})

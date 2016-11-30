@@ -18,6 +18,13 @@ public interface Apis {
      */
     String API_POSTDETAILS_CONTENT = "http://bbs.17house.com/motnt/index.php?a=viewThread&c=forumThread&imgwidth=330&uuid=86305803367590&tid={$0}&m=forum&haspermission=yes&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
     String API_POSTDETAILS_LIKE = "http://bbs.17house.com/motnt/index.php?a=threadZan&c=forumThread&uuid=86305803367590&tid={$0}&m=forum&haspermission=yes&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
+    String API_POSTDETAILS_COMMENTS = "http://bbs.17house.com/motnt/index.php?a=viewThread&c=forumThread&imgwidth=270&uuid=86305803367590&pageSize=10&tid={$0}&uid=1633055&m=forum&type=post&page={$1}&haspermission=yes&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
+    /**
+     * 文章详情
+     */
+    String API_ARTICLEDETAILS_CONTENT = "http://appapi.17house.com/NewsApi.php?version=1&newsId={$0}&page={$1}&action=newsDetail&relatedNum=3&model=android";
+    String API_ARTICLEDETAILS_COMMENTS = "http://appapi.17house.com/newsApi.php?version=1&page={$1}&dataId={$0}&action=commentList&limit=10&model=android";
+
     String URL_NEW_HOUSER = "http://hui.17house.com/svc/payment-facade/h5/activity677/index.html?model=android";
     String URL_OLD_HOUSER = "http://hui.17house.com/svc/payment-facade/h5/activity177/index.html?model=android";
     /**
@@ -41,6 +48,6 @@ public interface Apis {
     /**
      * 自助下单
      */
-    String API_BOOOKING="http://appapi.17house.com/GrouponApi.php?version=1&action=getSingleSupplementInfo&cityId={$0}&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
     String URL_EFFECT_BEATIFUL = "http://appapi.17house.com/xiaoguotuApi.php?version=1&page={$0}&action=imageList2&pageSize=10&tagid=0&model=android";
+    String API_BOOOKING = "http://appapi.17house.com/GrouponApi.php?version=1&action=getSingleSupplementInfo&cityId={$0}&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
 }

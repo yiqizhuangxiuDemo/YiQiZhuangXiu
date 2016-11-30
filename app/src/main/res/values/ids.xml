@@ -140,4 +140,15 @@
     <item name="gridview_beatiful" type="id" />
     <item name="beatiful_text_conment" type="id" />
     <item name="beatiful_text_like" type="id" />
+    <item name="reply_obj_bean_child" type="id" />
+    <item name="reply_child_content" type="id" />
+    <item name="reply_button" type="id" />
+    <item name="no_comments" type="id" />
+    <item name="related_container_articledetails" type="id" />
+    <item name="title_related_articledetails" type="id" />
+    <item name="img_related_articledetails" type="id" />
+    <item name="collection_articledetails" type="id" />
+    <item name="nomroecomments_articledetails" type="id" />
+    <item name="comment_container_articledetails" type="id" />
+    <item name="textview_nomroecomments_articledetails" type="id" />
 </resources>

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="16dp"
     android:paddingTop="16dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -32,20 +31,30 @@
         android:layout_below="@id/name_textview"
         android:layout_marginTop="12dp"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 
-    <RelativeLayout
-        android:id="@id/bean"
+    <LinearLayout
+        android:id="@id/reply_obj_bean"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/name_textview"
         android:layout_below="@id/conten_textview"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@id/bean"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_alignLeft="@id/name_textview"
+        android:layout_below="@id/reply_obj_bean"
         android:layout_marginTop="@dimen/textsize12sp">
 
         <TextView
             android:id="@id/time_textview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@android:color/darker_gray"
@@ -60,6 +69,7 @@
             android:src="@drawable/ic_more_comment" />
 
         <TextView
+            android:id="@id/reply_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -71,11 +81,11 @@
             android:padding="4dp"
             android:text="回复"
             android:textColor="@android:color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@id/reply_obj_bean"
+        android:id="@id/reply_obj_bean_child"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/name_textview"
@@ -85,27 +95,26 @@
         <View
             android:layout_width="12dp"
             android:layout_height="6dp"
-            android:layout_below="@id/bean"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/headimag_simpleDraweeView"
             android:background="@drawable/bottom_coner"
             android:rotation="180" />
 
         <TextView
-            android:id="@id/reply_content"
-            android:layout_width="wrap_content"
+            android:id="@id/reply_child_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/reply_content_bg"
             android:ellipsize="end"
-            android:maxLines="4"
-            android:text="agioshgisaghiosahag" />
+            android:lineSpacingExtra="6dp"
+            android:maxLines="5"
+            android:padding="12dp" />
     </LinearLayout>
-
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_alignParentBottom="true"
+        android:layout_height="1px"
+        android:layout_below="@id/reply_obj_bean_child"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray" />
 </RelativeLayout>

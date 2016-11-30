@@ -25,6 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/white"
                 android:orientation="vertical">
 
                 <include layout="@layout/autherinfo_postdetails" />
@@ -42,9 +43,9 @@
                     android:id="@id/content_container_postdetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:paddingBottom="16dp"
-                    android:gravity="center_horizontal"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp" />
 
