@@ -126,6 +126,14 @@ public abstract class BaseActivity extends FragmentActivity {
         return outMetrics.widthPixels;
     }
 
+    public int getScreenHeight(Context context) {
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.heightPixels;
+    }
+
     /**
      * 设置为全屏
      */

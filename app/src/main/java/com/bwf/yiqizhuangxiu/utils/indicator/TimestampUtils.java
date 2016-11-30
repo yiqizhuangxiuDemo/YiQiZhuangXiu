@@ -1,8 +1,12 @@
 package com.bwf.yiqizhuangxiu.utils.indicator;
 
+import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.application.App;
 import com.bwf.yiqizhuangxiu.utils.LogUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2016/11/29.
@@ -11,15 +15,28 @@ import java.util.Calendar;
 public class TimestampUtils {
     public static String millisecondToTimestamp(long milliseconed) {
         String result = "";
-        long time = Calendar.getInstance().getTimeInMillis() - milliseconed;
-        LogUtils.e("TimestampUtils", (time / (1000 * 60)) + "");
-        if (time / (1000l * 60l) < 60) {
-            result = (time / 1000l * 60l + 1) + "分钟前";
-        } else if (time / (1000l * 60l * 60l) < 24) {
-            result = (time / (1000l * 60l * 60l) + 1) + "小时前";
+        long time = Calendar.getInstance().getTimeInMillis() / 1000 - milliseconed;
+        LogUtils.e("TimestampUtils", "cyrrentTime--->" + (Calendar.getInstance().getTimeInMillis() / 1000));
+        LogUtils.e("TimestampUtils", "milliseconed-->" + milliseconed);
+        LogUtils.e("TimestampUtils", "time-->" + time);
+        if (time / 60 < 0) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date d = new Date(milliseconed);
+            result = format.format(d);
+        } else if (time / 60 < 1) {
+            result = App.app.getString(R.string.timeatamp_jsut_now);
+        } else if (time / 60 < 60) {
+            result = App.app.getString(R.string.timeatamp_minutes_ago, (time / (60) + 1) + "");
+        } else if (time / (60 * 60) < 24) {
+            result = App.app.getString(R.string.timeatamp_hours_ago, (time / (60 * 60) + 1) + "");
+        } else if (time / (60 * 60 * 24) < 7) {
+            result = App.app.getString(R.string.timeatamp_days_ago, (time / (60 * 60 * 24) + 1) + "");
         } else {
-            result = (time / (1000l * 60l * 60l * 24l) + 1) + "天前";
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date d = new Date(milliseconed);
+            result = format.format(d);
         }
+        LogUtils.e("TimestampUtils", result);
         return result;
     }
 }

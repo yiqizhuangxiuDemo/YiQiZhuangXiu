@@ -31,7 +31,7 @@
     <string name="restoreData">加载失败，点击重试</string>
     <string name="search_info">搜索用户/帖子</string>
     <string name="location_citiname">北京</string>
-    <string name="caseNumber" >装修案例：%1$s</string>
+    <string name="caseNumber">装修案例：%1$s</string>
     <string name="personanli">装修案例(%1$s)</string>
     <string name="worknews">工地消息：%1$s</string>
     <string name="likeinfi_postdetails">赞(%1$d)</string>
@@ -62,6 +62,12 @@
     <string name="comment_articledetails_text">评论(%1$s)</string>
     <string name="nocomment_articledetails">暂无评论</string>
     <string name="nomorecomment_articledetails">没有更多评论了</string>
+    <string name="timeatamp_minutes_ago">%1$s分钟前</string>
+    <string name="timeatamp_hours_ago">%1$s小时前</string>
+    <string name="timeatamp_days_ago">%1$s天前</string>
+    <string name="timeatamp_jsut_now">刚刚</string>
+    <string name="img_position_popupwindow_postdetails">%1$d/%2$d</string>
+    <string name="last_refresh_time">上次更新:%1$s</string>
     <string-array name="location">
         <item>北京</item>
         <item>天津</item>

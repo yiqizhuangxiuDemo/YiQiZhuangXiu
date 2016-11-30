@@ -4,6 +4,7 @@ import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
@@ -51,7 +52,60 @@ public class FrescoImageUtils {
                 }
             }
         };
-        DraweeController controller = Fresco.newDraweeControllerBuilder().setControllerListener(controllerListener).setUri(Uri.parse(imagePath)).build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setAutoPlayAnimations(true)
+                .setControllerListener(controllerListener)
+                .setUri(Uri.parse(imagePath))
+                .build();
+        simpleDraweeView.setController(controller);
+    }
+
+    /**
+     * 设置SimpleDraweeView的Controller让
+     *
+     * @param simpleDraweeView
+     * @param imagePath
+     * @param maxWidth
+     * @param maxHeight
+     */
+    public static void setControllerListener(final SimpleDraweeView simpleDraweeView, String imagePath, final int maxWidth, final int maxHeight) {
+        final ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
+        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+            @Override
+            public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
+                if (imageInfo == null) {
+                    return;
+                }
+                int height = imageInfo.getHeight();
+                int width = imageInfo.getWidth();
+                if (width / (float) height > maxWidth / (float) maxHeight) {
+                    layoutParams.width = maxWidth;
+                    layoutParams.height = (int) ((float) (maxWidth * height) / (float) width);
+                } else {
+                    layoutParams.height = maxHeight;
+                    layoutParams.width = (int) ((float) (maxHeight * width) / (float) height);
+                }
+                simpleDraweeView.setLayoutParams(layoutParams);
+                simpleDraweeView.setScaleType(ImageView.ScaleType.FIT_XY);
+            }
+
+            @Override
+            public void onIntermediateImageSet(String id, @Nullable ImageInfo imageInfo) {
+                LogUtils.d("TAG", "Intermediate image received");
+            }
+
+            @Override
+            public void onFailure(String id, Throwable throwable) {
+                if (throwable != null) {
+                    throwable.printStackTrace();
+                }
+            }
+        };
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setAutoPlayAnimations(true)
+                .setControllerListener(controllerListener)
+                .setUri(Uri.parse(imagePath))
+                .build();
         simpleDraweeView.setController(controller);
     }
 }

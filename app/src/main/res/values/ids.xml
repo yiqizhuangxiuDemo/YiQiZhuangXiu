@@ -140,4 +140,5 @@
     <item name="nomroecomments_articledetails" type="id" />
     <item name="comment_container_articledetails" type="id" />
     <item name="textview_nomroecomments_articledetails" type="id" />
+    <item name="text_view" type="id" />
 </resources>

@@ -19,7 +19,7 @@ import okhttp3.OkHttpClient;
 
 public class App extends Application {
 
-    private static App app;
+    public static App app;
 
     public static Context getAppContext() {
         return app.getApplicationContext();

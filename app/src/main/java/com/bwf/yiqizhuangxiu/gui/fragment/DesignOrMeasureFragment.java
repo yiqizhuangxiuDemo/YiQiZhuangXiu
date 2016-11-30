@@ -93,9 +93,9 @@ public class DesignOrMeasureFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
         ButterKnife.unbind(this);
+        super.onDestroy();
     }
 
     @OnClick(R.id.redPacket)

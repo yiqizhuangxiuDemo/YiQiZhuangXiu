@@ -37,7 +37,6 @@
 
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
-            android:launchMode="singleTop"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".gui.activity.PostDetailsActivity"

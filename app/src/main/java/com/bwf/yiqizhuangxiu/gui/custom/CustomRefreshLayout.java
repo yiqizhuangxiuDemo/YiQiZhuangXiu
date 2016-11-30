@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.utils.LogUtils;
 
 
 /**
@@ -22,11 +23,12 @@ import com.bwf.yiqizhuangxiu.R;
 
 public class CustomRefreshLayout extends FrameLayout {
 
-    private View headerView;
     private View bodyView;
+    private View headerView;
     private View progressView;
     private View upView;
     private TextView infoView;
+    private TextView timeView;
     private int headerHeight;
     private boolean isRefreshing;
     private boolean isEnable = true;
@@ -53,7 +55,9 @@ public class CustomRefreshLayout extends FrameLayout {
         addView(headerView);
         progressView = headerView.findViewById(R.id.progressImage);
         upView = headerView.findViewById(R.id.upImage);
+        ViewCompat.setRotation(upView, 0);
         infoView = (TextView) headerView.findViewById(R.id.infoText);
+        timeView = (TextView) headerView.findViewById(R.id.timeText);
         headerView.measure(0, 0);
         headerHeight = headerView.getMeasuredHeight();
         ViewCompat.setTranslationY(headerView, -headerHeight);
@@ -77,7 +81,7 @@ public class CustomRefreshLayout extends FrameLayout {
                 if (Math.abs(ev.getY() - touchY) > Math.abs(ev.getX() - touchX) && ev.getY() - touchY > 50 && isEnable && isBodyTopLimit() && !isRefreshing) {
                     touchY = ev.getY();
                     if (onTouchByUserListener != null) {
-                        onTouchByUserListener.onTouchByUser();
+                        onTouchByUserListener.onTouchByUser(timeView);
                     }
                     return true;
                 }
@@ -109,11 +113,17 @@ public class CustomRefreshLayout extends FrameLayout {
                 }
                 distanceY = distanceY / 3;
                 if (distanceY >= headerHeight) {
-                    infoView.setText("一起装修网，省钱有保障");
-                    ViewCompat.setRotation(upView, 180);
+                    if (ViewCompat.getRotation(upView) <= 2) {
+                        upView.clearAnimation();
+                        smoothRotate(0, 180);
+                        infoView.setText("一起装修网，省钱有保障");
+                    }
                 } else {
-                    infoView.setText("下拉刷新");
-                    ViewCompat.setRotation(upView, 0);
+                    if (ViewCompat.getRotation(upView) >= 178) {
+                        upView.clearAnimation();
+                        smoothRotate(180, 0);
+                        infoView.setText("下拉刷新");
+                    }
                 }
                 ViewCompat.setTranslationY(bodyView, distanceY);
                 ViewCompat.setTranslationY(headerView, distanceY - headerHeight);
@@ -167,6 +177,26 @@ public class CustomRefreshLayout extends FrameLayout {
             valueAnimator.setFloatValues(startY, endY);
         }
         valueAnimator.start();
+    }
+
+    private ValueAnimator valueAnimatorRotate;
+
+    private void smoothRotate(int fromRotate, int endRotate) {
+        if (valueAnimatorRotate == null) {
+            valueAnimatorRotate = ValueAnimator.ofInt(fromRotate, endRotate);
+            valueAnimatorRotate.setDuration(200);
+            valueAnimatorRotate.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    int value = (int) animation.getAnimatedValue();
+                    LogUtils.e("rotate", value + "");
+                    ViewCompat.setRotation(upView, value);
+                }
+            });
+        } else {
+            valueAnimatorRotate.setIntValues(fromRotate, endRotate);
+        }
+        valueAnimatorRotate.start();
     }
 
     /**
@@ -247,7 +277,7 @@ public class CustomRefreshLayout extends FrameLayout {
      * 设置拖动接口监听
      */
     public interface OnTouchByUserListener {
-        void onTouchByUser();
+        void onTouchByUser(TextView timeView);
     }
 
     ;
