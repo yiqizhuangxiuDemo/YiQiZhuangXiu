@@ -1,10 +1,12 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -114,6 +116,14 @@ public abstract class BaseActivity extends FragmentActivity {
             ex7.printStackTrace();
         }
         return n;
+    }
+
+    public int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
     }
 
     /**

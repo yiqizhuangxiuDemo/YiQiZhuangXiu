@@ -1,6 +1,7 @@
 package com.bwf.yiqizhuangxiu.mvp.model.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.bwf.yiqizhuangxiu.entity.PostDetailsCommentsData;
 import com.bwf.yiqizhuangxiu.entity.PostDetailsContentDataBean;
 import com.bwf.yiqizhuangxiu.entity.PostDetailsLikeData;
 import com.bwf.yiqizhuangxiu.mvp.model.ModelPostDetails;
@@ -18,10 +19,10 @@ import okhttp3.Call;
 
 public class ModelPostDetailsImpl implements ModelPostDetails {
     @Override
-    public void loadAllData(String id, CallBack callBack) {
+    public void loadAllData(String id, int page, CallBack callBack) {
         loadPostDetailsContentData(id, callBack);
         loadPostDetailsLikeData(id, callBack);
-        loadPostDetailsCommentsData(id, callBack);
+        loadPostDetailsCommentsData(id, page, callBack);
     }
 
     @Override
@@ -65,8 +66,10 @@ public class ModelPostDetailsImpl implements ModelPostDetails {
                     @Override
                     public void onResponse(String response, int id) {
                         PostDetailsLikeData data = JSON.parseObject(response, PostDetailsLikeData.class);
-                        if (data != null) {
+                        if (data != null && "0".equals(data.getError())) {
                             callBack.onLoadLikeSuccess(data);
+                        } else if (data != null) {
+                            callBack.onLoadLikeFailed(data.getMessage());
                         } else {
                             callBack.onLoadLikeFailed("网络连接失败");
                         }
@@ -75,7 +78,28 @@ public class ModelPostDetailsImpl implements ModelPostDetails {
     }
 
     @Override
-    public void loadPostDetailsCommentsData(String id, CallBack callBack) {
+    public void loadPostDetailsCommentsData(String id, int page, final CallBack callBack) {
+        OkHttpUtils.get()
+                .url(UrlHandler.handleURL(Apis.API_POSTDETAILS_COMMENTS, id, page))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        LogUtils.e("loadPostDetailsContentData", e.toString());
+                        callBack.onLoadLikeFailed("网络连接失败");
+                    }
 
+                    @Override
+                    public void onResponse(String response, int id) {
+                        PostDetailsCommentsData data = JSON.parseObject(response, PostDetailsCommentsData.class);
+                        if (data != null && "0".equals(data.getError())) {
+                            callBack.onLoadCommentsSuccess(data.getData(), data.getTotalCount());
+                        } else if (data != null) {
+                            callBack.onLoadCommentsFailed(data.getMessage());
+                        } else {
+                            callBack.onLoadCommentsFailed("网络连接失败");
+                        }
+                    }
+                });
     }
 }

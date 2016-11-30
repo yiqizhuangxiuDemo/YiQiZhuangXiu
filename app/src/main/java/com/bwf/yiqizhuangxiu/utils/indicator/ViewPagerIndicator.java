@@ -3,6 +3,7 @@ package com.bwf.yiqizhuangxiu.utils.indicator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -113,9 +114,10 @@ public class ViewPagerIndicator {
             //设置属性并添加到父容器和集合进行管理
             IndicatorDefultView indicatorDefultView = new IndicatorDefultView(context);
             indicatorDefultView.setLayoutParams(params);
-            indicatorDefultView.setTextSize(TypedValue.COMPLEX_UNIT_SP,10); //22SP
+            indicatorDefultView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10); //22SP
             indicatorDefultView.setGravity(Gravity.CENTER);
-            indicatorDefultView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                indicatorDefultView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             dotContainer.addView(indicatorDefultView);
             indicatorDefultViews.add(indicatorDefultView);
             if (selectorDrawable != 0) {

@@ -53,6 +53,12 @@
     <string name="booking_head_select_security_description">严把质量关，网站为每一件商品担保</string>
     <string name="booking_head_select_compensate_description">商品质量问题，网站先行赔付，购物无担忧</string>
     <string name="booking_head_select_floorprice_description">全城，全网最低价，倍补差价</string>
+    <string name="network_result_null">网络连接出现错误</string>
+    <string name="no_comments_text">目前还没有任何评论！</string>
+    <string name="related_articledetails_text">相关文章推荐</string>
+    <string name="comment_articledetails_text">评论(%1$s)</string>
+    <string name="nocomment_articledetails">暂无评论</string>
+    <string name="nomorecomment_articledetails">没有更多评论了</string>
     <string-array name="location">
         <item>北京</item>
         <item>天津</item>

@@ -3,7 +3,7 @@ package com.bwf.yiqizhuangxiu.gui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -161,7 +161,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             public void onItemClick(View view, int position) {
                 if (adapter.getItemData(position).getType() == HomepageRecyclerViewAdapter.ARTICLE_TYPE) {
                     Intent intent = new Intent(HomePageFragment.this.getContext(), ArticleDetailsActivity.class);
-                    intent.putExtra(ArticleDetailsActivity.TAG_URL_EXTRA, adapter.getItemData(position).getH5Url());
+                    intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, adapter.getItemData(position).getId());
                     HomePageFragment.this.startActivity(intent);
                 } else if (adapter.getItemData(position).getType() == HomepageRecyclerViewAdapter.POST_TYPE) {
                     Intent intent = new Intent(HomePageFragment.this.getContext(), PostDetailsActivity.class);
@@ -297,7 +297,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageHeadDataSuccess(List<HomepageHeadData.DataBean> datas) {
-        customRefreshLayout.finishRefresh();
         headAdapter = new HomepageViewPagerAdapter(getContext(), datas);
         viewpagerHomepageHead.setAdapter(headAdapter);
         headAdapter.setOnItemClickListener(new HomepageViewPagerAdapter.OnItemClickListener() {
@@ -318,8 +317,11 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageHeadDataFaied(String info) {
-        customRefreshLayout.finishRefresh();
-        Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        if (info != null && !"".equals(info)) {
+            Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "网络连接出现错误", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -337,9 +339,14 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageContentDataFaied(String info) {
-        isLoading = false;
-        Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
         customRefreshLayout.finishRefresh();
+        isRefreshing = false;
+        isLoading = false;
+        if (info != null && !"".equals(info)) {
+            Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "网络连接出现错误", Toast.LENGTH_SHORT).show();
+        }
         adapter.setFooterState(1);
     }
 
@@ -428,7 +435,8 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //        popupWindow.setHeight(customRefreshLayout.getHeight()-rootHemepageTitlbar.getHeight());
             popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.popupwindow_bg));
+            popupWindow.setBackgroundDrawable(colorDrawable);
 //        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.popupwindoe_homepage));
             popupWindow.setOutsideTouchable(true);
             popupWindow.setFocusable(true);

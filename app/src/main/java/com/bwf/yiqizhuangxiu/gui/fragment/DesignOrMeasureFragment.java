@@ -1,6 +1,7 @@
 package com.bwf.yiqizhuangxiu.gui.fragment;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
@@ -109,7 +110,8 @@ public class DesignOrMeasureFragment extends BaseFragment {
             popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
             popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
             popupWindow.setContentView(view);
-            popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.popupwindoe_homepage));
+            ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.popupwindow_bg));
+            popupWindow.setBackgroundDrawable(colorDrawable);
             popupWindow.setOutsideTouchable(true);
             popupWindow.setFocusable(true);
             TextView textView = (TextView) view.findViewById(R.id.design_popupwindow_textview_content);
