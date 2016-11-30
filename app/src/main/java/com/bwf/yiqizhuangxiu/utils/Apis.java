@@ -25,9 +25,6 @@ public interface Apis {
     String API_ARTICLEDETAILS_CONTENT = "http://appapi.17house.com/NewsApi.php?version=1&newsId={$0}&page={$1}&action=newsDetail&relatedNum=3&model=android";
     String API_ARTICLEDETAILS_COMMENTS = "http://appapi.17house.com/newsApi.php?version=1&page={$1}&dataId={$0}&action=commentList&limit=10&model=android";
 
-    String URL_COMPANT_ADVERTING = "http://118.178.142.34/YiQiHouse/CompanyAD";
-    String URL_COMPANT_DECORTAR = "http://118.178.142.34/YiQiHouse/DecorateLive";
-
     String URL_NEW_HOUSER = "http://hui.17house.com/svc/payment-facade/h5/activity677/index.html?model=android";
     String URL_OLD_HOUSER = "http://hui.17house.com/svc/payment-facade/h5/activity177/index.html?model=android";
     /**
