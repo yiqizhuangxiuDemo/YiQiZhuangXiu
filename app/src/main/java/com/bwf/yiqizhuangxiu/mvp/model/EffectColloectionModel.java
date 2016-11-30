@@ -13,5 +13,6 @@ public interface EffectColloectionModel {
     interface  ColloectonCallBack{
         void loadColloectionSuccess(List<EffectCollectionData.DataBean.ListBean> listBeen);
         void loadColloectionFail();
+        void noMoreData();
     }
 }

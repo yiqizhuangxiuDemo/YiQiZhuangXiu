@@ -8,7 +8,7 @@ public interface Apis {
     /**
      * 首页接口
      */
-    String URL_COMPANT_ADVERTING ="http://118.178.142.34/YiQiHouse/CompanyAD";
+    String URL_COMPANT_ADVERTING ="http://appapi.17house.com/AppManagerApi.php?version=1&action=integratedpackage&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
     String URL_COMPANT_DECORTAR = "http://hui.17house.com/svc/payment-facade/housekeep/listLatestLiveBuildingSites";
     String API_HOMEPAGE_HEAD = "http://appapi.17house.com/AppManagerApi.php?version=1&action=getownerinfo&cityId=2&model=android";
     String API_HOMEPAGE_CONTENT_FIRST_PAGE = "http://bbs.17house.com/motnt/index.php?a=appindex&c=index&id=1218226&uuid=86305803367590&pageSize=10&uid=1633055&m=misc&type=3&page=1&haspermission=yes&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
@@ -42,4 +42,5 @@ public interface Apis {
      * 自助下单
      */
     String API_BOOOKING="http://appapi.17house.com/GrouponApi.php?version=1&action=getSingleSupplementInfo&cityId={$0}&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
+    String URL_EFFECT_BEATIFUL = "http://appapi.17house.com/xiaoguotuApi.php?version=1&page={$0}&action=imageList2&pageSize=10&tagid=0&model=android";
 }

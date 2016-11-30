@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.bwf.yiqizhuangxiu.gui.fragment.ArticleFragment;
+import com.bwf.yiqizhuangxiu.gui.fragment.BeautfFrament;
 import com.bwf.yiqizhuangxiu.gui.fragment.CollectionFragment;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class EffectViewPagerAdapter extends FragmentPagerAdapter{
         super(fm);
         fragments = new ArrayList<>();
         fragments.add(new CollectionFragment());
-        fragments.add(new ArticleFragment());
+        fragments.add(new BeautfFrament());
     }
 
     @Override

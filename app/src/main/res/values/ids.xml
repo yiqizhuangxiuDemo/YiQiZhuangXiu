@@ -129,4 +129,15 @@
     <item name="recyclerview" type="id" />
     <item name="discription" type="id" />
     <item name="design_popupwindow_textview_content" type="id" />
+    <item name="footer_load_data" type="id" />
+    <item name="checked_textview_space" type="id" />
+    <item name="checked_textview_style" type="id" />
+    <item name="checked_textview_local" type="id" />
+    <item name="checked_textview_color" type="id" />
+    <item name="linear_beautiful_container" type="id" />
+    <item name="recyclerview_popwindow" type="id" />
+    <item name="beautiful_grid_view" type="id" />
+    <item name="gridview_beatiful" type="id" />
+    <item name="beatiful_text_conment" type="id" />
+    <item name="beatiful_text_like" type="id" />
 </resources>

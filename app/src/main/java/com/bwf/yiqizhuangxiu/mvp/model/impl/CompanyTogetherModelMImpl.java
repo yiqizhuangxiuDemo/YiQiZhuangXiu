@@ -43,9 +43,12 @@ public class CompanyTogetherModelMImpl implements CompanyTogetherModel{
 //                nexPage++;
 //            }
 //        });
-        OkHttpUtils.post().url(url).addParams("token","DAB088BA50C9405E84C789055D657614")
-                .addParams("app_version ","android_com.aiyiqi.galaxy_1.1").addParams("type",type)
-                .addParams("haspermission","yes").addParams("pageNo ",nexPage+"")
+        OkHttpUtils.post().url(url)
+                .addParams("token","DAB088BA50C9405E84C789055D657614")
+                .addParams("app_version ","android_com.aiyiqi.galaxy_1.1")
+                .addParams("type",type)
+                .addParams("haspermission","yes")
+                .addParams("pageNo ",nexPage+"")
                 .addParams("pageSize",10+"").build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -59,6 +62,7 @@ public class CompanyTogetherModelMImpl implements CompanyTogetherModel{
                 CompanyTogtherData data = JSON.parseObject(response, CompanyTogtherData.class);
                 callBack.loadDataSuccess(data.getData());
                 nexPage++;
+                Log.d("CompanyTogetherModelMIm", "nexPage:" + nexPage);
             }
         });
 
