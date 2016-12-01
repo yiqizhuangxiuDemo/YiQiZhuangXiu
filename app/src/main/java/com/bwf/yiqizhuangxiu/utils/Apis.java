@@ -50,4 +50,6 @@ public interface Apis {
      */
     String URL_EFFECT_BEATIFUL = "http://appapi.17house.com/xiaoguotuApi.php?version=1&page={$0}&action=imageList2&pageSize=10&tagid=0&model=android";
     String API_BOOOKING = "http://appapi.17house.com/GrouponApi.php?version=1&action=getSingleSupplementInfo&cityId={$0}&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
+    String URL_SCHOOL_TITLE = "http://appapi.17house.com/StageApi.php?version=1&action=getTagsByStage&stage={$0}&model=android";
+    String URL_SCHOOL_COMMENT = "http://appapi.17house.com/NewsApi.php?version=1&action=getNewsByStage&stage={$0}&page={$1}&pagesize=10&model=android";
 }

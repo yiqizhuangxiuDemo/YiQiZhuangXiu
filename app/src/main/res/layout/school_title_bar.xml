@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+        <ImageView
+            android:id="@id/titlebar_back"
+            android:layout_width="?android:attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
+            android:padding="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/titlebar_back_selector" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <android.support.design.widget.TabLayout
+                android:id="@id/effcet_title_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabTextColor="#77000000"
+                app:tabMode="scrollable"
+                app:tabTextAppearance="@style/titlebar_text_style_beautif"
+                app:tabSelectedTextColor="@color/tabSelectedTextColor"
+                app:tabIndicatorColor="@color/white"/>
+        </LinearLayout>
+        <Button
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@id/image_school_bar"
+            android:background="@drawable/select_school_bar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

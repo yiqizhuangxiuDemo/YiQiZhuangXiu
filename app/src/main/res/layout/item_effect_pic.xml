@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="200dp">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@id/effect_image_sd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            fresco:actualImageScaleType="centerCrop"/>
         <LinearLayout
             android:gravity="center"
-            android:background="#446c6a6a"
+            android:background="#660d0d0d"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -23,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp">
 
@@ -34,27 +37,27 @@
                     android:layout_marginLeft="12dp"
                     android:text="精选自北京装修论坛>"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@id/comment_articledetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="20dp"
                     android:drawableLeft="@drawable/looked_hui"
                     android:drawablePadding="5dp"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@id/view_articledetails_Nums"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="80dp"
-                    android:drawableLeft="@mipmap/ic_taochan_like"
+                    android:layout_marginRight="20dp"
+                    android:drawableLeft="@mipmap/ic_home_zhan"
                     android:drawablePadding="5dp"
                     android:text="0"
                     android:textColor="@color/white"
@@ -63,8 +66,8 @@
         </LinearLayout>
     </FrameLayout>
     <TextView
-        android:padding="20dp"
-        android:textSize="20sp"
+        android:padding="15dp"
+        android:textSize="15sp"
         android:id="@id/text_effect_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

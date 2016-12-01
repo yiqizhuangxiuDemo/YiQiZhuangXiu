@@ -27,6 +27,18 @@
         android:textColor="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <RatingBar
+        android:id="@id/ratingbar"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:rating="5.0"
+        android:numStars="5"
+        android:stepSize="1.2"
+        android:isIndicator="true"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

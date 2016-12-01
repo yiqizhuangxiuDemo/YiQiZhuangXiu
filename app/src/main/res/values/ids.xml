@@ -151,4 +151,19 @@
     <item name="nomroecomments_articledetails" type="id" />
     <item name="comment_container_articledetails" type="id" />
     <item name="textview_nomroecomments_articledetails" type="id" />
+    <item name="linear_contait" type="id" />
+    <item name="ratingbar" type="id" />
+    <item name="image_school_bar" type="id" />
+    <item name="view_pager_school" type="id" />
+    <item name="scholl_linear_contantier" type="id" />
+    <item name="linear_school_list_containt" type="id" />
+    <item name="school_listview_content" type="id" />
+    <item name="school_content_title" type="id" />
+    <item name="school_looke_num" type="id" />
+    <item name="text_star_num" type="id" />
+    <item name="text_comment_num" type="id" />
+    <item name="image_school_conment" type="id" />
+    <item name="school_listview_content1" type="id" />
+    <item name="school_listview" type="id" />
+    <item name="linear_parent" type="id" />
 </resources>
