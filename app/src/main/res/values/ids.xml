@@ -152,4 +152,9 @@
     <item name="comment_container_articledetails" type="id" />
     <item name="textview_nomroecomments_articledetails" type="id" />
     <item name="text_view" type="id" />
+    <item name="cancel_guide" type="id" />
+    <item name="guide_chenck_sex" type="id" />
+    <item name="guide_check_progress" type="id" />
+    <item name="guide_check_birthday" type="id" />
+    <item name="guide_over" type="id" />
 </resources>

@@ -32,4 +32,8 @@
     <style name="titlebar_text_style_beautif">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="CustomRadioBtn">
+        <item name="android:button">@drawable/guide_radiobutton_indicator</item>
+    </style>
 </resources>

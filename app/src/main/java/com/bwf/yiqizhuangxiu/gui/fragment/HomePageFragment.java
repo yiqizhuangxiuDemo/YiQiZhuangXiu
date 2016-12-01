@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.application.App;
 import com.bwf.yiqizhuangxiu.entity.HomepageContentData;
 import com.bwf.yiqizhuangxiu.entity.HomepageHeadData;
 import com.bwf.yiqizhuangxiu.gui.activity.ActivitiesActivity;
@@ -64,6 +65,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.bwf.yiqizhuangxiu.application.App.SP_CONFIG;
+
 /**
  * Created by Administrator on 2016/11/23.
  */
@@ -86,7 +89,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     @Bind(R.id.location_hpmepage_titlebar)
     TextView locationHpmepageTitlebar;
 
-    public final static String SP_CONFIG = "config";
     public final static String SP_CONFIG_CITY_KEY = "location";
 
     private boolean isLoading;
@@ -407,7 +409,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
                     editor.commit();
@@ -418,7 +420,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
                     TextView view = (TextView) v;
                     editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());

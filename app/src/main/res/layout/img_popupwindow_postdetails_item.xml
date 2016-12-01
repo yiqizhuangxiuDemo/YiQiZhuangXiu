@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <me.relex.photodraweeview.PhotoDraweeView
         android:id="@id/simpleDraweeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

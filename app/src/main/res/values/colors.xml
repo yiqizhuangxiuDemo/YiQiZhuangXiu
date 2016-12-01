@@ -12,4 +12,6 @@
     <color name="gray_light">#dddddd</color>
     <color name="popupwindow_bg">#44000000</color>
     <color name="articledetails_tag_textcolor">#FFE1520A</color>
+    <color name="gray_darker">#666666</color>
+    <color name="gray">#aaaaaa</color>
 </resources>

@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="6dp"
-    android:paddingRight="6dp">
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@id/recyclerview"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:src="@drawable/introduce_logo" />
 </LinearLayout>

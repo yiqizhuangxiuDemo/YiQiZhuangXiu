@@ -2,7 +2,6 @@ package com.bwf.yiqizhuangxiu.utils.indicator;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.application.App;
-import com.bwf.yiqizhuangxiu.utils.LogUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,9 +15,6 @@ public class TimestampUtils {
     public static String millisecondToTimestamp(long milliseconed) {
         String result = "";
         long time = Calendar.getInstance().getTimeInMillis() / 1000 - milliseconed;
-        LogUtils.e("TimestampUtils", "cyrrentTime--->" + (Calendar.getInstance().getTimeInMillis() / 1000));
-        LogUtils.e("TimestampUtils", "milliseconed-->" + milliseconed);
-        LogUtils.e("TimestampUtils", "time-->" + time);
         if (time / 60 < 0) {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date d = new Date(milliseconed);
@@ -36,7 +32,6 @@ public class TimestampUtils {
             Date d = new Date(milliseconed);
             result = format.format(d);
         }
-        LogUtils.e("TimestampUtils", result);
         return result;
     }
 }

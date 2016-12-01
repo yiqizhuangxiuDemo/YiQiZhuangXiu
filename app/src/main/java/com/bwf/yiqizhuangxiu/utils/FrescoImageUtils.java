@@ -13,6 +13,8 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
 
+import me.relex.photodraweeview.PhotoDraweeView;
+
 /**
  * Created by Administrator on 2016/11/22.
  */
@@ -107,5 +109,45 @@ public class FrescoImageUtils {
                 .setUri(Uri.parse(imagePath))
                 .build();
         simpleDraweeView.setController(controller);
+    }
+
+    /**
+     * 设置SimpleDraweeView的Controller让
+     *
+     * @param photoDraweeView
+     * @param imagePath
+     * @param maxWidth
+     * @param maxHeight
+     */
+    public static void setZoomableControllerListener(final PhotoDraweeView photoDraweeView, String imagePath, final int maxWidth, final int maxHeight) {
+        final ViewGroup.LayoutParams layoutParams = photoDraweeView.getLayoutParams();
+        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+            @Override
+            public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable anim) {
+                if (imageInfo == null || photoDraweeView == null) {
+                    return;
+                }
+                int height = imageInfo.getHeight();
+                int width = imageInfo.getWidth();
+                if (width / (float) height > maxWidth / (float) maxHeight) {
+                    layoutParams.width = maxWidth;
+                    layoutParams.height = (int) ((float) (maxWidth * height) / (float) width);
+                } else {
+                    layoutParams.height = maxHeight;
+                    layoutParams.width = (int) ((float) (maxHeight * width) / (float) height);
+                }
+                photoDraweeView.update(layoutParams.width, layoutParams.width);
+                layoutParams.width = maxWidth;
+                layoutParams.height = maxHeight;
+                photoDraweeView.setLayoutParams(layoutParams);
+            }
+        };
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setAutoPlayAnimations(true)
+                .setOldController(photoDraweeView.getController())
+                .setControllerListener(controllerListener)
+                .setUri(Uri.parse(imagePath))
+                .build();
+        photoDraweeView.setController(controller);
     }
 }

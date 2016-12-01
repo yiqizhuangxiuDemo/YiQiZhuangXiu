@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.gui.activity.BaseActivity;
 import com.bwf.yiqizhuangxiu.utils.FrescoImageUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.relex.photodraweeview.PhotoDraweeView;
 
 /**
  * Created by Administrator on 2016/11/30.
@@ -30,8 +31,8 @@ public class PostDetailsImgViewPagerAdapter extends PagerAdapter {
         views = new ArrayList<>();
         for (String imgurl : imgUrls) {
             View view = inflater.inflate(R.layout.img_popupwindow_postdetails_item, null);
-            SimpleDraweeView sdv = (SimpleDraweeView) view.findViewById(R.id.simpleDraweeView);
-            FrescoImageUtils.setControllerListener(sdv, imgurl, context.getScreenWidth(context), context.getScreenHeight(context));
+            PhotoDraweeView pdv = (PhotoDraweeView) view.findViewById(R.id.simpleDraweeView);
+            FrescoImageUtils.setZoomableControllerListener(pdv, imgurl, context.getScreenWidth(context), context.getScreenHeight(context));
             views.add(view);
         }
     }

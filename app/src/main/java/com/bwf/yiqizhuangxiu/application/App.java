@@ -25,6 +25,8 @@ public class App extends Application {
         return app.getApplicationContext();
     }
 
+    public final static String SP_CONFIG = "config";
+
     @Override
     public void onCreate() {
         super.onCreate();

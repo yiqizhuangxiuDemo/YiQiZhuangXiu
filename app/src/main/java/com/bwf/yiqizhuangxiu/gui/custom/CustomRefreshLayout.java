@@ -7,13 +7,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bwf.yiqizhuangxiu.R;
-import com.bwf.yiqizhuangxiu.utils.LogUtils;
 
 
 /**
@@ -96,6 +96,8 @@ public class CustomRefreshLayout extends FrameLayout {
         return !ViewCompat.canScrollVertically(bodyView, -1);
     }
 
+    private boolean isRotate;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -113,15 +115,25 @@ public class CustomRefreshLayout extends FrameLayout {
                 }
                 distanceY = distanceY / 3;
                 if (distanceY >= headerHeight) {
-                    if (ViewCompat.getRotation(upView) <= 2) {
+                    if (!isRotate) {
+                        isRotate = true;
                         upView.clearAnimation();
-                        smoothRotate(0, 180);
+                        Animation myAnimation_Rotate = new RotateAnimation(0, 180,
+                                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                        myAnimation_Rotate.setDuration(200);
+                        myAnimation_Rotate.setFillAfter(true);
+                        upView.startAnimation(myAnimation_Rotate);
                         infoView.setText("一起装修网，省钱有保障");
                     }
                 } else {
-                    if (ViewCompat.getRotation(upView) >= 178) {
+                    if (isRotate) {
+                        isRotate = false;
                         upView.clearAnimation();
-                        smoothRotate(180, 0);
+                        Animation myAnimation_Rotate = new RotateAnimation(180, 0,
+                                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                        myAnimation_Rotate.setDuration(200);
+                        myAnimation_Rotate.setFillAfter(true);
+                        upView.startAnimation(myAnimation_Rotate);
                         infoView.setText("下拉刷新");
                     }
                 }
@@ -168,6 +180,7 @@ public class CustomRefreshLayout extends FrameLayout {
                         rotateAnimation.setRepeatCount(-1);
                         rotateAnimation.setInterpolator(new LinearInterpolator());
                         progressView.setVisibility(View.VISIBLE);
+                        upView.clearAnimation();
                         upView.setVisibility(View.GONE);
                         progressView.startAnimation(rotateAnimation);
                     }
@@ -180,24 +193,6 @@ public class CustomRefreshLayout extends FrameLayout {
     }
 
     private ValueAnimator valueAnimatorRotate;
-
-    private void smoothRotate(int fromRotate, int endRotate) {
-        if (valueAnimatorRotate == null) {
-            valueAnimatorRotate = ValueAnimator.ofInt(fromRotate, endRotate);
-            valueAnimatorRotate.setDuration(200);
-            valueAnimatorRotate.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    int value = (int) animation.getAnimatedValue();
-                    LogUtils.e("rotate", value + "");
-                    ViewCompat.setRotation(upView, value);
-                }
-            });
-        } else {
-            valueAnimatorRotate.setIntValues(fromRotate, endRotate);
-        }
-        valueAnimatorRotate.start();
-    }
 
     /**
      * 结束刷新状态

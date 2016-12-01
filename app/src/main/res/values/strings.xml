@@ -68,6 +68,13 @@
     <string name="timeatamp_jsut_now">刚刚</string>
     <string name="img_position_popupwindow_postdetails">%1$d/%2$d</string>
     <string name="last_refresh_time">上次更新:%1$s</string>
+    <string name="cancel">取消</string>
+    <string name="guide_realize">让我们花10秒钟了解你</string>
+    <string name="guide_hint">以便发现您最需要的装修内容</string>
+    <string name="guide_check_sex">选择性别:</string>
+    <string name="guide_check_sex_man">男</string>
+    <string name="guide_check_sex_woman">女</string>
+    <string name="guide_check_progress">装修进度:</string>
     <string-array name="location">
         <item>北京</item>
         <item>天津</item>
