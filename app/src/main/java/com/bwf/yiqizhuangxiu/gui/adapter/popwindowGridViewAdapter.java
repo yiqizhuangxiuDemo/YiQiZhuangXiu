@@ -31,6 +31,7 @@ public class popwindowGridViewAdapter extends BaseAdapter {
         }
     }
 
+
     @Override
     public int getCount() {
         return datas.size();
