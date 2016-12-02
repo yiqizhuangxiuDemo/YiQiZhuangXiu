@@ -29,7 +29,8 @@
         <activity android:name=".gui.activity.HouseOfNewActivity" />
         <activity android:name=".gui.activity.WorkSpacePlaying" />
         <activity android:name=".gui.activity.ZxingActivity" />
-        <activity android:name=".gui.activity.SearchActivity" />
+        <activity android:name=".gui.activity.SearchActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden"  />
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -39,6 +40,8 @@
         <activity
             android:name=".gui.activity.DetailsPageActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".gui.activity.OwnerSaySubActivity"></activity>
+        <activity android:name=".gui.activity.ActivityDetails"></activity>
     </application>
 
 </manifest>

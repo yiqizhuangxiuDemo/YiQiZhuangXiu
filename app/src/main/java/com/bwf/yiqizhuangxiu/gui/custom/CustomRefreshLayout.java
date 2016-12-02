@@ -250,7 +250,6 @@ public class CustomRefreshLayout extends FrameLayout {
         void onTouchByUser();
     }
 
-    ;
     private OnTouchByUserListener onTouchByUserListener;
 
     public void setOnTouchByUserListener(OnTouchByUserListener onTouchByUserListener) {
@@ -264,7 +263,6 @@ public class CustomRefreshLayout extends FrameLayout {
         void onRecover();
     }
 
-    ;
     private OnRecoverListener onRecoverListener;
 
     public void setOnRecoverListener(OnRecoverListener onRecoverListener) {

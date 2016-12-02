@@ -14,6 +14,7 @@ import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayCreamPageData;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -23,29 +24,68 @@ import butterknife.ButterKnife;
  * Created by ${yong} on 2016/11/24.
  */
 
-public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<OwnerSayCreamPageData.DataBean> datas;
+public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+    private List<OwnerSayCreamPageData.DataBean> mdatas;
     private LayoutInflater inflater;
     private Context context;
-//    private String[] str = {"一","二","三","四","五","六","七","八","九","十"};
 
-    public FragmentOwnerSayCreamAdapter(LayoutInflater inflater, Context context, List<OwnerSayCreamPageData.DataBean> datas) {
+    public FragmentOwnerSayCreamAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
-        this.datas = datas;
+        this.mdatas = new ArrayList<>();
+    }
+
+    public void addData(List<OwnerSayCreamPageData.DataBean> datas) {
+        this.mdatas.addAll(datas);
+        notifyDataSetChanged();
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (position == mdatas.size()) {
+            return R.layout.item_load_more;
+        } else {
+            return R.layout.item_fragment_ownersaypagecream_layout;
+        }
+    }
+
+    private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = null;
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener onRecyclerViewItemClickListener){
+        this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
+    }
+
+    public interface OnRecyclerViewItemClickListener{
+        void onItemclick(View view,OwnerSayCreamPageData.DataBean Datas);
+    }
+    
+    @Override
+    public void onClick(View v) {
+        if (onRecyclerViewItemClickListener != null) {
+            onRecyclerViewItemClickListener.onItemclick(v,(OwnerSayCreamPageData.DataBean) v.getTag());
+        }
+    }
+    
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder viewHolder = new MyViewHolder(inflater.inflate(R.layout.item_fragment_ownersaypagecream_layout,
-                parent,false));
-        return viewHolder;
+        View view = inflater.inflate(viewType,parent,false);
+        view.setOnClickListener(this);
+        if (viewType == R.layout.item_load_more) {
+            LoadMoreViewHolder moreHolder = new LoadMoreViewHolder(view);
+            return moreHolder;
+        } else {
+            MyViewHolder viewHolder = new MyViewHolder(view);
+            return viewHolder;
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        MyViewHolder myViewHolder = (MyViewHolder) holder;
-        OwnerSayCreamPageData.DataBean dataBean = datas.get(position);
+        if (holder instanceof LoadMoreViewHolder) {
+            callBack.loadMoreData();
+        } else if (holder instanceof MyViewHolder) {
+            MyViewHolder myViewHolder = (MyViewHolder) holder;
+            OwnerSayCreamPageData.DataBean dataBean = mdatas.get(position);
+            myViewHolder.itemView.setTag(mdatas.get(position));
             myViewHolder.ownersaypagecreamTitleImg.setImageURI(Uri.parse(dataBean.getAvtUrl()));
             myViewHolder.ownersaypagecreamTitleName.setText(dataBean.getAuthor());
             Log.d("FragmentOwnerSayCreamAd", "datas.get(i).getHouseInfo():" + dataBean.getHouseInfo());
@@ -55,16 +95,29 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
                                 +dataBean.getHouseInfo().getBudget()+"萬、");
             }
             myViewHolder.ownersaypagecreamContentText.setText(dataBean.getSubject());
-            myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
+            if (dataBean.getAttachments() != null) {
+                myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
+            } else {
+                myViewHolder.ownersaypagecreamContentImg.setVisibility(View.GONE);
+            }
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
             Log.d("F---------------", "datas.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan()+"");
             myViewHolder.itemOwnersaypagecreamBottomCommentText.setText(dataBean.getReplies());
+        }
+
     }
 
+    public interface LoadMoreCallBack {
+        void loadMoreData();
+    }
+    private LoadMoreCallBack callBack;
+    public void setLLoadMoreCallBack(LoadMoreCallBack callBack) {
+        this.callBack = callBack;
+    }
     @Override
     public int getItemCount() {
-        return datas.size();
+        return this.mdatas.size()+1;
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -96,4 +149,12 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
             ButterKnife.bind(this, view);
         }
     }
+    static class LoadMoreViewHolder extends RecyclerView.ViewHolder {
+
+        public LoadMoreViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
 }
+
+

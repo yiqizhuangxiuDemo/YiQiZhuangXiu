@@ -1,6 +1,7 @@
 package com.bwf.yiqizhuangxiu.gui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayUpToDataPageData;
@@ -29,7 +31,7 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
     @Bind(R.id.fragment_ownersay_uptodata_recyclerview)
     RecyclerView fragmentOwnersayUptodataRecyclerview;
     private PresenterOwnerSayPageUpToData presenterOwnerSayPageUpToData;
-
+    FragmentOwnerSayUpToDataAdapter adapter;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -39,6 +41,29 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
     private void initData() {
         presenterOwnerSayPageUpToData = new PresenterOwnerSayPageUpToDataImpl(this);
         presenterOwnerSayPageUpToData.loadOwnerSayPageUpToData();
+        adapter = new FragmentOwnerSayUpToDataAdapter(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        fragmentOwnersayUptodataRecyclerview.setLayoutManager(manager);
+        fragmentOwnersayUptodataRecyclerview.setAdapter(adapter);
+        adapter.setOnItemClikListener(new FragmentOwnerSayUpToDataAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick() {
+                Toast.makeText(getActivity(), "帖子详情", Toast.LENGTH_SHORT).show();
+            }
+        });
+        adapter.setLoadMoreCallBack(new FragmentOwnerSayUpToDataAdapter.LoadMoreCallBack() {
+            @Override
+            public void loadMore() {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        presenterOwnerSayPageUpToData.loadOwnerSayPageUpToData();
+                    }
+                },2000);
+            }
+        });
     }
 
     @Override
@@ -52,13 +77,8 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
     }
 
     @Override
-    public void onShowOwnerSayPageUpToDataSuccess(List<OwnerSayUpToDataPageData.DataBean> datas) {
-        FragmentOwnerSayUpToDataAdapter adapter = new FragmentOwnerSayUpToDataAdapter(getActivity(), datas);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        fragmentOwnersayUptodataRecyclerview.setLayoutManager(manager);
-        fragmentOwnersayUptodataRecyclerview.setAdapter(adapter);
-
+    public void onShowOwnerSayPageUpToDataSuccess(final List<OwnerSayUpToDataPageData.DataBean> datas) {
+        adapter.addData(datas);
     }
 
     @Override

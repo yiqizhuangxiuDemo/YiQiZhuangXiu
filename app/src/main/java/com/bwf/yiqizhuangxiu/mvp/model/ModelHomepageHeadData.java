@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ModelHomepageHeadData {
     void loadHomePageHeadData(CallBack callBack);
-    public  interface  CallBack{
+    interface  CallBack{
         void onLoadHomePageHeadDataSuccess(List<HomepageHeadData.DataBean> datas);
         void onLoadHomePageHeadDataFaied(String info);
     }

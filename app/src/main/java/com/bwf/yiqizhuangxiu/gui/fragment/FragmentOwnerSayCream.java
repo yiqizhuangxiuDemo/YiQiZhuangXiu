@@ -1,6 +1,8 @@
 package com.bwf.yiqizhuangxiu.gui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayCreamPageData;
+import com.bwf.yiqizhuangxiu.gui.activity.OwnerSaySubActivity;
 import com.bwf.yiqizhuangxiu.gui.adapter.FragmentOwnerSayCreamAdapter;
 import com.bwf.yiqizhuangxiu.mvp.presenter.PresenterOwnerSayPageCreamData;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterOwnerSayPageCreamDataImpl;
@@ -27,12 +30,39 @@ import butterknife.ButterKnife;
 
 public class FragmentOwnerSayCream extends BaseFragment implements ViewOwnerSayPageCreamData {
     private PresenterOwnerSayPageCreamData presenterOwnerSayPageCreamData;
+    private Handler handler = new Handler();
+    private FragmentOwnerSayCreamAdapter adapter;
+    //private List<OwnerSayCreamPageData.DataBean> mdatas = new ArrayList<>();
     @Bind(R.id.fragment_ownersay_viewpager_cream_recyclerview)
     RecyclerView fragmentOwnersayViewpagerCreamRecyclerview;
 
     public void initDatas() {
         presenterOwnerSayPageCreamData = new PresenterOwnerSayPageCreamDataImpl(this);
         presenterOwnerSayPageCreamData.loadOwnerSayPageCreamData();
+        adapter = new FragmentOwnerSayCreamAdapter(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        fragmentOwnersayViewpagerCreamRecyclerview.setLayoutManager(manager);
+        fragmentOwnersayViewpagerCreamRecyclerview.setAdapter(adapter);
+        adapter.setOnItemClickListener(new FragmentOwnerSayCreamAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemclick(View view, OwnerSayCreamPageData.DataBean Datas) {
+                startActivity(new Intent(getActivity(), OwnerSaySubActivity.class));
+                Log.d("FragmentOwnerSayCream", "AA-------------------------AA");
+                Log.d("FragmentOwnerSayCream", Datas.toString());
+            }
+        });
+        adapter.setLLoadMoreCallBack(new FragmentOwnerSayCreamAdapter.LoadMoreCallBack() {
+            @Override
+            public void loadMoreData() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        presenterOwnerSayPageCreamData.loadOwnerSayPageCreamData();
+                    }
+                }, 2000);
+            }
+        });
     }
 
     @Override
@@ -46,14 +76,10 @@ public class FragmentOwnerSayCream extends BaseFragment implements ViewOwnerSayP
     }
 
     @Override
-    public void onShowOwnerSayPageCreamDataSuccess(List<OwnerSayCreamPageData.DataBean> datas) {
+    public void onShowOwnerSayPageCreamDataSuccess(final List<OwnerSayCreamPageData.DataBean> datas) {
         Log.d("FragmentOwnerSayCream", "datas:" + datas.toString());
-        FragmentOwnerSayCreamAdapter adapter = new FragmentOwnerSayCreamAdapter(LayoutInflater.from(getActivity()), getActivity(), datas);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        fragmentOwnersayViewpagerCreamRecyclerview.setLayoutManager(manager);
-        fragmentOwnersayViewpagerCreamRecyclerview.setAdapter(adapter);
-
+        // mdatas.addAll(datas);
+        adapter.addData(datas);
     }
 
     @Override

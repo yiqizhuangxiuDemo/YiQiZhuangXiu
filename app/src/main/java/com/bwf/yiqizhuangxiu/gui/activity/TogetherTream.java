@@ -90,7 +90,7 @@ public class TogetherTream extends BaseActivity {
     private void addfragment() {
         fragments_to = new ArrayList<>();
         for (int i = 0; i <3 ; i++) {
-            Fragment fragment = (Fragment) new TogetherFramgentDesign();
+            Fragment fragment = new TogetherFramgentDesign();
             Bundle bundle = new Bundle();
             bundle.putString("tag",i+"");
             fragment.setArguments(bundle);
