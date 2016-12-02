@@ -113,6 +113,7 @@ public class DesignOrMeasureFragment extends BaseFragment {
             popupWindow.setBackgroundDrawable(colorDrawable);
             popupWindow.setOutsideTouchable(true);
             popupWindow.setFocusable(true);
+            popupWindow.setAnimationStyle(R.style.popupwindow_anim_alpha);
             TextView textView = (TextView) view.findViewById(R.id.design_popupwindow_textview_content);
             String str = getString(R.string.design_popupwindow_text_main);
             SpannableStringBuilder builder = new SpannableStringBuilder(str);

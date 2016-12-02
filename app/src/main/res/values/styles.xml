@@ -36,4 +36,9 @@
     <style name="CustomRadioBtn">
         <item name="android:button">@drawable/guide_radiobutton_indicator</item>
     </style>
+
+    <style name="popupwindow_anim_alpha" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_show_alpha</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_hidden_alpha</item>
+    </style>
 </resources>

@@ -186,7 +186,6 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(ArticleDetailsActivity.this, "v.getTag():" + v.getTag(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ArticleDetailsActivity.this, ArticleDetailsActivity.class);
             intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, (String) v.getTag());
             ArticleDetailsActivity.this.startActivity(intent);

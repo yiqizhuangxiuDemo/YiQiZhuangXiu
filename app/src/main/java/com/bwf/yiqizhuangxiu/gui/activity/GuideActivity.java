@@ -37,13 +37,8 @@ public class GuideActivity extends BaseActivity {
     protected void initViews() {
         ButterKnife.bind(this);
         Calendar calendar = Calendar.getInstance();
-        guideCheckBirthday.init(calendar.get(Calendar.YEAR) - 30, 0, 1, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                birthday = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-            }
-        });
         Calendar limitCalendar = Calendar.getInstance();
+        guideCheckBirthday.init(calendar.get(Calendar.YEAR) - 30, 0, 1, null);
         limitCalendar.set(calendar.get(Calendar.YEAR) - 80, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         guideCheckBirthday.setMinDate(limitCalendar.getTimeInMillis());
         limitCalendar.set(calendar.get(Calendar.YEAR) - 18, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -91,10 +86,9 @@ public class GuideActivity extends BaseActivity {
         return result;
     }
 
-    private String birthday;
-
     private String getBirthday() {
-        return birthday;
+        String result = guideCheckBirthday.getYear() + "-" + (guideCheckBirthday.getMonth() + 1) + "-" + guideCheckBirthday.getDayOfMonth();
+        return result;
     }
 
     private int getProgress() {

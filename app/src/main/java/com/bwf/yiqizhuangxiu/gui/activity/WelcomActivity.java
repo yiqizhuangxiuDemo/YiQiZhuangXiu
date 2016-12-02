@@ -66,9 +66,7 @@ public class WelcomActivity extends BaseActivity {
 
     private boolean isFirstUse() {
         SharedPreferences sp = getSharedPreferences(App.SP_CONFIG, MODE_PRIVATE);
-        if (sp.getBoolean(SP_CONFIG_ISFIRSTUSE_KEY, true)) {
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean(SP_CONFIG_ISFIRSTUSE_KEY, false).commit();
+        if (sp.getInt("user_progress", 0) == 0) {
             return true;
         } else {
             return false;
