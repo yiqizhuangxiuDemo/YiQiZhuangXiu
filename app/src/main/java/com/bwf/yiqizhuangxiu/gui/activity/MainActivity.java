@@ -56,7 +56,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
-
+        fragments = getFragmentsList();
+        mAdapter = new MainActivityFragmentPagerAdapter(fragments, getSupportFragmentManager());
+        viewpagerMain.setAdapter(mAdapter);
     }
 
     @Override
@@ -65,9 +67,6 @@ public class MainActivity extends BaseActivity {
         SharedPreferences sp = getSharedPreferences(App.SP_CONFIG, MODE_PRIVATE);
         Toast.makeText(this, sp.getString("user_sex", "aa") + "---" + sp.getString("user_birthday", "aa")
                 + "---" + sp.getInt("user_progress", 0), Toast.LENGTH_LONG).show();
-        fragments = getFragmentsList();
-        mAdapter = new MainActivityFragmentPagerAdapter(fragments, getSupportFragmentManager());
-        viewpagerMain.setAdapter(mAdapter);
         viewpagerMain.setOffscreenPageLimit(3);
     }
 

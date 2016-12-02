@@ -41,4 +41,9 @@
         <item name="android:windowEnterAnimation">@anim/popupwindow_show_alpha</item>
         <item name="android:windowExitAnimation">@anim/popupwindow_hidden_alpha</item>
     </style>
+
+    <style name="popupwindow_anim_booking" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_show_alpha</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_hidden</item>
+    </style>
 </resources>

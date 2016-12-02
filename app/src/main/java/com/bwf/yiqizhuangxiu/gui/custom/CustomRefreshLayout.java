@@ -217,8 +217,10 @@ public class CustomRefreshLayout extends FrameLayout {
      */
     public void startRefreshOnce() {
         isRefreshing = true;
-        upView.clearAnimation();
-        upView.setVisibility(GONE);
+        if (upView != null) {
+            upView.clearAnimation();
+            upView.setVisibility(GONE);
+        }
         if (headerView != null)
             smoothScroll(ViewCompat.getTranslationY(headerView), 0);
         if (onRefreshListener != null) {
