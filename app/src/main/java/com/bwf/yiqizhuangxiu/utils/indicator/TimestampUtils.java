@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2016/11/29.
+ * Created by Administor on 2016/11/29.
  */
 
 public class TimestampUtils {
