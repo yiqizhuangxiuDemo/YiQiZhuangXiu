@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@id/image_popupwindow_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/kf5_return_up"/>
+    <android.support.v4.view.ViewPager
+        android:layout_weight="1"
+        android:id="@id/image_popupwindow_school"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+    </android.support.v4.view.ViewPager>
+    <TextView
+        android:id="@id/text_title_pop"
+        android:layout_marginLeft="20dp"
+        android:text="kaixin"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@id/text_little_titel_pop"
+        android:layout_marginLeft="20dp"
+        android:text="kaixini"
+        android:textSize="14sp"
+        android:textColor="#817e7e"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:background="#212020"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="#009f51"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@id/text_desing_request"
+                android:text="申请设计"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/free_design_new"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:padding="12dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@id/image_zan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/zan_new_black_bg"/>
+            </LinearLayout>
+            <LinearLayout
+                android:padding="12dp"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@id/image_zixun"
+                    android:src="@mipmap/zixun_black_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="12dp"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@id/image_share"
+                    android:src="@mipmap/share_new_black_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

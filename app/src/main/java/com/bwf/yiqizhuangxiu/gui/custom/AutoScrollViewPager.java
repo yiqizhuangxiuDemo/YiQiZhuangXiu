@@ -46,36 +46,33 @@ public class AutoScrollViewPager extends ViewPager {
     @Override
     public void setAdapter(final PagerAdapter adapter) {
         this.baseAdapter = adapter;
-        if (adapter.getCount() < 3) {
-            super.setAdapter(adapter);
-        } else {
-            if (timer == null)
-                timer = new Timer();
-            if (time <= 0)
-                time = 3000;
-            super.setAdapter(new PagerAdapter() {
-                @Override
-                public int getCount() {
-                    return Integer.MAX_VALUE;
-                }
 
-                @Override
-                public boolean isViewFromObject(View view, Object object) {
-                    return baseAdapter.isViewFromObject(view, object);
-                }
+        if (timer == null)
+            timer = new Timer();
+        if (time <= 0)
+            time = 3000;
+        super.setAdapter(new PagerAdapter() {
+            @Override
+            public int getCount() {
+                return Integer.MAX_VALUE;
+            }
+            @Override
+            public boolean isViewFromObject(View view, Object object) {
+                return baseAdapter.isViewFromObject(view, object);
+            }
 
-                @Override
-                public Object instantiateItem(ViewGroup container, int position) {
-                    return baseAdapter.instantiateItem(container, position % adapter.getCount());
-                }
+            @Override
+            public Object instantiateItem(ViewGroup container, int position) {
+                return baseAdapter.instantiateItem(container, position % adapter.getCount());
+            }
 
-                @Override
-                public void destroyItem(ViewGroup container, int position, Object object) {
-                    baseAdapter.destroyItem(container, position % adapter.getCount(), object);
-                }
-            });
-            startAutoScroll();
-        }
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                baseAdapter.destroyItem(container, position % adapter.getCount(), object);
+            }
+        });
+        startAutoScroll();
+
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,7 +94,7 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
                     SimpleDraweeView sdv = new SimpleDraweeView(this);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     sdv.setLayoutParams(params);
-                    FrescoImageUtils.setControllerListener(sdv, content, getScreenWidth(this));
+                    FrescoImageUtils.setControllerListener(sdv, content, getScreenWidth(this) - dip2px(16) - dip2px(16));
                     contentContainerPostdetails.addView(sdv);
                 } else {
                     TextView textView = new TextView(this);
@@ -111,6 +112,7 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
             relatedContainerArticledetails.removeAllViews();
             for (ArticlesNewsData.DataBean.RelatedNewsBean relatednew : relatedNews) {
                 View view = LayoutInflater.from(this).inflate(R.layout.articledetails_related_item, relatedContainerArticledetails, false);
+                view.setTag(relatednew.getNews_id());
                 ViewHolder holder = new ViewHolder(view);
                 holder.titleRelatedArticledetails.setText(relatednew.getTitle());
                 holder.imgRelatedArticledetails.setImageURI(Uri.parse(relatednew.getThumb()));
@@ -165,9 +167,7 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
         finish();
     }
 
-    static
-
-    public class ViewHolder {
+    public class ViewHolder implements View.OnClickListener {
         @Bind(R.id.title_related_articledetails)
         TextView titleRelatedArticledetails;
         @Bind(R.id.img_related_articledetails)
@@ -181,6 +181,16 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(ArticleDetailsActivity.this, "v.getTag():" + v.getTag(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ArticleDetailsActivity.this, ArticleDetailsActivity.class);
+            intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, (String) v.getTag());
+            ArticleDetailsActivity.this.startActivity(intent);
+            ArticleDetailsActivity.this.finish();
         }
     }
 

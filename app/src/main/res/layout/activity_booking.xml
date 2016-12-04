@@ -48,6 +48,8 @@
                     app:tabMode="scrollable"
                     app:tabPaddingStart="0dp"
                     app:tabPaddingEnd="0dp"
+                    app:tabPaddingBottom="0dp"
+                    app:tabPaddingTop="0dp"
                     app:tabSelectedTextColor="@color/mainGreen"
                     app:tabTextAppearance="@style/titlebar_text_style"
                     app:tabTextColor="@android:color/black" />

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.application.App;
 import com.bwf.yiqizhuangxiu.entity.HomepageContentData;
 import com.bwf.yiqizhuangxiu.entity.HomepageHeadData;
 import com.bwf.yiqizhuangxiu.gui.activity.ActivitiesActivity;
@@ -50,9 +51,12 @@ import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterHomepageContentDataImpl
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterHomepageHeadDataImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewHomepageContentData;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewHomepageHeadData;
+import com.bwf.yiqizhuangxiu.utils.LogUtils;
+import com.bwf.yiqizhuangxiu.utils.indicator.TimestampUtils;
 import com.bwf.yiqizhuangxiu.utils.indicator.ViewPagerIndicator;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +64,8 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.bwf.yiqizhuangxiu.application.App.SP_CONFIG;
 
 /**
  * Created by Administrator on 2016/11/23.
@@ -83,7 +89,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     @Bind(R.id.location_hpmepage_titlebar)
     TextView locationHpmepageTitlebar;
 
-    public final static String SP_CONFIG = "config";
     public final static String SP_CONFIG_CITY_KEY = "location";
 
     private boolean isLoading;
@@ -96,6 +101,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     private float titleHeight;
     private boolean isNoMoreData;
     private PopupWindow popupWindow;
+    private long refreshTime = Calendar.getInstance().getTimeInMillis();
 
     @Override
     public int getContentViewId() {
@@ -176,18 +182,25 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             @Override
             public void onRefresh() {
                 if (!isLoading) {
-                    isRefreshing = true;
+                    refreshTime = Calendar.getInstance().getTimeInMillis() / 1000;
                     isNoMoreData = false;
+                    isRefreshing = true;
                     loadContentData();
                     presenterHomepageHeadData.loadData();
+                } else {
+                    customRefreshLayout.finishRefresh();
                 }
-
             }
         });
 
         customRefreshLayout.setOnTouchByUserListener(new CustomRefreshLayout.OnTouchByUserListener() {
             @Override
-            public void onTouchByUser() {
+            public void onTouchByUser(TextView timeView) {
+                LogUtils.e("onTouchByUser");
+                if (timeView.getVisibility() == View.GONE) {
+                    timeView.setVisibility(View.VISIBLE);
+                }
+                timeView.setText(getString(R.string.last_refresh_time, TimestampUtils.millisecondToTimestamp(refreshTime)));
                 if (rootHemepageTitlbar.getVisibility() == View.VISIBLE) {
                     rootHemepageTitlbar.setVisibility(View.GONE);
                 }
@@ -241,7 +254,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     }
 
     private void loadContentData() {
-        if (!isLoading) {
+        if (!isLoading && !isNoMoreData) {
             if (isRefreshing) {
                 presenterHomepageContentData.setPage(0);
             }
@@ -326,6 +339,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas) {
+        HomepageContentData.DataBean dataBean = datas.get(datas.size() - 1);
         if (isRefreshing) {
             adapter.refreshDatas(datas);
             isRefreshing = false;
@@ -395,7 +409,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
                     editor.commit();
@@ -406,7 +420,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             text.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
                     TextView view = (TextView) v;
                     editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());

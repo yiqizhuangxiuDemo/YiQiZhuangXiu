@@ -12,7 +12,7 @@ public interface Apis {
     String URL_COMPANT_DECORTAR = "http://hui.17house.com/svc/payment-facade/housekeep/listLatestLiveBuildingSites";
     String API_HOMEPAGE_HEAD = "http://appapi.17house.com/AppManagerApi.php?version=1&action=getownerinfo&cityId=2&model=android";
     String API_HOMEPAGE_CONTENT_FIRST_PAGE = "http://bbs.17house.com/motnt/index.php?a=appindex&c=index&id=1218226&uuid=86305803367590&pageSize=10&uid=1633055&m=misc&type=3&page=1&haspermission=yes&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
-    String API_HOMEPAGE_CONTENT = "http://bbs.17house.com/motnt/index.php?a=appindex&c=index&id=1218226&uuid=86305803367590&pageSize=10&uid={$2}&m=misc&type={$1}&page={$0}&haspermission=yes&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
+    String API_HOMEPAGE_CONTENT = "http://bbs.17house.com/motnt/index.php?a=appindex&c=index&id={$2}&uuid=86305803367590&pageSize=10&uid=1633055&m=misc&type={$1}&page={$0}&haspermission=yes&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
     /**
      * 帖子详情
      */

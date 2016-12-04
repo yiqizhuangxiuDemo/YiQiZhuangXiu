@@ -21,7 +21,9 @@ import com.bwf.yiqizhuangxiu.gui.custom.CustomRefreshLayout;
 import com.bwf.yiqizhuangxiu.mvp.presenter.PresenterBooking;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterBookingImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewBooking;
+import com.bwf.yiqizhuangxiu.utils.indicator.TimestampUtils;
 
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Bind;
@@ -49,6 +51,7 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
     private boolean isRefreshing;
     private PresenterBooking presenter;
     private PopupWindow popupWindow;
+    private long refreshTime = Calendar.getInstance().getTimeInMillis();
 
     @Override
     protected int getContentViewResId() {
@@ -69,6 +72,16 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
             @Override
             public void onRefresh() {
                 loadBookingData(2);
+            }
+        });
+
+        refresh.setOnTouchByUserListener(new CustomRefreshLayout.OnTouchByUserListener() {
+            @Override
+            public void onTouchByUser(TextView timeView) {
+                if (timeView.getVisibility() == View.GONE) {
+                    timeView.setVisibility(View.VISIBLE);
+                }
+                timeView.setText(getString(R.string.last_refresh_time, TimestampUtils.millisecondToTimestamp(refreshTime)));
             }
         });
 
@@ -94,6 +107,8 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
         if (!isRefreshing) {
             isRefreshing = true;
             presenter.loadBookingData(cityId);
+        } else {
+            refresh.finishRefresh();
         }
     }
 
@@ -149,6 +164,7 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
             popupWindow = new PopupWindow(view
                     , WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
             popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
             ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.popupwindow_bg));
             popupWindow.setBackgroundDrawable(colorDrawable);
             popupWindow.setAnimationStyle(R.style.popupwindow_anim);

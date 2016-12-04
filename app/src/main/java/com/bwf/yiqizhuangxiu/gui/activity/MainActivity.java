@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.application.App;
 import com.bwf.yiqizhuangxiu.gui.adapter.MainActivityFragmentPagerAdapter;
 import com.bwf.yiqizhuangxiu.gui.fragment.HomePageFragment;
 import com.bwf.yiqizhuangxiu.gui.fragment.MessageFragment;
@@ -60,6 +62,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
         ButterKnife.bind(this);
+        SharedPreferences sp = getSharedPreferences(App.SP_CONFIG, MODE_PRIVATE);
+        Toast.makeText(this, sp.getString("user_sex", "aa") + "---" + sp.getString("user_birthday", "aa")
+                + "---" + sp.getInt("user_progress", 0), Toast.LENGTH_LONG).show();
         fragments = getFragmentsList();
         mAdapter = new MainActivityFragmentPagerAdapter(fragments, getSupportFragmentManager());
         viewpagerMain.setAdapter(mAdapter);

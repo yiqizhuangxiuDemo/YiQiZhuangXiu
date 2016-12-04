@@ -1,12 +1,17 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,13 +20,18 @@ import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.PostDetailsCommentsData;
 import com.bwf.yiqizhuangxiu.entity.PostDetailsContentDataBean;
 import com.bwf.yiqizhuangxiu.entity.PostDetailsLikeData;
+import com.bwf.yiqizhuangxiu.gui.adapter.PostDetailsImgViewPagerAdapter;
 import com.bwf.yiqizhuangxiu.gui.custom.CustomFlowLayout;
 import com.bwf.yiqizhuangxiu.gui.custom.CustomRefreshLayout;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterPostDetailsImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewPostDetails;
+import com.bwf.yiqizhuangxiu.utils.FrescoImageUtils;
 import com.bwf.yiqizhuangxiu.utils.LogUtils;
+import com.bwf.yiqizhuangxiu.utils.indicator.TimestampUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Bind;
@@ -63,10 +73,14 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
     TextView commentnumPostdetails;
     @Bind(R.id.no_comments)
     TextView noComments;
+    @Bind(R.id.root)
+    LinearLayout root;
 
     public final static String TAG_ID_EXTRA = "tID";
     private PresenterPostDetailsImpl presenter;
     private boolean isRefreshing;
+    private PopupWindow popupwindow;
+    private long refreshTime = Calendar.getInstance().getTimeInMillis();
 
     @Override
     protected int getContentViewResId() {
@@ -85,9 +99,20 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
         refreshPostdetails.setOnRefreshListener(new CustomRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                refreshTime = Calendar.getInstance().getTimeInMillis() / 1000;
                 loadData();
             }
 
+        });
+
+        refreshPostdetails.setOnTouchByUserListener(new CustomRefreshLayout.OnTouchByUserListener() {
+            @Override
+            public void onTouchByUser(TextView timeView) {
+                if (timeView.getVisibility() == View.GONE) {
+                    timeView.setVisibility(View.VISIBLE);
+                }
+                timeView.setText(getString(R.string.last_refresh_time, TimestampUtils.millisecondToTimestamp(refreshTime)));
+            }
         });
     }
 
@@ -96,6 +121,8 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
             isRefreshing = true;
             presenter.setPage(0);
             presenter.loadPostDetailsData(getIntent().getStringExtra(TAG_ID_EXTRA));
+        } else {
+            refreshPostdetails.finishRefresh();
         }
     }
 
@@ -123,6 +150,8 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
     private void setContentInfo(PostDetailsContentDataBean.DataBean data) {
         List<PostDetailsContentDataBean.DataBean.MessageBean> messages = data.getMessage();
         if (messages != null && messages.size() > 0) {
+            List<String> imgUrls = new ArrayList<>();
+            int imgPosition = 0;
             for (PostDetailsContentDataBean.DataBean.MessageBean message : messages) {
                 if (message.getMsgType() == 0) {
                     TextView textView = new TextView(this);
@@ -136,10 +165,17 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
                     SimpleDraweeView sdv = new SimpleDraweeView(this);
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     params.setMargins(0, dip2px(12), 0, 0);
+                    params.gravity = Gravity.LEFT;
                     sdv.setLayoutParams(params);
-                    sdv.setAspectRatio(message.getWidth() / (float) message.getHeight());
-                    sdv.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    sdv.setImageURI(Uri.parse(message.getMsg()));
+                    if (message.getImgType() == 3) {
+                        FrescoImageUtils.setControllerListener(sdv, message.getMsg(), dip2px(message.getWidth()));
+                    } else if (message.getImgType() == 1) {
+                        imgUrls.add(message.getMsg());
+                        sdv.setTag(new ImgBean(imgPosition, imgUrls));
+                        imgPosition++;
+                        sdv.setOnClickListener(clickToShowImgPopupWindow);
+                        FrescoImageUtils.setControllerListener(sdv, message.getMsg(), getScreenWidth(this) - dip2px(32));
+                    }
                     contentContainerPostdetails.addView(sdv);
                 }
             }
@@ -195,6 +231,8 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
                 holder.nameTextview.setText(data.getAuthor());
                 holder.timeTextview.setText(data.getDateline());
                 List<PostDetailsCommentsData.DataBean.MessageBean> messages = data.getMessage();
+                List<String> imgUrls = new ArrayList<>();
+                int imgPosition = 0;
                 for (PostDetailsCommentsData.DataBean.MessageBean message : messages) {
                     if (message.getMsgType() == 0) {
                         TextView textview = new TextView(this);
@@ -205,9 +243,19 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
                         holder.replyObjBean.addView(textview);
                     } else if (message.getMsgType() == 1) {
                         SimpleDraweeView sdv = new SimpleDraweeView(this);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dip2px(message.getWidth()), dip2px(message.getHeight()));
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(0, dip2px(12), 0, 0);
+                        params.gravity = Gravity.LEFT;
                         sdv.setLayoutParams(params);
-                        sdv.setImageURI(Uri.parse(message.getMsg()));
+                        if (message.getImgType() == 3) {
+                            FrescoImageUtils.setControllerListener(sdv, message.getMsg(), dip2px(message.getWidth()));
+                        } else if (message.getImgType() == 1) {
+                            imgUrls.add(message.getMsg());
+                            sdv.setTag(new ImgBean(imgPosition, imgUrls));
+                            imgPosition++;
+                            sdv.setOnClickListener(clickToShowImgPopupWindow);
+                            FrescoImageUtils.setControllerListener(sdv, message.getMsg(), getScreenWidth(this) - dip2px(32));
+                        }
                         holder.replyObjBean.addView(sdv);
                     }
                 }
@@ -251,6 +299,7 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
 
     private void setAuthorInfo(PostDetailsContentDataBean.DataBean data) {
         headimagSimpleDraweeView.setImageURI(Uri.parse(data.getAvtUrl()));
+        nameTextview.setText(data.getAuthor());
         if (data.getHouseInfo() != null) {
             PostDetailsContentDataBean.DataBean.HouseInfoBean houseInfo = data.getHouseInfo();
             String classify = getString(R.string.house_classify
@@ -263,6 +312,69 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
             houseinfoTextview.setVisibility(View.GONE);
         }
     }
+
+    public void showImagePopupWindow(ImgBean imgBean) {
+        if (popupwindow == null) {
+            View v = LayoutInflater.from(this).inflate(R.layout.img_popupwindow_postdetails, null);
+            popupwindow = new PopupWindow(v, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            popupwindow.setFocusable(true);
+            ColorDrawable colorDrawable = new ColorDrawable(0xff000000);
+            popupwindow.setBackgroundDrawable(colorDrawable);
+            popupwindow.setAnimationStyle(R.style.popupwindow_anim_scale);
+        }
+        View contentView = popupwindow.getContentView();
+        ViewPager viewPager = (ViewPager) contentView.findViewById(R.id.viewpager);
+        PostDetailsImgViewPagerAdapter adapter = new PostDetailsImgViewPagerAdapter(imgBean.getImgUrls(), this);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(imgBean.getPosition());
+        final TextView textView = (TextView) contentView.findViewById(R.id.textview);
+        textView.setText(getString(R.string.img_position_popupwindow_postdetails, imgBean.getPosition() + 1, imgBean.getImgUrls().size()));
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                textView.setText(textView.getText().toString().replaceAll("[\\d]+(?=/)", 1 + position + ""));
+            }
+        });
+        if (popupwindow.isShowing()) {
+            popupwindow.dismiss();
+        } else {
+            popupwindow.showAtLocation(root, Gravity.CENTER, 0, 0);
+        }
+    }
+
+    public class ImgBean {
+        private List<String> imgUrls;
+        private int position;
+
+        public ImgBean(int position, List<String> imgUrls) {
+            this.position = position;
+            this.imgUrls = imgUrls;
+        }
+
+        public List<String> getImgUrls() {
+            return imgUrls;
+        }
+
+        public void setImgUrls(List<String> imgUrls) {
+            this.imgUrls = imgUrls;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+    }
+
+    private View.OnClickListener clickToShowImgPopupWindow = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showImagePopupWindow((ImgBean) v.getTag());
+        }
+    };
 
     public class ViewHolder implements View.OnClickListener {
         @Bind(R.id.headimag_simpleDraweeView)
