@@ -1,6 +1,8 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -158,6 +160,8 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
         }
     }
 
+    private Handler handler = new Handler(Looper.getMainLooper());
+
     private void showPopupwindow() {
         if (popupWindow == null) {
             View view = LayoutInflater.from(this).inflate(R.layout.booking_popupwindow, null);
@@ -189,6 +193,8 @@ public class BookingActivity extends BaseActivity implements ViewBooking, Bookin
             popupWindow.dismiss();
         } else {
             popupWindow.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+//            Animation animation = AnimationUtils.loadAnimation(this, R.anim.popupwindow_show);
+//            popupWindow.getContentView().startAnimation(animation);
         }
     }
 

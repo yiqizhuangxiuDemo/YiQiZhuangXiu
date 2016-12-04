@@ -176,12 +176,10 @@ public class CustomRefreshLayout extends FrameLayout {
                     if (isRefreshing && value == 0) {
                         RotateAnimation rotateAnimation = new RotateAnimation(0, 360
                                 , RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                        rotateAnimation.setDuration(1300);
+                        rotateAnimation.setDuration(600);
                         rotateAnimation.setRepeatCount(-1);
                         rotateAnimation.setInterpolator(new LinearInterpolator());
                         progressView.setVisibility(View.VISIBLE);
-                        upView.clearAnimation();
-                        upView.setVisibility(View.GONE);
                         progressView.startAnimation(rotateAnimation);
                     }
                 }
@@ -198,7 +196,6 @@ public class CustomRefreshLayout extends FrameLayout {
      * 结束刷新状态
      */
     public void finishRefresh() {
-        isRefreshing = false;
         smoothScroll(ViewCompat.getTranslationY(headerView), -headerHeight);
         if (onFinishRefreshListener != null) {
             onFinishRefreshListener.onFinishRefresh();
@@ -207,10 +204,12 @@ public class CustomRefreshLayout extends FrameLayout {
         progressView.setVisibility(View.GONE);
         upView.setVisibility(View.VISIBLE);
         infoView.setText("下拉刷新");
+        isRotate = false;
         ViewCompat.setRotation(upView, 0);
         if (onRecoverListener != null) {
             onRecoverListener.onRecover();
         }
+        isRefreshing = false;
     }
 
     /**
@@ -218,11 +217,20 @@ public class CustomRefreshLayout extends FrameLayout {
      */
     public void startRefreshOnce() {
         isRefreshing = true;
-        if (onRefreshListener != null) {
-            onRefreshListener.onRefresh();
+        if (upView != null) {
+            upView.clearAnimation();
+            upView.setVisibility(GONE);
         }
         if (headerView != null)
             smoothScroll(ViewCompat.getTranslationY(headerView), 0);
+        if (onRefreshListener != null) {
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onRefreshListener.onRefresh();
+                }
+            }, 1000);
+        }
     }
 
     /**
