@@ -20,12 +20,7 @@ public class ModleCityActivityImpl implements ModleCityActivity {
 
     @Override
     public void downLoadCityActivity(final ModleCityActivityDataCallBack callBack, int page) {
-        String url = "";
-        if (page != 1) {
-            url = UrlHandler.handleURL(Apis.API_CITY_ACTIVITY,page);
-        } else {
-            url = Apis.API_CITY_ACTIVITY;
-        }
+        String url = UrlHandler.handleURL(Apis.API_CITY_ACTIVITY,page);
         OkHttpUtils.get()
                 .url(url)
                 .build().execute(new StringCallback() {

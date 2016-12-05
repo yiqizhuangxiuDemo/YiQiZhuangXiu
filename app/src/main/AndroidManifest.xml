@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".application.App"
@@ -12,25 +13,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gui.activity.MainActivity">
+        <activity android:name=".gui.activity.WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gui.activity.MainActivity" />
+        <activity android:name=".gui.activity.GuideActivity" />
         <activity android:name=".gui.activity.CompanyActivity" />
         <activity android:name=".gui.activity.ActivitiesActivity" />
         <activity android:name=".gui.activity.SchoolActivity" />
         <activity android:name=".gui.activity.BudgetActivity" />
         <activity android:name=".gui.activity.FitmentActivity" />
         <activity android:name=".gui.activity.EffectActivity" />
+        <activity android:name=".gui.activity.BookingActivity" />
         <activity android:name=".gui.activity.DesignActivity" />
         <activity android:name=".gui.activity.HouseOfNewActivity" />
         <activity android:name=".gui.activity.WorkSpacePlaying" />
         <activity android:name=".gui.activity.ZxingActivity" />
+
         <activity android:name=".gui.activity.SearchActivity"
                   android:windowSoftInputMode="stateAlwaysHidden"  />
+
+        <activity android:name=".gui.activity.TogetherTream" />
+        <activity android:name=".gui.activity.TogetherPeople" />
+
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -40,8 +49,9 @@
         <activity
             android:name=".gui.activity.DetailsPageActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".gui.activity.OwnerSaySubActivity"></activity>
-        <activity android:name=".gui.activity.ActivityDetails"></activity>
+        <activity android:name=".gui.activity.OwnerSaySubActivity"/>
+        <activity android:name=".gui.activity.ActivityDetails"/>
+        <activity android:name=".gui.activity.LoginActivity"></activity>
     </application>
 
 </manifest>

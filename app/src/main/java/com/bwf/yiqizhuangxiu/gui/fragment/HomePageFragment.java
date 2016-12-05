@@ -3,7 +3,7 @@ package com.bwf.yiqizhuangxiu.gui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.application.App;
 import com.bwf.yiqizhuangxiu.entity.HomepageContentData;
 import com.bwf.yiqizhuangxiu.entity.HomepageHeadData;
 import com.bwf.yiqizhuangxiu.gui.activity.ActivitiesActivity;
@@ -49,9 +51,12 @@ import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterHomepageContentDataImpl
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterHomepageHeadDataImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewHomepageContentData;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewHomepageHeadData;
+import com.bwf.yiqizhuangxiu.utils.LogUtils;
+import com.bwf.yiqizhuangxiu.utils.indicator.TimestampUtils;
 import com.bwf.yiqizhuangxiu.utils.indicator.ViewPagerIndicator;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +64,8 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.bwf.yiqizhuangxiu.application.App.SP_CONFIG;
 
 /**
  * Created by Administrator on 2016/11/23.
@@ -82,7 +89,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     @Bind(R.id.location_hpmepage_titlebar)
     TextView locationHpmepageTitlebar;
 
-    public final static String SP_CONFIG = "config";
     public final static String SP_CONFIG_CITY_KEY = "location";
 
     private boolean isLoading;
@@ -95,6 +101,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     private float titleHeight;
     private boolean isNoMoreData;
     private PopupWindow popupWindow;
+    private long refreshTime = Calendar.getInstance().getTimeInMillis();
 
     @Override
     public int getContentViewId() {
@@ -114,16 +121,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
         locationHpmepageTitlebar.setText(getContext().getSharedPreferences(SP_CONFIG
                 , Context.MODE_PRIVATE).getString(SP_CONFIG_CITY_KEY, getString(R.string.location_citiname)));
-
-        popupWindow = new PopupWindow(getContext());
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                rootHemepageTitlbar.setEnabled(true);
-                locationHpmepageTitlebar.setText(getContext().getSharedPreferences("config"
-                        , Context.MODE_PRIVATE).getString("location", getString(R.string.location_citiname)));
-            }
-        });
 
         //presenter  head
         presenterHomepageHeadData = new PresenterHomepageHeadDataImpl(this);
@@ -170,7 +167,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             public void onItemClick(View view, int position) {
                 if (adapter.getItemData(position).getType() == HomepageRecyclerViewAdapter.ARTICLE_TYPE) {
                     Intent intent = new Intent(HomePageFragment.this.getContext(), ArticleDetailsActivity.class);
-                    intent.putExtra(ArticleDetailsActivity.TAG_URL_EXTRA, adapter.getItemData(position).getH5Url());
+                    intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, adapter.getItemData(position).getId());
                     HomePageFragment.this.startActivity(intent);
                 } else if (adapter.getItemData(position).getType() == HomepageRecyclerViewAdapter.POST_TYPE) {
                     Intent intent = new Intent(HomePageFragment.this.getContext(), PostDetailsActivity.class);
@@ -185,18 +182,25 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             @Override
             public void onRefresh() {
                 if (!isLoading) {
-                    isRefreshing = true;
+                    refreshTime = Calendar.getInstance().getTimeInMillis() / 1000;
                     isNoMoreData = false;
+                    isRefreshing = true;
                     loadContentData();
                     presenterHomepageHeadData.loadData();
+                } else {
+                    customRefreshLayout.finishRefresh();
                 }
-
             }
         });
 
         customRefreshLayout.setOnTouchByUserListener(new CustomRefreshLayout.OnTouchByUserListener() {
             @Override
-            public void onTouchByUser() {
+            public void onTouchByUser(TextView timeView) {
+                LogUtils.e("onTouchByUser");
+                if (timeView.getVisibility() == View.GONE) {
+                    timeView.setVisibility(View.VISIBLE);
+                }
+                timeView.setText(getString(R.string.last_refresh_time, TimestampUtils.millisecondToTimestamp(refreshTime)));
                 if (rootHemepageTitlbar.getVisibility() == View.VISIBLE) {
                     rootHemepageTitlbar.setVisibility(View.GONE);
                 }
@@ -250,7 +254,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
     }
 
     private void loadContentData() {
-        if (!isLoading) {
+        if (!isLoading && !isNoMoreData) {
             if (isRefreshing) {
                 presenterHomepageContentData.setPage(0);
             }
@@ -306,7 +310,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageHeadDataSuccess(List<HomepageHeadData.DataBean> datas) {
-        customRefreshLayout.finishRefresh();
         headAdapter = new HomepageViewPagerAdapter(getContext(), datas);
         viewpagerHomepageHead.setAdapter(headAdapter);
         headAdapter.setOnItemClickListener(new HomepageViewPagerAdapter.OnItemClickListener() {
@@ -327,12 +330,16 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageHeadDataFaied(String info) {
-        customRefreshLayout.finishRefresh();
-        Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        if (info != null && !"".equals(info)) {
+            Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "网络连接出现错误", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas) {
+        HomepageContentData.DataBean dataBean = datas.get(datas.size() - 1);
         if (isRefreshing) {
             adapter.refreshDatas(datas);
             isRefreshing = false;
@@ -346,9 +353,14 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
 
     @Override
     public void onLoadHomePageContentDataFaied(String info) {
-        isLoading = false;
-        Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
         customRefreshLayout.finishRefresh();
+        isRefreshing = false;
+        isLoading = false;
+        if (info != null && !"".equals(info)) {
+            Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "网络连接出现错误", Toast.LENGTH_SHORT).show();
+        }
         adapter.setFooterState(1);
     }
 
@@ -372,72 +384,82 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
      * 显示popupwindow
      */
     private void showLocationPopupWindow() {
-        rootHemepageTitlbar.setEnabled(false);
-        View view = View.inflate(getContext(), R.layout.fragment_homepage_popupwindow, null);
-        ListView listView = (ListView) view.findViewById(R.id.listview_popupwindow_homepage);
-        final String[] locationContent = getResources().getStringArray(R.array.location);
-        List<Map<String, String>> list = new ArrayList<>();
-        Map<String, String> map = null;
-        for (int i = 0; i < locationContent.length; i++) {
-            map = new HashMap<>();
-            map.put("location", locationContent[i]);
-            list.add(map);
-        }
-        SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.fragment_homepage_popupwindow_item
-                , new String[]{"location"}, new int[]{R.id.text});
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
-                editor.commit();
-                popupWindow.dismiss();
+        if (popupWindow == null) {
+            popupWindow = new PopupWindow(getContext());
+            popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                    locationHpmepageTitlebar.setText(getContext().getSharedPreferences("config"
+                            , Context.MODE_PRIVATE).getString("location", getString(R.string.location_citiname)));
+                }
+            });
+            View view = View.inflate(getContext(), R.layout.fragment_homepage_popupwindow, null);
+            ListView listView = (ListView) view.findViewById(R.id.listview_popupwindow_homepage);
+            final String[] locationContent = getResources().getStringArray(R.array.location);
+            List<Map<String, String>> list = new ArrayList<>();
+            Map<String, String> map = null;
+            for (int i = 0; i < locationContent.length; i++) {
+                map = new HashMap<>();
+                map.put("location", locationContent[i]);
+                list.add(map);
             }
-        });
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-        View textview1 = view.findViewById(R.id.textview1);
-        textview1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        View textview2 = view.findViewById(R.id.textview1);
-        textview2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        View text = view.findViewById(R.id.text);
-        text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sp = getContext().getSharedPreferences(SP_CONFIG, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                TextView view = (TextView) v;
-                editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());
-                editor.commit();
-                popupWindow.dismiss();
-            }
-        });
-        view.setPadding(view.getPaddingLeft(), rootHemepageTitlbar.getHeight()
-                , view.getPaddingRight(), view.getPaddingBottom());
-        popupWindow.setContentView(view);
-        popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+            SimpleAdapter adapter = new SimpleAdapter(getContext(), list, R.layout.fragment_homepage_popupwindow_item
+                    , new String[]{"location"}, new int[]{R.id.text});
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString(SP_CONFIG_CITY_KEY, locationContent[position]);
+                    editor.commit();
+                    popupWindow.dismiss();
+                }
+            });
+            final View text = view.findViewById(R.id.text);
+            text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences sp = getContext().getSharedPreferences(App.SP_CONFIG, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    TextView view = (TextView) v;
+                    editor.putString(SP_CONFIG_CITY_KEY, view.getText().toString());
+                    editor.commit();
+                    popupWindow.dismiss();
+                }
+            });
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (popupWindow.isShowing())
+                        popupWindow.dismiss();
+                    return false;
+                }
+            });
+            LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll);
+            ll.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+            view.setPadding(view.getPaddingLeft(), rootHemepageTitlbar.getHeight()
+                    , view.getPaddingRight(), view.getPaddingBottom());
+            popupWindow.setContentView(view);
+            popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
 //        popupWindow.setHeight(customRefreshLayout.getHeight()-rootHemepageTitlbar.getHeight());
-        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+            ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.popupwindow_bg));
+            popupWindow.setBackgroundDrawable(colorDrawable);
 //        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.popupwindoe_homepage));
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.showAtLocation(customRefreshLayout, Gravity.TOP, 0, 0);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+        }
+        if (popupWindow.isShowing()) {
+            popupWindow.dismiss();
+        } else {
+            popupWindow.showAtLocation(customRefreshLayout, Gravity.TOP, 0, 0);
+        }
     }
 
     public boolean setPopupWindowDismiss() {

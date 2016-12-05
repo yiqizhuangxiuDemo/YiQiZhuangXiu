@@ -52,7 +52,14 @@ public class FragmentOwnerSayPlateAdapter extends RecyclerView.Adapter {
         return datas.size();
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    private ItemLisenerCallBack callBack;
+    public void setItemLisenerCallBack(ItemLisenerCallBack callBack) {
+        this.callBack = callBack;
+    }
+    public interface ItemLisenerCallBack {
+        void itemLisener();
+    }
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.fragment_ownersay_plate_sub_pic)
         SimpleDraweeView fragmentOwnersayPlateSubPic;
         @Bind(R.id.fragment_ownersay_plate_sub_title)
@@ -63,6 +70,12 @@ public class FragmentOwnerSayPlateAdapter extends RecyclerView.Adapter {
         MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            callBack.itemLisener();
         }
     }
 }

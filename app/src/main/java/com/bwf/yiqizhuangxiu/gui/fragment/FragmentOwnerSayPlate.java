@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayPlatePageData;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * Created by ${yong} on 2016/11/23.
  */
 
-public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayPagePlateData {
+public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayPagePlateData, FragmentOwnerSayPlateAdapter.ItemLisenerCallBack {
     @Bind(R.id.fragment_ownersay_plate_recyclerview)
     RecyclerView fragmentOwnersayPlateRecyclerview;
     @Bind(R.id.fragment_ownersay_plate_recyclerview2)
@@ -56,7 +57,9 @@ public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayP
         List<OwnerSayPlatePageData.DataBean> dataBeenOne = datas.get(0);
         List<OwnerSayPlatePageData.DataBean> dataBeenTwo = datas.get(1);
         FragmentOwnerSayPlateAdapter adapterOne = new FragmentOwnerSayPlateAdapter(getActivity(), dataBeenOne);
+        adapterOne.setItemLisenerCallBack(this);
         FragmentOwnerSayPlateAdapter adapterTwo = new FragmentOwnerSayPlateAdapter(getActivity(), dataBeenTwo);
+        adapterTwo.setItemLisenerCallBack(this);
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
         GridLayoutManager manager2 = new GridLayoutManager(getActivity(), 2);
         fragmentOwnersayPlateRecyclerview.setLayoutManager(manager);
@@ -84,5 +87,10 @@ public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayP
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void itemLisener() {
+        Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
     }
 }

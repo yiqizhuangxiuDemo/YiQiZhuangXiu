@@ -1,7 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +49,8 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
     FrameLayout searchContent;
     @Bind(R.id.inner_search_img)
     ImageView innerSearchImg;
+    @Bind(R.id.root)
+    RelativeLayout root;
 
     @Override
     protected int getContentViewResId() {
@@ -88,6 +90,7 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
 
             @Override
             public void afterTextChanged(Editable s) {
+                innerSearchDelete.setVisibility(View.VISIBLE);
                 search = innerSearchEduittext.getText().toString();
                 String encode = URLEncoder.encode(search);
                 adapter.sendText(search);
@@ -103,12 +106,6 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.inner_search_eduittext:
-                KeyBoardUtils.openKeybord(innerSearchEduittext, this);
-                if (innerSearchEduittext.getText().length() != 0 || innerSearchEduittext.getText().toString() != null) {
-                    innerSearchDelete.setVisibility(View.VISIBLE);
-                } else {
-                    innerSearchDelete.setVisibility(View.GONE);
-                }
                 break;
             case R.id.inner_search_delete:
                 innerSearchEduittext.getText().clear();
@@ -123,7 +120,6 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
 
     @Override
     public void showSearchDataSuccess(List<SearchData.DataBean> datas) {
-        Toast.makeText(this, "-----------------datas:" + datas, Toast.LENGTH_SHORT).show();
         if (!datas.isEmpty() || datas.toString() != null) {
             innerSearchImg.setVisibility(View.GONE);
             searchContent.setVisibility(View.VISIBLE);
@@ -145,38 +141,37 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
         presenterSearch.loadData(search);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+    private PopWindowUtils popWindowUtils;
 
     @Override
     public void onItemClick(View v, SearchData.DataBean bean) {
         switch (v.getId()) {
             case R.id.item_ownersaypagecream_bottom_share:
                 Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+                if (popWindowUtils == null) {
+                    popWindowUtils = new PopWindowUtils(this,root);
+                }
+                popWindowUtils.showPopWindow();
                 break;
             case R.id.item_ownersaypagecream_bottom_comment_img:
+                startActivity(new Intent(this, LoginActivity.class));
                 Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_ownersaypagecream_bottom_zan_img:
-                Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "未登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ownersaypagecream_content_bottomtext:
                 Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ownersaypagecream_title_img:
-                startActivity(new Intent(this,OwnerSaySubActivity.class));
+                startActivity(new Intent(this, OwnerSaySubActivity.class));
                 Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_ownersaypagecream:
                 String tid = bean.getTid();
-                Intent intent = new Intent(this,PostDetailsActivity.class);
-                intent.putExtra("tid",tid);
+                Intent intent = new Intent(this, PostDetailsActivity.class);
+                intent.putExtra(PostDetailsActivity.TAG_ID_EXTRA, tid);
                 startActivity(intent);
-                Toast.makeText(this, "6" + "---tid="+tid, Toast.LENGTH_SHORT).show();
         }
     }
 }

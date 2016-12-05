@@ -1,7 +1,9 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -68,6 +70,7 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
         return R.layout.activity_company;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initViews() {
         // TODO: add setContentView(...) invocation
@@ -85,7 +88,6 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
 
             }
         });
-
     }
 
     @Override

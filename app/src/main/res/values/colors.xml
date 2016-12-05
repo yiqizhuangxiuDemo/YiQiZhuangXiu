@@ -3,5 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="windowBackground">#1b73d7</color>
+    <color name="tabIndicatorColor">#ff30971c</color>
+    <color name="tabSelectedTextColor">#ff30971c</color>
+    <color name="tabTextColor">#ff848484</color>
     <color name="mainGreen">#00a051</color>
+    <color name="gray_light">#dddddd</color>
+    <color name="popupwindow_bg">#44000000</color>
+    <color name="articledetails_tag_textcolor">#FFE1520A</color>
+    <color name="gray_darker">#666666</color>
+    <color name="gray">#aaaaaa</color>
 </resources>

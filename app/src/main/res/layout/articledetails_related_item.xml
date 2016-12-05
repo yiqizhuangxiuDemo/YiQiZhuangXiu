@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
+
+
+    <TextView
+        android:id="@id/title_related_articledetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="100dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="title"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@id/img_related_articledetails"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/title_related_articledetails" />
+
+    <TextView
+        android:id="@id/view_articledetails_Nums"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_related_articledetails"
+        android:layout_alignLeft="@id/title_related_articledetails"
+        android:drawableLeft="@drawable/looked_hui"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@id/collection_articledetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_related_articledetails"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/view_articledetails_Nums"
+        android:drawableLeft="@drawable/collection_hui"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@id/comment_articledetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/img_related_articledetails"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/collection_articledetails"
+        android:drawableLeft="@drawable/comment_hui"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="14sp" />
+</RelativeLayout>

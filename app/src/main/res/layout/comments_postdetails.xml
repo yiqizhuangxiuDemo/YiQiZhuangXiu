@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/commentnum_container_postdetails"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
-
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
 
     <TextView
         android:id="@id/commentnum_postdetails"
@@ -13,6 +13,24 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:text="@string/comments_postdetails"
+        android:textColor="@android:color/black"
         android:textStyle="bold" />
 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@id/commentnum_container_postdetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentnum_postdetails"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@id/no_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentnum_postdetails"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/no_comments_text"
+        android:textSize="14sp" />
+</RelativeLayout>

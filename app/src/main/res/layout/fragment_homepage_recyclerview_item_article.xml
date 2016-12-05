@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
-        android:clickable="true"
         android:scaleType="centerCrop"
+        android:clickable="false"
         app:placeholderImage="@drawable/place_holder" />
 
     <RelativeLayout

@@ -34,4 +34,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.18'
     compile 'com.android.support:design:24.2.1'
     compile 'com.github.jdsjlzx:LRecyclerView:1.0.8'
+    compile 'me.relex:photodraweeview:1.1.2'
 }

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:layout_width="match_parent"
-    android:id="@id/linear_tream"
-    android:background="@mipmap/pig"
-    android:layout_height="50dp">
-
+    android:layout_height="match_parent"
+    >
+    <GridView
+        android:id="@id/togeter_gridview"
+        android:layout_width="match_parent"
+        android:numColumns="2"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="20dp"
+        android:layout_height="match_parent">
+    </GridView>
 </LinearLayout>

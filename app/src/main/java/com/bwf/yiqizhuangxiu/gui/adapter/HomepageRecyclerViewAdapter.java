@@ -197,6 +197,7 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
             switch (view.getId()) {
                 case R.id.textview_subview_recycleview_loadfooter:
                     if (onloadMoreDataListener != null) {
+                        setFooterState(0);
                         onloadMoreDataListener.onLoadMoreData();
                     }
                     break;

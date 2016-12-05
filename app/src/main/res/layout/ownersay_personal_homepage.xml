@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -65,12 +66,13 @@
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/personal_homepage_headpic"
         android:layout_marginTop="15dp"
+        app:roundAsCircle="true"
         android:layout_gravity="center_horizontal"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
     <ImageView
         android:id="@+id/personal_homepage_addcare"
         android:src="@mipmap/ic_add_attention"
@@ -113,8 +115,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:text="关注:"
                     android:id="@+id/personal_homepage_follow_text"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -138,8 +141,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:text="粉丝:"
                     android:id="@+id/personal_homepage_fans_text"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>

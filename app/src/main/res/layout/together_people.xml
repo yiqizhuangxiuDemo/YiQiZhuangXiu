@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@id/tetle_together_people"
+        layout="@layout/titlebar_back"/>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@id/item_image_together"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tetle_together_people"
+        android:scaleType="centerCrop"
+        fresco:placeholderImage="@mipmap/pig"
+        fresco:roundAsCircle="true"/>
+    <TextView
+        android:id="@id/desin_text_name"
+        android:text="kaixinjiuxioa"
+        android:layout_alignTop="@+id/item_image_together"
+        android:layout_toRightOf="@+id/item_image_together"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@id/text_design_num"
+        android:text="装修案例：18"
+        android:layout_toRightOf="@+id/item_image_together"
+        android:layout_below="@+id/desin_text_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@id/text_news"
+        android:text="工地消息:"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/text_design_num"
+        android:layout_below="@+id/desin_text_name"
+        android:layout_alignBaseline="@+id/text_design_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@id/score"
+        android:text="评分:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/text_design_num"
+        android:layout_toRightOf="@+id/item_image_together"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@id/text_person_anli"
+        android:layout_below="@id/score"
+        android:layout_marginLeft="10dp"
+        android:text="装修案例(20)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@id/together_recycle_view"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/text_person_anli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Looper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,11 +24,13 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2016/11/23.
  */
 
-public class ActivitiesActivity extends BaseActivity implements ViewCityActivity, View.OnClickListener {
+public class ActivitiesActivity extends BaseActivity implements ViewCityActivity, View.OnClickListener, CityActivityAdapter.LoadMoreDatasCallBack {
     @Bind(R.id.city_activity_recycleview)
     RecyclerView cityActivityRecycleview;
     private PresenterCityActivity presenterCityActivity;
     private ImageView imageView;
+    private CityActivityAdapter activityAdapter;
+    private LinearLayoutManager manager;
 
     @Override
     protected int getContentViewResId() {
@@ -38,6 +39,7 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
 
     @Override
     protected void initViews() {
+        ButterKnife.bind(this);
         imageView = (ImageView) findViewById(R.id.city_activity_back);
         imageView.setOnClickListener(this);
     }
@@ -45,34 +47,42 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
     @Override
     protected void initDatas() {
         presenterCityActivity = new PresenterCityActivityImpl(this);
-        presenterCityActivity.loadDatasCityActivityDatas();
+        activityAdapter = new CityActivityAdapter(this);
+        manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        cityActivityRecycleview.setLayoutManager(manager);
+        cityActivityRecycleview.setAdapter(activityAdapter);
+        activityAdapter.setLoadMoreDatasCallBack(this);
+        activityAdapter.setOnItemClickListener(new CityActivityAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClickListener(View view, CityActivityData.DataBean.ForumlistBean datas) {
+                boolean b = Looper.getMainLooper() != Looper.myLooper();
+                startActivity(new Intent(ActivitiesActivity.this, ActivityDetails.class));
+            }
+        });
+        cityActivityRecycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (manager.findLastVisibleItemPosition() == activityAdapter.getItemCount() - 1) {
+                    loadNextPageData();
+                }
+            }
+        });
     }
 
     @Override
     public void onShowOwnerSayPageUpToDataFailed(String info) {
-        Log.d("ActivitiesActivity", "|||||||||||");
+        Log.d("ActivitiesActivity", info);
 
     }
 
     @Override
     public void onShowOwnerSayPageUpToDataSuccess(List<CityActivityData.DataBean.ForumlistBean> datas) {
-        Log.d("ActivitiesActivity", "8888888888888");
-        Log.d("ActivitiesActivity", datas.toString());
-        CityActivityAdapter activityAdapter = new CityActivityAdapter(this, datas);
-        activityAdapter.setOnItemClickListener(new CityActivityAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClickListener(View view, CityActivityData.DataBean.ForumlistBean datas) {
-                boolean b = Looper.getMainLooper() != Looper.myLooper();
-                Log.d("A", "b:" + b);
-                Log.d("ActivitiesActivity", datas.toString());
-                startActivity(new Intent(ActivitiesActivity.this,ActivityDetails.class));
-            }
-        });
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        cityActivityRecycleview.setLayoutManager(manager);
-        cityActivityRecycleview.setAdapter(activityAdapter);
-
+        if (datas.size() > 0) {
+            activityAdapter.addDatas(datas);
+            isLoading = false;
+        }
     }
 
     @Override
@@ -81,9 +91,15 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void loadMore() {
+        loadNextPageData();
     }
+
+    private void loadNextPageData() {
+        if (!isLoading) {
+            presenterCityActivity.loadDatasCityActivityDatas();
+        }
+    }
+
+    private boolean isLoading;
 }

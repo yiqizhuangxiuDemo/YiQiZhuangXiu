@@ -27,11 +27,12 @@ import butterknife.ButterKnife;
  * Created by ${yong} on 2016/11/23.
  */
 
-public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerSayPageUpToData {
+public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerSayPageUpToData, FragmentOwnerSayUpToDataAdapter.onItemClickListener {
     @Bind(R.id.fragment_ownersay_uptodata_recyclerview)
     RecyclerView fragmentOwnersayUptodataRecyclerview;
     private PresenterOwnerSayPageUpToData presenterOwnerSayPageUpToData;
     FragmentOwnerSayUpToDataAdapter adapter;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -42,16 +43,12 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
         presenterOwnerSayPageUpToData = new PresenterOwnerSayPageUpToDataImpl(this);
         presenterOwnerSayPageUpToData.loadOwnerSayPageUpToData();
         adapter = new FragmentOwnerSayUpToDataAdapter(getActivity());
+        adapter.setOnItemClikListener(this);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         fragmentOwnersayUptodataRecyclerview.setLayoutManager(manager);
         fragmentOwnersayUptodataRecyclerview.setAdapter(adapter);
-        adapter.setOnItemClikListener(new FragmentOwnerSayUpToDataAdapter.onItemClickListener() {
-            @Override
-            public void onItemClick() {
-                Toast.makeText(getActivity(), "帖子详情", Toast.LENGTH_SHORT).show();
-            }
-        });
+        adapter.setOnItemClikListener(this);
         adapter.setLoadMoreCallBack(new FragmentOwnerSayUpToDataAdapter.LoadMoreCallBack() {
             @Override
             public void loadMore() {
@@ -61,7 +58,7 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
                     public void run() {
                         presenterOwnerSayPageUpToData.loadOwnerSayPageUpToData();
                     }
-                },2000);
+                }, 2000);
             }
         });
     }
@@ -93,5 +90,23 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onItemClick(View view, OwnerSayUpToDataPageData.DataBean dataBean) {
+        switch (view.getId()) {
+            case R.id.fragment_ownersay_uptodata_item:
+                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fragment_ownersay_uptodatahead_img:
+                Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fragment_ownersay_uptodata_check:
+                Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fragment_ownersay_uptodata_comment:
+                Toast.makeText(getActivity(), "4", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

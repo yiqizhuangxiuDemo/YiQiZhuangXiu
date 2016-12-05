@@ -45,12 +45,12 @@
 
     <TextView
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:drawablePadding="3dp"
+        android:drawablePadding="5dp"
         android:drawableTop="@drawable/add_attention"
         android:text="加关注"
-        android:textColor="#22ff22"
+        android:textColor="@color/mainGreen"
         android:textSize="12sp" />
 </RelativeLayout>

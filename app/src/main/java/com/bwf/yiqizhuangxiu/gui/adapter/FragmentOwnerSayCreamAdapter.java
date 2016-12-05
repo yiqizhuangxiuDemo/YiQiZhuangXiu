@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * Created by ${yong} on 2016/11/24.
  */
 
-public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<OwnerSayCreamPageData.DataBean> mdatas;
     private LayoutInflater inflater;
     private Context context;
@@ -57,18 +57,10 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
     public interface OnRecyclerViewItemClickListener{
         void onItemclick(View view,OwnerSayCreamPageData.DataBean Datas);
     }
-    
-    @Override
-    public void onClick(View v) {
-        if (onRecyclerViewItemClickListener != null) {
-            onRecyclerViewItemClickListener.onItemclick(v,(OwnerSayCreamPageData.DataBean) v.getTag());
-        }
-    }
-    
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(viewType,parent,false);
-        view.setOnClickListener(this);
         if (viewType == R.layout.item_load_more) {
             LoadMoreViewHolder moreHolder = new LoadMoreViewHolder(view);
             return moreHolder;
@@ -88,7 +80,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
             myViewHolder.itemView.setTag(mdatas.get(position));
             myViewHolder.ownersaypagecreamTitleImg.setImageURI(Uri.parse(dataBean.getAvtUrl()));
             myViewHolder.ownersaypagecreamTitleName.setText(dataBean.getAuthor());
-            Log.d("FragmentOwnerSayCreamAd", "datas.get(i).getHouseInfo():" + dataBean.getHouseInfo());
+            Log.d("FragmentOwnerSayCreamAd", "business.get(i).getHouseInfo():" + dataBean.getHouseInfo());
             if (dataBean.getHouseInfo() != null) {
                 myViewHolder.ownersaypagecreamTitleContent.setText(
                         dataBean.getHouseInfo().getArea()+"平、"
@@ -101,7 +93,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
                 myViewHolder.ownersaypagecreamContentImg.setVisibility(View.GONE);
             }
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
-            Log.d("F---------------", "datas.get(i).getZan():" + dataBean.getZan());
+            Log.d("F---------------", "business.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan()+"");
             myViewHolder.itemOwnersaypagecreamBottomCommentText.setText(dataBean.getReplies());
         }
@@ -120,7 +112,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
         return this.mdatas.size()+1;
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.ownersaypagecream_title_img)
         SimpleDraweeView ownersaypagecreamTitleImg;
         @Bind(R.id.ownersaypagecream_title_name)
@@ -147,6 +139,18 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
         MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+            view.setOnClickListener(this);
+            itemOwnersaypagecreamBottomShare.setOnClickListener(this);
+            itemOwnersaypagecreamBottomCommentImg.setOnClickListener(this);
+            itemOwnersaypagecreamBottomZanImg.setOnClickListener(this);
+            ownersaypagecreamTitleImg.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (onRecyclerViewItemClickListener != null) {
+                onRecyclerViewItemClickListener.onItemclick(v,mdatas.get(getAdapterPosition()));
+            }
         }
     }
     static class LoadMoreViewHolder extends RecyclerView.ViewHolder {

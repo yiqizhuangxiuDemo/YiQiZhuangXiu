@@ -40,7 +40,7 @@ public class WorkSpacePlaying extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
         titlebarContent.setText(getString(R.string.workspace_playing));
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.design_people, null);
             linearDesignPeople.addView(view);
         }

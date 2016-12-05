@@ -22,7 +22,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:clickable="true"
             android:scaleType="centerCrop"
             app:roundAsCircle="true"
             app:placeholderImage="@drawable/place_holder" />
@@ -52,7 +51,7 @@
             android:layout_alignParentRight="true"
             android:drawableTop="@drawable/add_attention"
             android:text="加关注"
-            android:textColor="#22ff22"
+            android:textColor="@color/mainGreen"
             android:textSize="12sp" />
     </RelativeLayout>
 
@@ -73,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="8dp"
-        android:clickable="true"
+        android:clickable="false"
         android:scaleType="centerCrop"
         app:placeholderImage="@drawable/place_holder" />
 

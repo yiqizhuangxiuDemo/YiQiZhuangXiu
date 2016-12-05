@@ -33,8 +33,8 @@ public class PresenterHomepageContentDataImpl implements PresenterHomepageConten
     @Override
     public void onLoadHomePageContentDataSuccess(List<HomepageContentData.DataBean> datas) {
         if (datas != null && datas.size() > 0) {
-            type = datas.get(datas.size() - 1).getType();
-            id = datas.get(datas.size() - 1).getId();
+            this.type = datas.get(datas.size() - 1).getType();
+            this.id = datas.get(datas.size() - 1).getId();
             view.onLoadHomePageContentDataSuccess(datas);
         } else {
             onLoadHomePageContentDataFaied("意外错误，获取到的内容为空");

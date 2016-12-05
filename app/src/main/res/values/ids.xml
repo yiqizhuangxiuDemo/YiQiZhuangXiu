@@ -72,6 +72,24 @@
     <item name="progressbar" type="id" />
     <item name="buttombar_refresh" type="id" />
     <item name="appbarlayout_appbar_fragment_homepage" type="id" />
+    <item name="tabLayout_main" type="id" />
+    <item name="togeter_gridview" type="id" />
+    <item name="item_image_together" type="id" />
+    <item name="text_design_num" type="id" />
+    <item name="desin_text_name" type="id" />
+    <item name="text_zhuangxiu_anli" type="id" />
+    <item name="pingfen" type="id" />
+    <item name="score" type="id" />
+    <item name="together_recycle_view" type="id" />
+    <item name="text_person_anli" type="id" />
+    <item name="text_news" type="id" />
+    <item name="tetle_together_people" type="id" />
+    <item name="effcet_title_tablayout" type="id" />
+    <item name="effect_viewpager" type="id" />
+    <item name="effect_recycle_view" type="id" />
+    <item name="effect_image_sd" type="id" />
+    <item name="text_effect_title" type="id" />
+    <item name="text_effect_content" type="id" />
     <item name="titlebar_like" type="id" />
     <item name="titlebar_collect" type="id" />
     <item name="headimag_simpleDraweeView" type="id" />
@@ -94,4 +112,49 @@
     <item name="show_reply" type="id" />
     <item name="reply_obj_bean" type="id" />
     <item name="reply_content" type="id" />
+    <item name="titlebar_call" type="id" />
+    <item name="titlebar_tablayout" type="id" />
+    <item name="viewpager_design" type="id" />
+    <item name="redPacket" type="id" />
+    <item name="webview" type="id" />
+    <item name="refresh" type="id" />
+    <item name="appbarlayout" type="id" />
+    <item name="tabLayout" type="id" />
+    <item name="viewpager" type="id" />
+    <item name="gridview" type="id" />
+    <item name="simpleDraweeView" type="id" />
+    <item name="textview" type="id" />
+    <item name="scrim" type="id" />
+    <item name="scrim_text" type="id" />
+    <item name="recyclerview" type="id" />
+    <item name="discription" type="id" />
+    <item name="design_popupwindow_textview_content" type="id" />
+    <item name="footer_load_data" type="id" />
+    <item name="checked_textview_space" type="id" />
+    <item name="checked_textview_style" type="id" />
+    <item name="checked_textview_local" type="id" />
+    <item name="checked_textview_color" type="id" />
+    <item name="linear_beautiful_container" type="id" />
+    <item name="recyclerview_popwindow" type="id" />
+    <item name="beautiful_grid_view" type="id" />
+    <item name="gridview_beatiful" type="id" />
+    <item name="beatiful_text_conment" type="id" />
+    <item name="beatiful_text_like" type="id" />
+    <item name="reply_obj_bean_child" type="id" />
+    <item name="reply_child_content" type="id" />
+    <item name="reply_button" type="id" />
+    <item name="no_comments" type="id" />
+    <item name="related_container_articledetails" type="id" />
+    <item name="title_related_articledetails" type="id" />
+    <item name="img_related_articledetails" type="id" />
+    <item name="collection_articledetails" type="id" />
+    <item name="nomroecomments_articledetails" type="id" />
+    <item name="comment_container_articledetails" type="id" />
+    <item name="textview_nomroecomments_articledetails" type="id" />
+    <item name="text_view" type="id" />
+    <item name="cancel_guide" type="id" />
+    <item name="guide_chenck_sex" type="id" />
+    <item name="guide_check_progress" type="id" />
+    <item name="guide_check_birthday" type="id" />
+    <item name="guide_over" type="id" />
 </resources>

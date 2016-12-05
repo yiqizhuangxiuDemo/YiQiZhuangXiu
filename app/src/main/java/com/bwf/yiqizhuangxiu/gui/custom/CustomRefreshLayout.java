@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
@@ -22,11 +23,12 @@ import com.bwf.yiqizhuangxiu.R;
 
 public class CustomRefreshLayout extends FrameLayout {
 
-    private View headerView;
     private View bodyView;
+    private View headerView;
     private View progressView;
     private View upView;
     private TextView infoView;
+    private TextView timeView;
     private int headerHeight;
     private boolean isRefreshing;
     private boolean isEnable = true;
@@ -53,7 +55,9 @@ public class CustomRefreshLayout extends FrameLayout {
         addView(headerView);
         progressView = headerView.findViewById(R.id.progressImage);
         upView = headerView.findViewById(R.id.upImage);
+        ViewCompat.setRotation(upView, 0);
         infoView = (TextView) headerView.findViewById(R.id.infoText);
+        timeView = (TextView) headerView.findViewById(R.id.timeText);
         headerView.measure(0, 0);
         headerHeight = headerView.getMeasuredHeight();
         ViewCompat.setTranslationY(headerView, -headerHeight);
@@ -77,7 +81,7 @@ public class CustomRefreshLayout extends FrameLayout {
                 if (Math.abs(ev.getY() - touchY) > Math.abs(ev.getX() - touchX) && ev.getY() - touchY > 50 && isEnable && isBodyTopLimit() && !isRefreshing) {
                     touchY = ev.getY();
                     if (onTouchByUserListener != null) {
-                        onTouchByUserListener.onTouchByUser();
+                        onTouchByUserListener.onTouchByUser(timeView);
                     }
                     return true;
                 }
@@ -91,6 +95,8 @@ public class CustomRefreshLayout extends FrameLayout {
     private boolean isBodyTopLimit() {
         return !ViewCompat.canScrollVertically(bodyView, -1);
     }
+
+    private boolean isRotate;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -109,11 +115,27 @@ public class CustomRefreshLayout extends FrameLayout {
                 }
                 distanceY = distanceY / 3;
                 if (distanceY >= headerHeight) {
-                    infoView.setText("一起装修网，省钱有保障");
-                    ViewCompat.setRotation(upView, 180);
+                    if (!isRotate) {
+                        isRotate = true;
+                        upView.clearAnimation();
+                        Animation myAnimation_Rotate = new RotateAnimation(0, 180,
+                                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                        myAnimation_Rotate.setDuration(200);
+                        myAnimation_Rotate.setFillAfter(true);
+                        upView.startAnimation(myAnimation_Rotate);
+                        infoView.setText("一起装修网，省钱有保障");
+                    }
                 } else {
-                    infoView.setText("下拉刷新");
-                    ViewCompat.setRotation(upView, 0);
+                    if (isRotate) {
+                        isRotate = false;
+                        upView.clearAnimation();
+                        Animation myAnimation_Rotate = new RotateAnimation(180, 0,
+                                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                        myAnimation_Rotate.setDuration(200);
+                        myAnimation_Rotate.setFillAfter(true);
+                        upView.startAnimation(myAnimation_Rotate);
+                        infoView.setText("下拉刷新");
+                    }
                 }
                 ViewCompat.setTranslationY(bodyView, distanceY);
                 ViewCompat.setTranslationY(headerView, distanceY - headerHeight);
@@ -158,6 +180,7 @@ public class CustomRefreshLayout extends FrameLayout {
                         rotateAnimation.setRepeatCount(-1);
                         rotateAnimation.setInterpolator(new LinearInterpolator());
                         progressView.setVisibility(View.VISIBLE);
+                        upView.clearAnimation();
                         upView.setVisibility(View.GONE);
                         progressView.startAnimation(rotateAnimation);
                     }
@@ -168,6 +191,8 @@ public class CustomRefreshLayout extends FrameLayout {
         }
         valueAnimator.start();
     }
+
+    private ValueAnimator valueAnimatorRotate;
 
     /**
      * 结束刷新状态
@@ -247,7 +272,7 @@ public class CustomRefreshLayout extends FrameLayout {
      * 设置拖动接口监听
      */
     public interface OnTouchByUserListener {
-        void onTouchByUser();
+        void onTouchByUser(TextView timeView);
     }
 
     private OnTouchByUserListener onTouchByUserListener;
