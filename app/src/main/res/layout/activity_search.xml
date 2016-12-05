@@ -1,52 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:id="@id/root"
+                android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/search_nothing"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-        <EditText
-            android:id="@+id/inner_search_eduittext"
-            android:paddingLeft="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/home_search_sub"
-            android:layout_toLeftOf="@+id/cancel_action"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:text="取消"
-            android:textSize="12sp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/cancel_action"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:textColor="#00A051"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-        <ImageView
-            android:scaleType="centerCrop"
-            android:src="@mipmap/inner_search_img"
-            android:layout_width="50dp"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_marginRight="20dp"
-            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_empty_search"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:text="抱歉，没有你要找的信息"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/search_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="相关用户"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/search_recycleview_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/search_recycleview_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:hint="输入关键字"
+            android:textSize="12sp"
+            android:id="@+id/inner_search_eduittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:maxLines="1"
             android:layout_toLeftOf="@+id/cancel_action"
-            android:src="@mipmap/ic_clear"
+            android:background="@drawable/home_search_sub"
+            android:paddingLeft="40dp"/>
+
+        <TextView
+            android:id="@+id/cancel_action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
+            android:text="取消"
+            android:textColor="#00A051"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:visibility="gone"
+            android:src="@mipmap/inner_search_img"/>
+
+        <ImageView
             android:id="@+id/inner_search_delete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="7dp"
+            android:layout_toLeftOf="@+id/cancel_action"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_clear"
+            android:visibility="gone"/>
     </RelativeLayout>
+
     <ImageView
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_search_more_new"
+        android:id="@+id/inner_search_img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@mipmap/ic_search_more_new"/>
 </RelativeLayout>

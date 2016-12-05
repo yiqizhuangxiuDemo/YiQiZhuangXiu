@@ -31,15 +31,23 @@ public interface Apis {
      * 业主说接口
      */
     //精华
-    String API_OWNERSAY_CREAM = "http://bbs.17house.com/motnt/index.php?a=allThread&c=forumThreadList&mode=digest&uuid=86305803367590&pageSize=10&m=forum&page=1&haspermission=yes&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
+     String API_OWNERSAY_CREAM = "http://bbs.17house.com/motnt/index.php?a=allThread&c=forumThreadList&mode=digest&uuid=86305803367590&pageSize=10&m=forum&page={$0}&haspermission=yes&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
     //最新
     String API_OWNERSAY_UPTODATA = "http://bbs.17house.com/motnt/index.php?a=allThread&c=forumThreadList&uuid=86305803367590&pageSize=10&cityName=%E6%88%90%E9%83%BD&m=forum&page={$0}&haspermission=yes&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
     //版块
+     String API_OWNERSAY_PLATE = "http://bbs.17house.com/motnt/index.php?a=miscForum&uuid=86305803367590&cityName=%E6%88%90%E9%83%BD&m=misc&haspermission=yes&cityId=2&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
+    /**
+     * 同城活动接口
+     */
+    String API_CITY_ACTIVITY = "http://bbs.17house.com/motnt/index.php?a=activityThreadlist&c=forumThreadList&uuid=a444d1b2af4f&pageSize=10&uid=1633055&cityName=%E6%88%90%E9%83%BD&m=forum&page={$0}&model=android&sessionToken=6U49kCYKE260RqvPqEdFsBGskNQStKhm&app_version=android_com.aiyiqi.galaxy_1.1";
+    /**
+    * 搜索接口
+    */
+    String API_SEARCH = "http://bbs.17house.com/motnt/index.php?a=searchForum&c=search&uuid=86305803367590&pageSize=10&m=search&page={$0}&haspermission=yes&kw={$1}&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
     String URL_DESING_TEHEER ="http://hui.17house.com/svc/payment-facade/housekeep/listBuildingSiteVendors" ;
     String URL_FOREMAN ="http://hui.17house.com/svc/payment-facade/housekeep/listBuildingSiteVendors";
     String URL_SUPERVISOR="http://hui.17house.com/svc/payment-facade/housekeep/listBuildingSiteVendors";
     String URL_COLLECTION = "http://appapi.17house.com/xiaoguotuApi.php?version=1&page={$0}&action=albumList2&pageSize=10&tagid=1&model=android";
-    String API_OWNERSAY_PLATE = "http://bbs.17house.com/motnt/index.php?a=miscForum&uuid=86305803367590&cityName=%E6%88%90%E9%83%BD&m=misc&haspermission=yes&cityId=2&model=android&sessionToken=&app_version=android_com.aiyiqi.galaxy_1.1";
     /**
      * 设计/量房
      */

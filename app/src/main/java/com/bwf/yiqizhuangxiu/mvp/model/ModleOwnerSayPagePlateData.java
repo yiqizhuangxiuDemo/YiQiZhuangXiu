@@ -11,7 +11,7 @@ import java.util.List;
 public interface ModleOwnerSayPagePlateData {
     void downLoadModleOwnerSayPagePlateData(ModleOwnerSayPagePlateDataCallBack callBack);
     interface ModleOwnerSayPagePlateDataCallBack {
-        void ModleOwnerSayPagePlateDataSuccess(List<OwnerSayPlatePageData.DataBean> datas);
+        void ModleOwnerSayPagePlateDataSuccess(List<List<OwnerSayPlatePageData.DataBean>> datas);
         void ModleOwnerSayPagePlateDataFailed(String info);
     }
 }
