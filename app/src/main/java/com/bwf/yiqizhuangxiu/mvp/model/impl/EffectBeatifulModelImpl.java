@@ -30,6 +30,7 @@ public class EffectBeatifulModelImpl implements EffectBeatifulModel {
                     public void onResponse(String response, int id) {
                         EffectBeatifulData data = JSON.parseObject(response, EffectBeatifulData.class);
                         callBack.loadBeatuifeDataSuccess(data.getData().getList());
+                        nextPage++;
                     }
                 });
     }

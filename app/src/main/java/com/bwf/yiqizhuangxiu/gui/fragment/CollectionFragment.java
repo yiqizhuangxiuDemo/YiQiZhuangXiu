@@ -108,6 +108,6 @@ public class CollectionFragment extends BaseFragment implements EffectCollection
     @Override
     public void onItemClick(View view, int position) {
         EffectCollectionData.DataBean.ListBean bean = colloectionRecycleAdapter.getItemData(position);
-        
+        //TODO 跳转到专题详情
     }
 }

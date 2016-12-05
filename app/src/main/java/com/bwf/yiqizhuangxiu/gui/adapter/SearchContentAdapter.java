@@ -93,10 +93,12 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
             myViewHolder.ownersaypagecreamTitleName.setText(dataBean.getAuthor());
             if (dataBean.getSubject() != null || dataBean.getSubject() != "") {
                 int start = dataBean.getSubject().indexOf(this.text);
-                int end = start + this.text.length();
-                SpannableStringBuilder builder = new SpannableStringBuilder(dataBean.getSubject());
-                builder.setSpan(new ForegroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                myViewHolder.ownersaypagecreamContentText.setText(builder);
+                if (start >= 0) {
+                    int end = start + this.text.length();
+                    SpannableStringBuilder builder = new SpannableStringBuilder(dataBean.getSubject());
+                    builder.setSpan(new ForegroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    myViewHolder.ownersaypagecreamContentText.setText(builder);
+                }
             }
             if (dataBean.getAttachments() != null) {
                 myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
@@ -114,10 +116,13 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemCount() {
         return datas.size() + 1;
     }
+
     private OnItemClickListener onItemClickListener;
+
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
+
     public interface OnItemClickListener {
         void onItemClick(View view, SearchData.DataBean dataBean);
     }
@@ -160,10 +165,11 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemOwnersaypagecreamBottomZanImg.setOnClickListener(this);
             ownersaypagecreamContentBottomtext.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View v) {
-            if (onItemClickListener!=null){
-                onItemClickListener.onItemClick(v,datas.get(getAdapterPosition()));
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, datas.get(getAdapterPosition()));
             }
         }
     }

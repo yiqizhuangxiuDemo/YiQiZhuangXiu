@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:text="kaixinjiuxiao"
+    android:id="@id/text_selector"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:textAlignment="center"
+    android:textSize="15sp"
+    android:textColor="@drawable/textcolor_ta_selector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</CheckedTextView>

@@ -87,11 +87,13 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
                                 +dataBean.getHouseInfo().getBudget()+"萬、");
             }
             myViewHolder.ownersaypagecreamContentText.setText(dataBean.getSubject());
+
             if (dataBean.getAttachments() != null) {
                 myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
             } else {
                 myViewHolder.ownersaypagecreamContentImg.setVisibility(View.GONE);
             }
+
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
             Log.d("F---------------", "business.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan()+"");

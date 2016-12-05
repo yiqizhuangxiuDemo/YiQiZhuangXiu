@@ -151,10 +151,38 @@
     <item name="nomroecomments_articledetails" type="id" />
     <item name="comment_container_articledetails" type="id" />
     <item name="textview_nomroecomments_articledetails" type="id" />
+    <item name="linear_contait" type="id" />
+    <item name="ratingbar" type="id" />
+    <item name="image_school_bar" type="id" />
+    <item name="view_pager_school" type="id" />
+    <item name="scholl_linear_contantier" type="id" />
+    <item name="linear_school_list_containt" type="id" />
+    <item name="school_listview_content" type="id" />
+    <item name="school_content_title" type="id" />
+    <item name="school_looke_num" type="id" />
+    <item name="text_star_num" type="id" />
+    <item name="text_comment_num" type="id" />
+    <item name="image_school_conment" type="id" />
+    <item name="school_listview_content1" type="id" />
+    <item name="school_listview" type="id" />
+    <item name="linear_parent" type="id" />
     <item name="text_view" type="id" />
     <item name="cancel_guide" type="id" />
     <item name="guide_chenck_sex" type="id" />
     <item name="guide_check_progress" type="id" />
     <item name="guide_check_birthday" type="id" />
     <item name="guide_over" type="id" />
+    <item name="image_popupwindow_back" type="id" />
+    <item name="school_gridview_before" type="id" />
+    <item name="school_gridview_ing" type="id" />
+    <item name="school_gridview_fish" type="id" />
+    <item name="text_selector" type="id" />
+    <item name="image_popupwindow_school" type="id" />
+    <item name="text_desing_request" type="id" />
+    <item name="image_zan" type="id" />
+    <item name="image_zixun" type="id" />
+    <item name="image_share" type="id" />
+    <item name="school_viewpager_itme" type="id" />
+    <item name="text_title_pop" type="id" />
+    <item name="text_little_titel_pop" type="id" />
 </resources>

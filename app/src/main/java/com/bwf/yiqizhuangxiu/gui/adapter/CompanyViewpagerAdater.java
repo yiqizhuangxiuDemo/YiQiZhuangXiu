@@ -24,11 +24,15 @@ public class CompanyViewpagerAdater extends PagerAdapter{
     private List<View> views;
 
     public CompanyViewpagerAdater(Context context,List<CompanyAdvertingData.DataBean> advertingData ) {
-        this.advertingData = advertingData;
+        this.advertingData = new ArrayList<>();
         this.context = context;
         LayoutInflater inflater = LayoutInflater.from(context);
         views = new ArrayList<>();
-        for (int i = 0; i < advertingData.size(); i++) {
+//        if(advertingData.size()<= 3){
+            this.advertingData.addAll(advertingData);
+//            this.advertingData.addAll(advertingData);
+//        }
+        for (int i = 0; i < this.advertingData.size()+2; i++) {
             View view = inflater.inflate(R.layout.company_pager_imag, null);
             views.add(view);
         }
@@ -36,7 +40,7 @@ public class CompanyViewpagerAdater extends PagerAdapter{
 
     @Override
     public int getCount() {
-        return advertingData.size();
+        return advertingData.size()+2;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class CompanyViewpagerAdater extends PagerAdapter{
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = views.get(position % advertingData.size());
+        View view = views.get(position);
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.viewpager_image);
         Uri uri =Uri.parse(advertingData.get(position%advertingData.size()).getImagesrc2());
         simpleDraweeView.setImageURI(uri);
@@ -56,7 +60,7 @@ public class CompanyViewpagerAdater extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        View view = views.get(position % advertingData.size());
+        View view = views.get(position );
         container.removeView(view);
     }
 }

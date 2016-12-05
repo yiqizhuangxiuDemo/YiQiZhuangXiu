@@ -95,4 +95,23 @@
         <item>五</item>
         <item>六</item>
     </string-array>
+    <string-array name="schollTitle">
+        <item>验房收房</item>
+        <item>装修公司</item>
+        <item>量房设计</item>
+        <item>辅材选购</item>
+        <item>主材选购</item>
+        <item>家具选购</item>
+        <item>装修合同</item>
+        <item>主体拆迁</item>
+        <item>水电改造</item>
+        <item>防水处理</item>
+        <item>木工工程</item>
+        <item>瓦工工程</item>
+        <item>油工工程</item>
+        <item>主材安装</item>
+        <item>竣工验收</item>
+        <item>软装配饰</item>
+        <item>居家生活</item>
+    </string-array>
 </resources>

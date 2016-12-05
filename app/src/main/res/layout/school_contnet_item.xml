@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="100dp">
+        <TextView
+            android:text="哈哈"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:id="@id/school_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@mipmap/looked_num_icon"/>
+            <TextView
+                android:id="@id/school_looke_num"
+                android:text="hahhahh"
+                style="@style/mytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@mipmap/collection"/>
+            <TextView
+                android:id="@id/text_star_num"
+                android:text="hahhahh"
+                style="@style/mytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:background="#c9c6c9"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_comment"/>
+            <TextView
+                android:id="@id/text_comment_num"
+                android:text="hahhahh"
+                style="@style/mytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@id/image_school_conment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:placeholderImage="@drawable/zhanweitu"
+        app:actualImageScaleType="centerCrop"
+        app:failureImage="@drawable/site_playing_icon"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#f8e6dbdb"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_gravity="center"
+            android:text="全部装修流程"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@id/image_popupwindow_back"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/close"/>
+    </FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:paddingTop="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center|left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/dec_pre"/>
+                <TextView
+                    android:layout_marginLeft="60dp"
+                    android:text="装修前"
+                    android:textSize="20sp"
+                    android:textColor="#2b2a2a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <com.bwf.yiqizhuangxiu.gui.custom.MyGridView
+                android:id="@id/school_gridview_before"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:numColumns="3"
+                android:horizontalSpacing="20dp"
+                android:verticalSpacing="20dp"/>
+
+
+
+            <FrameLayout
+                android:paddingTop="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center|left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/dec_ing"/>
+                <TextView
+                    android:layout_marginLeft="60dp"
+                    android:text="装修中"
+                    android:textSize="20sp"
+                    android:textColor="#2b2a2a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <com.bwf.yiqizhuangxiu.gui.custom.MyGridView
+                android:id="@id/school_gridview_ing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:numColumns="3"
+                android:horizontalSpacing="20dp"
+                android:verticalSpacing="20dp"/>
+
+
+
+            <FrameLayout
+                android:paddingTop="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center|left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/dec_finish"/>
+                <TextView
+                    android:layout_marginLeft="60dp"
+                    android:text="装修后"
+                    android:textSize="20sp"
+                    android:textColor="#2b2a2a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <com.bwf.yiqizhuangxiu.gui.custom.MyGridView
+                android:id="@id/school_gridview_fish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:numColumns="3"
+                android:horizontalSpacing="20dp"
+                android:verticalSpacing="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

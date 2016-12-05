@@ -21,7 +21,7 @@ import me.relex.photodraweeview.PhotoDraweeView;
 
 public class FrescoImageUtils {
     /**
-     * 设置SimpleDraweeView的Controller让
+     * 设置SimpleDraweeView的Controller 根据给定的宽度按照图片比例设置宽高
      *
      * @param simpleDraweeView
      * @param imagePath
@@ -63,7 +63,7 @@ public class FrescoImageUtils {
     }
 
     /**
-     * 设置SimpleDraweeView的Controller让
+     * 设置SimpleDraweeView的Controller 根据给定的宽度和高度按照图片比例设置宽高使宽高不会超过限定值导致部分图片无法显示
      *
      * @param simpleDraweeView
      * @param imagePath
@@ -112,7 +112,9 @@ public class FrescoImageUtils {
     }
 
     /**
-     * 设置SimpleDraweeView的Controller让
+     * 设置SimpleDraweeView的Controller 可以进行手势操作例如双指缩放的适应宽高的设置
+     * 1、需要使用PhotoDraweeView
+     * 2、控件大小应当剂量大
      *
      * @param photoDraweeView
      * @param imagePath

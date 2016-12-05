@@ -18,6 +18,7 @@ import com.bwf.yiqizhuangxiu.gui.adapter.CompanyGridAdapter;
 import com.bwf.yiqizhuangxiu.mvp.presenter.CompanyToagetherPresenter;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.CompanyTogetherPresenterImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.CompanyTogetherView;
+import com.bwf.yiqizhuangxiu.utils.LogUtils;
 
 import java.util.List;
 
@@ -73,11 +74,11 @@ public class TogetherFragment extends BaseFragment implements CompanyTogetherVie
 //                    isLoading = true;
 //                    presenter.loadData();
 ////                }
-//                if (!isLoading && togeterGridview.getLastVisiblePosition()>=togeterGridview.getChildCount()-2){
-//                    LogUtils.d("isLoading",isLoading+"");
-//                    isLoading=true;
-//                    presenter.loadData();
-//                }
+                if (!isLoading && togeterGridview.getLastVisiblePosition() == adapter.getCount() -1){
+                    LogUtils.d("isLoading",isLoading+"");
+                    isLoading=true;
+                    presenter.loadData();
+                }
             }
         });
 

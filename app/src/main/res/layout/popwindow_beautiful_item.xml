@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:id="@id/linear_contait"
     android:gravity="center"
     android:background="@drawable/popupwindow_title_select"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
         android:id="@+id/title_popwindow"
         android:padding="10dp"
         android:gravity="center"
-        android:text="哈哈哈"
+        android:text="哈哈哈哈哈哈"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
