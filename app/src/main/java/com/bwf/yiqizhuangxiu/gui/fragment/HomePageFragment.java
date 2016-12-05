@@ -162,6 +162,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             }
         });
 
+        //Item点击跳转
         adapter.setOnItemClickListener(new RecyclerViewWithHeaderOrFooterAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -174,6 +175,15 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
                     intent.putExtra(PostDetailsActivity.TAG_ID_EXTRA, adapter.getItemData(position).getId());
                     HomePageFragment.this.startActivity(intent);
                 }
+            }
+        });
+
+        //头像点击事件
+        adapter.setOnAvtClickListener(new HomepageRecyclerViewAdapter.OnAvtClickListener() {
+            @Override
+            public void onAvtClickListener(HomepageContentData.DataBean data) {
+                Toast.makeText(getContext(), data.getAuthor() +" : "+ data.getUid(), Toast.LENGTH_SHORT).show();
+                // TODO: 2016/12/5 Intent to OwnerSaySubActivity
             }
         });
 
