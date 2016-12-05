@@ -167,7 +167,7 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
                 return false;
             }
         });
-        popupWindows[i].setAnimationStyle(R.style.popupwindow_school);
+        popupWindows[i].setAnimationStyle(R.style.popupwindow_effect_anim);
         adapter = new popwindowGridViewAdapter(getContext(), list);
         holder.recyclerviewPopwindow.setAdapter(adapter);
     }

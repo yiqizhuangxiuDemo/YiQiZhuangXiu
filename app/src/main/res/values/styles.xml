@@ -47,6 +47,10 @@
         <item name="android:windowEnterAnimation">@anim/popup_enter_right</item>
         <item name="android:windowExitAnimation">@anim/popup_exit_right</item>
     </style>
+    <style name="popupwindow_effect_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_effect_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_effect_exit</item>
+    </style>
     <style name="popupwindow_anim_alpha" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/popupwindow_show_alpha</item>
         <item name="android:windowExitAnimation">@anim/popupwindow_hidden_alpha</item>
