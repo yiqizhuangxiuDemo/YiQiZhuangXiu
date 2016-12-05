@@ -7,14 +7,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -49,12 +46,6 @@ public class PopWindowUtils {
             pop.setContentView(view);
             pop.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
             pop.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-//            holder.itemShareLayoutQq.setOnClickListener(this);
-//            holder.itemShareLayoutWechat.setOnClickListener(this);
-//            holder.itemShareLayoutWechatmoments.setOnClickListener(this);
-//            holder.itemShareLayoutQzone.setOnClickListener(this);
-//            holder.itemShareLayoutSinaweibo.setOnClickListener(this);
-//            holder.itemShareLayoutBtn.setOnClickListener(this);
             pop.setBackgroundDrawable(new BitmapDrawable());
             pop.setFocusable(true);
             pop.setOutsideTouchable(true);
@@ -68,24 +59,11 @@ public class PopWindowUtils {
     }
 
     public class ViewHolder {
-        @Bind(R.id.item_share_layout_qq)
-        LinearLayout itemShareLayoutQq;
-        @Bind(R.id.item_share_layout_wechat)
-        LinearLayout itemShareLayoutWechat;
-        @Bind(R.id.item_share_layout_wechatmoments)
-        LinearLayout itemShareLayoutWechatmoments;
-        @Bind(R.id.item_share_layout_qzone)
-        LinearLayout itemShareLayoutQzone;
-        @Bind(R.id.item_share_layout_sinaweibo)
-        LinearLayout itemShareLayoutSinaweibo;
-        @Bind(R.id.item_share_layout_btn)
-        TextView itemShareLayoutBtn;
-
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
-        @OnClick({R.id.item_share_layout_qq, R.id.item_share_layout_wechat, R.id.item_share_layout_wechatmoments, R.id.item_share_layout_qzone, R.id.item_share_layout_sinaweibo, R.id.item_share_layout_btn})
+        @OnClick({R.id.root_content,R.id.item_share_layout_qq, R.id.item_share_layout_wechat, R.id.item_share_layout_wechatmoments, R.id.item_share_layout_qzone, R.id.item_share_layout_sinaweibo, R.id.item_share_layout_btn})
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.item_share_layout_qq:
@@ -109,8 +87,9 @@ public class PopWindowUtils {
                     pop.dismiss();
                     break;
                 case R.id.item_share_layout_btn:
-                    Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                     pop.dismiss();
+                    break;
+                case R.id.root_content:
                     break;
             }
         }

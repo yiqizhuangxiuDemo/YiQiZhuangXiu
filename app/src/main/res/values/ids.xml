@@ -185,4 +185,5 @@
     <item name="school_viewpager_itme" type="id" />
     <item name="text_title_pop" type="id" />
     <item name="text_little_titel_pop" type="id" />
+    <item name="root_content" type="id" />
 </resources>

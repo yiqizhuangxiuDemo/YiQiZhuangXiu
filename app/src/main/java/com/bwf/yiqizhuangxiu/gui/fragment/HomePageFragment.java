@@ -36,6 +36,7 @@ import com.bwf.yiqizhuangxiu.gui.activity.DesignActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.DetailsPageActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.EffectActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.FitmentActivity;
+import com.bwf.yiqizhuangxiu.gui.activity.OwnerSaySubActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.PostDetailsActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.SchoolActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.SearchActivity;
@@ -183,7 +184,10 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             @Override
             public void onAvtClickListener(HomepageContentData.DataBean data) {
                 Toast.makeText(getContext(), data.getAuthor() +" : "+ data.getUid(), Toast.LENGTH_SHORT).show();
-                // TODO: 2016/12/5 Intent to OwnerSaySubActivity
+                Intent intent = new Intent(HomePageFragment.this.getContext(), OwnerSaySubActivity.class);
+                intent.putExtra("author",data.getAuthor());
+                intent.putExtra("avtUrl",data.getAvtUrl());
+                startActivity(intent);
             }
         });
 

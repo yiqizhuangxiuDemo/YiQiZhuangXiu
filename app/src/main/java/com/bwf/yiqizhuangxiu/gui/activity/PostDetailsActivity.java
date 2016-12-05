@@ -2,6 +2,7 @@ package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -129,11 +130,6 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
     @Override
     protected void initDatas() {
         refreshPostdetails.startRefreshOnce();
-    }
-
-    @OnClick(R.id.titlebar_back)
-    public void onClick() {
-        finish();
     }
 
     @Override
@@ -340,6 +336,34 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
             popupwindow.dismiss();
         } else {
             popupwindow.showAtLocation(root, Gravity.CENTER, 0, 0);
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    private PopWindowUtils popWindowUtils;
+
+    @OnClick({R.id.titlebar_back, R.id.titlebar_like, R.id.titlebar_collect, R.id.titlebar_share})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.titlebar_back:
+                finish();
+                break;
+            case R.id.titlebar_like:
+                break;
+            case R.id.titlebar_collect:
+                break;
+            case R.id.titlebar_share:
+                if (popWindowUtils == null) {
+                    popWindowUtils = new PopWindowUtils(this, root);
+                }
+                popWindowUtils.showPopWindow();
+                break;
         }
     }
 
