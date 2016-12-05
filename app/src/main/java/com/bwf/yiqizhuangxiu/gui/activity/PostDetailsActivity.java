@@ -1,8 +1,8 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -295,6 +295,7 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
 
     private void setAuthorInfo(PostDetailsContentDataBean.DataBean data) {
         headimagSimpleDraweeView.setImageURI(Uri.parse(data.getAvtUrl()));
+        headimagSimpleDraweeView.setTag(data);
         nameTextview.setText(data.getAuthor());
         if (data.getHouseInfo() != null) {
             PostDetailsContentDataBean.DataBean.HouseInfoBean houseInfo = data.getHouseInfo();
@@ -339,18 +340,18 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     private PopWindowUtils popWindowUtils;
 
-    @OnClick({R.id.titlebar_back, R.id.titlebar_like, R.id.titlebar_collect, R.id.titlebar_share})
+    @OnClick({R.id.headimag_simpleDraweeView,R.id.titlebar_back, R.id.titlebar_like, R.id.titlebar_collect, R.id.titlebar_share})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.headimag_simpleDraweeView:
+                PostDetailsContentDataBean.DataBean data = (PostDetailsContentDataBean.DataBean) view.getTag();
+                Intent intent = new Intent(PostDetailsActivity.this, OwnerSaySubActivity.class);
+                intent.putExtra("author",data.getAuthor());
+                intent.putExtra("avtUrl",data.getAvtUrl());
+                startActivity(intent);
+                break;
             case R.id.titlebar_back:
                 finish();
                 break;

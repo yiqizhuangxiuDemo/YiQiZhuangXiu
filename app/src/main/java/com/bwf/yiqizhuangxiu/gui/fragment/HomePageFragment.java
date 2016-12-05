@@ -183,7 +183,6 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
         adapter.setOnAvtClickListener(new HomepageRecyclerViewAdapter.OnAvtClickListener() {
             @Override
             public void onAvtClickListener(HomepageContentData.DataBean data) {
-                Toast.makeText(getContext(), data.getAuthor() +" : "+ data.getUid(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(HomePageFragment.this.getContext(), OwnerSaySubActivity.class);
                 intent.putExtra("author",data.getAuthor());
                 intent.putExtra("avtUrl",data.getAvtUrl());
