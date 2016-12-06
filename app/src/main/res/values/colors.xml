@@ -15,4 +15,5 @@
     <color name="gray_darker">#666666</color>
     <color name="gray">#aaaaaa</color>
     <color name="black">#000</color>
+    <color name="scan_corner_color">#0effc2</color>
 </resources>
