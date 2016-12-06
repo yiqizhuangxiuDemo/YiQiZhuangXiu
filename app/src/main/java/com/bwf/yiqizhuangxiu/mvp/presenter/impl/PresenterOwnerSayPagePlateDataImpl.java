@@ -26,7 +26,7 @@ public class PresenterOwnerSayPagePlateDataImpl implements com.bwf.yiqizhuangxiu
     }
 
     @Override
-    public void ModleOwnerSayPagePlateDataSuccess(List<OwnerSayPlatePageData.DataBean> datas) {
+    public void ModleOwnerSayPagePlateDataSuccess(List<List<OwnerSayPlatePageData.DataBean>> datas) {
         if (datas != null) {
             viewOwnerSayPagePlateData.onShowOwnerSayPagePlateDataSuccess(datas);
         } else {

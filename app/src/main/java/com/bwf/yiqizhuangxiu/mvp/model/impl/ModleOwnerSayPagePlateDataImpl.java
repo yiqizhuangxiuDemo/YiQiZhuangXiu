@@ -31,7 +31,7 @@ public class ModleOwnerSayPagePlateDataImpl implements ModleOwnerSayPagePlateDat
             public void onResponse(String response, int id) {
                 OwnerSayPlatePageData ownerSayPlatePageData = JSON.parseObject(response, OwnerSayPlatePageData.class);
                 Log.d("ModleOwnerSayPagePlateD", response);
-                callBack.ModleOwnerSayPagePlateDataSuccess(ownerSayPlatePageData.getData().get(id));
+                callBack.ModleOwnerSayPagePlateDataSuccess(ownerSayPlatePageData.getData());
             }
         });
     }

@@ -185,4 +185,17 @@
     <item name="school_viewpager_itme" type="id" />
     <item name="text_title_pop" type="id" />
     <item name="text_little_titel_pop" type="id" />
+    <item name="decortae_progress_listview" type="id" />
+    <item name="decortae_name" type="id" />
+    <item name="imgae_decortae" type="id" />
+    <item name="text_line" type="id" />
+    <item name="text_progress" type="id" />
+    <item name="fragmelayout_workpaly" type="id" />
+    <item name="progress_work_recycleview" type="id" />
+    <item name="progress_image_anthor" type="id" />
+    <item name="text_name" type="id" />
+    <item name="text_commnet" type="id" />
+    <item name="progress_gridview" type="id" />
+    <item name="text_creat_time" type="id" />
+    <item name="root_content" type="id" />
 </resources>
