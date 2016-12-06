@@ -49,7 +49,8 @@ public class TogetherPeople extends BaseActivity {
         ButterKnife.bind(this);
         titlebarContent.setText("一起人");
         Intent intent = getIntent();
-        itemImageTogether.setImageURI(Uri.parse(intent.getStringExtra("avatar")));
+        if ( null != intent.getStringExtra("avatar"))
+            itemImageTogether.setImageURI(Uri.parse(intent.getStringExtra("avatar")));
         desinTextName.setText(intent.getStringExtra("vendorName"));
         textDesignNum.setText(getString(R.string.caseNumber, intent.getStringExtra("caseNumber")));
         textNews.setText(getString(R.string.worknews, intent.getStringExtra("commentCount")));

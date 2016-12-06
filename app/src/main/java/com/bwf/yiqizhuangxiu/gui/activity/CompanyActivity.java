@@ -136,7 +136,7 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
                 break;
             case R.id.image_site_playing:
                 Intent intent2 = new Intent(this,WorkSpacePlaying.class);
-                intent2.putExtra("buildingId",0+"");
+                intent2.putExtra("buildingId",buildId);
                 startActivity(intent2);
                 break;
             case R.id.linear_yiqi_team:
@@ -157,10 +157,12 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
     public void showAdaertingFail(String error) {
 
     }
-
+    private String buildId = "0";
     @Override
     public void showDecoratroPlayingData(List<CompanyDecorateData.DataBean> decorateData) {
         decoratorRecycleViewAdapter.addDatas(decorateData);
+        CompanyDecorateData.DataBean itemData = decoratorRecycleViewAdapter.getItemData(0);
+        buildId = itemData.getBuildingSite().getBuildingId()+"";
     }
 
     @Override

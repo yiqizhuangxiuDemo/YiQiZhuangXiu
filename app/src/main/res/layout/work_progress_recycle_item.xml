@@ -13,6 +13,7 @@
         app:actualImageScaleType="centerInside"
         app:placeholderImage="@drawable/kf5_agent"
         app:failureImageScaleType="centerInside"
+        app:roundAsCircle="true"
         />
     <TextView
         android:id="@id/text_name"
@@ -37,6 +38,7 @@
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:numColumns="3"
         android:layout_toRightOf="@+id/progress_image_anthor"
         android:layout_marginTop="10dp"

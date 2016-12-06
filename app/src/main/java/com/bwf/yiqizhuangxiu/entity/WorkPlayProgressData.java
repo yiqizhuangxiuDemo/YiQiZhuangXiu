@@ -17,28 +17,28 @@ public class WorkPlayProgressData implements Serializable{
     /**
      * pageNo : 0
      * pageSize : 10
-     * pageTotalNum : 1
+     * pageTotalNum : 6
      */
 
     private PageInfoBean pageInfo;
     /**
-     * trackId : 1552826687991850287
-     * message : 安装完毕。
-     * buildingId : 1551754327228432540
-     * progressId : 1
-     * acceptancePassed : 0
      * acceptanceId : 0
-     * createTime : 1480890930000
-     * dateInterval : 13
-     * vendorId : 1538268363907686936
-     * atList : []
-     * userId : 1551754327080583323
-     * imgSrc : http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/9c9020d0-8347-467d-8d63-d4dcf543b85f,http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/475ef897-1a2e-42b0-a46d-3a29283559cd,http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/95aadd83-e74f-44eb-8940-5b2260a785dd,http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/b0863328-b839-4706-bfa8-5ba4f4da13bf
-     * sponsorType : 1
-     * creatorName : 祝全来
-     * creatorRole : 工长
+     * acceptancePassed : 0
+     * atList : [{"id":"1325417396","name":"程仪兵"}]
+     * avatar : http://bbs.17house.com/uc_server/avatar.php?uid=1371560&size=big
+     * buildingId : 1535476603258159617
+     * createTime : 1480371020000
+     * creatorName : 手机用户_1371560
+     * creatorRole : 业主
+     * imgSrc : http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/IMG_20161128_212513.jpg
+     * message : @程仪兵 筒灯～～一举多得。智慧
+     * progressId : 1
      * replyList : []
-     * weiXinShare : {"title":"来自四方景园1区的装修工地直播","content":"此工地进入开工阶段，大量现场图片等您来看，目前全国已开通3256个工地","news":"来自四方景园1区的装修工地直播","imageUrl":"http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/9c9020d0-8347-467d-8d63-d4dcf543b85f","linkUrl":"http://wap.17house.com/zhuangxiu/gongdizhibo/1551754327228432540.html"}
+     * sponsorType : 2
+     * trackId : 1552281523127855119
+     * userId : 1535476603258159616
+     * vendorId : 0
+     * weiXinShare : {"content":"此工地进入开工阶段，大量现场图片等您来看，目前全国已开通3256个工地","imageUrl":"http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/IMG_20161128_212513.jpg","linkUrl":"http://wap.17house.com/zhuangxiu/gongdizhibo/1535476603258159617.html","news":"来自石景山区苹果园一区的装修工地直播","title":"来自石景山区苹果园一区的装修工地直播"}
      */
 
     private List<DataBean> data;
@@ -119,62 +119,38 @@ public class WorkPlayProgressData implements Serializable{
     }
 
     public static class DataBean implements Serializable{
-        private String trackId;
-        private String message;
-        private String buildingId;
-        private String progressId;
-        private String acceptancePassed;
         private String acceptanceId;
-        private String createTime;
-        private String dateInterval;
-        private String vendorId;
+        private String acceptancePassed;
         private String atList;
-        private String userId;
-        private String imgSrc;
-        private String sponsorType;
+        private String avatar;
+        private String buildingId;
+        private String createTime;
         private String creatorName;
         private String creatorRole;
+        private String imgSrc;
+        private String message;
+        private String progressId;
+        private String sponsorType;
+        private String trackId;
+        private String userId;
+        private String vendorId;
         /**
-         * title : 来自四方景园1区的装修工地直播
          * content : 此工地进入开工阶段，大量现场图片等您来看，目前全国已开通3256个工地
-         * news : 来自四方景园1区的装修工地直播
-         * imageUrl : http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/9c9020d0-8347-467d-8d63-d4dcf543b85f
-         * linkUrl : http://wap.17house.com/zhuangxiu/gongdizhibo/1551754327228432540.html
+         * imageUrl : http://jiazhuang-picture.oss-cn-beijing.aliyuncs.com/jiagenjin/IMG_20161128_212513.jpg
+         * linkUrl : http://wap.17house.com/zhuangxiu/gongdizhibo/1535476603258159617.html
+         * news : 来自石景山区苹果园一区的装修工地直播
+         * title : 来自石景山区苹果园一区的装修工地直播
          */
 
         private WeiXinShareBean weiXinShare;
         private List<?> replyList;
 
-        public String getTrackId() {
-            return trackId;
+        public String getAcceptanceId() {
+            return acceptanceId;
         }
 
-        public void setTrackId(String trackId) {
-            this.trackId = trackId;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public String getBuildingId() {
-            return buildingId;
-        }
-
-        public void setBuildingId(String buildingId) {
-            this.buildingId = buildingId;
-        }
-
-        public String getProgressId() {
-            return progressId;
-        }
-
-        public void setProgressId(String progressId) {
-            this.progressId = progressId;
+        public void setAcceptanceId(String acceptanceId) {
+            this.acceptanceId = acceptanceId;
         }
 
         public String getAcceptancePassed() {
@@ -185,38 +161,6 @@ public class WorkPlayProgressData implements Serializable{
             this.acceptancePassed = acceptancePassed;
         }
 
-        public String getAcceptanceId() {
-            return acceptanceId;
-        }
-
-        public void setAcceptanceId(String acceptanceId) {
-            this.acceptanceId = acceptanceId;
-        }
-
-        public String getCreateTime() {
-            return createTime;
-        }
-
-        public void setCreateTime(String createTime) {
-            this.createTime = createTime;
-        }
-
-        public String getDateInterval() {
-            return dateInterval;
-        }
-
-        public void setDateInterval(String dateInterval) {
-            this.dateInterval = dateInterval;
-        }
-
-        public String getVendorId() {
-            return vendorId;
-        }
-
-        public void setVendorId(String vendorId) {
-            this.vendorId = vendorId;
-        }
-
         public String getAtList() {
             return atList;
         }
@@ -225,28 +169,28 @@ public class WorkPlayProgressData implements Serializable{
             this.atList = atList;
         }
 
-        public String getUserId() {
-            return userId;
+        public String getAvatar() {
+            return avatar;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
         }
 
-        public String getImgSrc() {
-            return imgSrc;
+        public String getBuildingId() {
+            return buildingId;
         }
 
-        public void setImgSrc(String imgSrc) {
-            this.imgSrc = imgSrc;
+        public void setBuildingId(String buildingId) {
+            this.buildingId = buildingId;
         }
 
-        public String getSponsorType() {
-            return sponsorType;
+        public String getCreateTime() {
+            return createTime;
         }
 
-        public void setSponsorType(String sponsorType) {
-            this.sponsorType = sponsorType;
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
 
         public String getCreatorName() {
@@ -263,6 +207,62 @@ public class WorkPlayProgressData implements Serializable{
 
         public void setCreatorRole(String creatorRole) {
             this.creatorRole = creatorRole;
+        }
+
+        public String getImgSrc() {
+            return imgSrc;
+        }
+
+        public void setImgSrc(String imgSrc) {
+            this.imgSrc = imgSrc;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getProgressId() {
+            return progressId;
+        }
+
+        public void setProgressId(String progressId) {
+            this.progressId = progressId;
+        }
+
+        public String getSponsorType() {
+            return sponsorType;
+        }
+
+        public void setSponsorType(String sponsorType) {
+            this.sponsorType = sponsorType;
+        }
+
+        public String getTrackId() {
+            return trackId;
+        }
+
+        public void setTrackId(String trackId) {
+            this.trackId = trackId;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getVendorId() {
+            return vendorId;
+        }
+
+        public void setVendorId(String vendorId) {
+            this.vendorId = vendorId;
         }
 
         public WeiXinShareBean getWeiXinShare() {
@@ -282,19 +282,11 @@ public class WorkPlayProgressData implements Serializable{
         }
 
         public static class WeiXinShareBean implements Serializable{
-            private String title;
             private String content;
-            private String news;
             private String imageUrl;
             private String linkUrl;
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
+            private String news;
+            private String title;
 
             public String getContent() {
                 return content;
@@ -302,14 +294,6 @@ public class WorkPlayProgressData implements Serializable{
 
             public void setContent(String content) {
                 this.content = content;
-            }
-
-            public String getNews() {
-                return news;
-            }
-
-            public void setNews(String news) {
-                this.news = news;
             }
 
             public String getImageUrl() {
@@ -326,6 +310,22 @@ public class WorkPlayProgressData implements Serializable{
 
             public void setLinkUrl(String linkUrl) {
                 this.linkUrl = linkUrl;
+            }
+
+            public String getNews() {
+                return news;
+            }
+
+            public void setNews(String news) {
+                this.news = news;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
             }
         }
     }
