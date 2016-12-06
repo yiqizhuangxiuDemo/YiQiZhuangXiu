@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/listview_item"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:divider="#223344"
+              android:dividerHeight="1dp">
+
+    <com.bwf.yiqizhuangxiu.gui.custom.MyGridView
+        android:id="@+id/gridView"
+        android:background="@drawable/biankuang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:divider="#223344"
+        android:dividerHeight="1dp"
+        >
+    </com.bwf.yiqizhuangxiu.gui.custom.MyGridView>
+</LinearLayout>
