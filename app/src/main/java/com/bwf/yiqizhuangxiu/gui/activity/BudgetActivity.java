@@ -1,6 +1,5 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -55,8 +54,7 @@ public class BudgetActivity extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(BudgetActivity.this,MainActivity.class);
-                startActivity(intent);
+               finish();
             }
         });
     }

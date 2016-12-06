@@ -39,8 +39,7 @@ public class FitmentActivity extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(FitmentActivity.this,MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         mListView = (ListView) findViewById(R.id.listview);
