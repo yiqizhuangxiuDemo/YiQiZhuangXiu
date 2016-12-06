@@ -52,4 +52,6 @@ public interface Apis {
     String API_BOOOKING = "http://appapi.17house.com/GrouponApi.php?version=1&action=getSingleSupplementInfo&cityId={$0}&model=android&app_version=android_com.aiyiqi.galaxy_1.1";
     String URL_SCHOOL_TITLE = "http://appapi.17house.com/StageApi.php?version=1&action=getTagsByStage&stage={$0}&model=android";
     String URL_SCHOOL_COMMENT = "http://appapi.17house.com/NewsApi.php?version=1&action=getNewsByStage&stage={$0}&page={$1}&pagesize=10&model=android";
+    String URL_WOEKPLAY_PEOPLE = "http://hui.17house.com/svc/payment-facade/housekeep/getLiveBuildingSite";
+    String URL_WORK_PROGRESS = "http://hui.17house.com/svc/payment-facade/housekeep/listBuildingSiteTrackByProgress";
 }

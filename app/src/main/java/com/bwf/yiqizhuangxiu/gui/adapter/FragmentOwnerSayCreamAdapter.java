@@ -55,6 +55,7 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
                                 +dataBean.getHouseInfo().getBudget()+"萬、");
             }
             myViewHolder.ownersaypagecreamContentText.setText(dataBean.getSubject());
+        //TODO 雍飞
 //            myViewHolder.ownersaypagecreamContentImg.setImageURI(Uri.parse(dataBean.getAttachments().get(0)));
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
             Log.d("F---------------", "business.get(i).getZan():" + dataBean.getZan());

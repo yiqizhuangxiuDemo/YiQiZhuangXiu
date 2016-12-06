@@ -1,12 +1,11 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,7 +69,6 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
         return R.layout.activity_company;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initViews() {
         // TODO: add setContentView(...) invocation
@@ -83,8 +81,9 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
             public void onItemClick(View view, int position) {
                 CompanyDecorateData.DataBean itemData = decoratorRecycleViewAdapter.getItemData(position);
                 Intent intent = new Intent(CompanyActivity.this,WorkSpacePlaying.class);
-                intent.putExtra("buildingId ",itemData.getBuildingSite().getBuildingId()+"");
-                startActivity(intent);
+                Log.d("CompanyActivity", "itemData.getBuildingSite().getBuildingId():" + itemData.getBuildingSite().getBuildingId()+"");
+                intent.putExtra("buildingId",itemData.getBuildingSite().getBuildingId()+"");
+                CompanyActivity.this.startActivity(intent);
 
             }
         });
@@ -137,6 +136,7 @@ public class CompanyActivity extends BaseActivity implements CompanyAdevertingVi
                 break;
             case R.id.image_site_playing:
                 Intent intent2 = new Intent(this,WorkSpacePlaying.class);
+                intent2.putExtra("buildingId",0+"");
                 startActivity(intent2);
                 break;
             case R.id.linear_yiqi_team:
