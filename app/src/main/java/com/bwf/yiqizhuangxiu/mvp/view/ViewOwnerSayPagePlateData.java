@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface ViewOwnerSayPagePlateData {
-    void onShowOwnerSayPagePlateDataSuccess(List<OwnerSayPlatePageData.DataBean> datas);
+    void onShowOwnerSayPagePlateDataSuccess(List<List<OwnerSayPlatePageData.DataBean>> datas);
     void onShowOwnerSayPagePlateDataFailed(String info);
 }

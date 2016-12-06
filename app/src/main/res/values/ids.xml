@@ -197,4 +197,5 @@
     <item name="text_commnet" type="id" />
     <item name="progress_gridview" type="id" />
     <item name="text_creat_time" type="id" />
+    <item name="root_content" type="id" />
 </resources>

@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <ScrollView
-        android:id="@+id/fragment_ownersay_plate_scrollview"
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <include layout="@layout/item_fragment_ownersay_plate_head"/>
+            <TextView
+                android:id="@+id/fragment_ownersay_plate_title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="成都装修总论坛"
+                android:textColor="#555555"
+                android:textSize="15sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_ownersay_plate_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/fragment_ownersay_plate_title2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="装修选购去"
+                android:textColor="#555555"
+                android:textSize="15sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_ownersay_plate_recyclerview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:clickable="false"/>
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

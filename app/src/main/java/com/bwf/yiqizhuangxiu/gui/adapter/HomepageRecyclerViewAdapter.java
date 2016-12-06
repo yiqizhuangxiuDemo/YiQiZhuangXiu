@@ -49,7 +49,7 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
 
     @Override
     public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) {
+        if (position >= getItemCount() - getFooterCount()) {
             return TYPE_FOOTER;
         }
         if (getItemData(position).getType() == ARTICLE_TYPE) {
@@ -91,10 +91,10 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
             PostViewHolder viewHolder = (PostViewHolder) holder;
             HomepageContentData.DataBean itemData = getItemData(position);
             viewHolder.simpleDraweeViewArticledetailsHead.setImageURI(Uri.parse(itemData.getAvtUrl()));
-            if (itemData.getPath()!=null){
+            if (itemData.getPath() != null) {
                 viewHolder.simpleDraweeViewArticledetails.setVisibility(View.VISIBLE);
                 viewHolder.simpleDraweeViewArticledetails.setImageURI(Uri.parse(itemData.getPath()));
-            }else {
+            } else {
                 viewHolder.simpleDraweeViewArticledetails.setVisibility(View.GONE);
             }
             viewHolder.nameArticledetails.setText(itemData.getAuthor());
@@ -155,6 +155,16 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
         }
     }
 
+    public interface OnAvtClickListener {
+        void onAvtClickListener(HomepageContentData.DataBean data);
+    }
+
+    private OnAvtClickListener onAvtClickListener;
+
+    public void setOnAvtClickListener(OnAvtClickListener onAvtClickListener) {
+        this.onAvtClickListener = onAvtClickListener;
+    }
+
     public class PostViewHolder extends ItemViewHolder {
         @Bind(R.id.simpleDraweeView_articledetails_head)
         SimpleDraweeView simpleDraweeViewArticledetailsHead;
@@ -173,9 +183,17 @@ public class HomepageRecyclerViewAdapter extends RecyclerViewWithHeaderOrFooterA
         @Bind(R.id.from_articledetails)
         TextView fromArticledetails;
 
-        PostViewHolder(View view) {
+        PostViewHolder(final View view) {
             super(view);
             ButterKnife.bind(this, view);
+            simpleDraweeViewArticledetailsHead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onAvtClickListener != null) {
+                        onAvtClickListener.onAvtClickListener(getItemData(getAdapterPosition()));
+                    }
+                }
+            });
         }
     }
 

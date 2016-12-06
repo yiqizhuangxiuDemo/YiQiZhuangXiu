@@ -19,7 +19,7 @@ public interface ModelPostDetails {
 
     void loadPostDetailsCommentsData(String id, int page, CallBack callBack);
 
-    public interface CallBack {
+    interface CallBack {
         void onLoadContentSuccess(PostDetailsContentDataBean.DataBean data);
 
         void onLoadContentFailed(String message);
