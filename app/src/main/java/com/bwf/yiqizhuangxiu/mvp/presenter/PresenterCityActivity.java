@@ -6,4 +6,5 @@ package com.bwf.yiqizhuangxiu.mvp.presenter;
 
 public interface PresenterCityActivity {
     void loadDatasCityActivityDatas();
+    void refreshData();
 }

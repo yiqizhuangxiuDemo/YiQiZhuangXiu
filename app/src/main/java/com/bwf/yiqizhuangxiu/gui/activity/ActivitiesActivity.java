@@ -1,7 +1,7 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
 import android.content.Intent;
-import android.os.Looper;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +31,10 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
     private ImageView imageView;
     private CityActivityAdapter activityAdapter;
     private LinearLayoutManager manager;
+    private Intent intent;
+    private Bundle bundle;
+    private boolean isNoMoreData;
+    private boolean isLoadingMore;
 
     @Override
     protected int getContentViewResId() {
@@ -55,17 +59,32 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
         activityAdapter.setLoadMoreDatasCallBack(this);
         activityAdapter.setOnItemClickListener(new CityActivityAdapter.OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClickListener(View view, CityActivityData.DataBean.ForumlistBean datas) {
-                boolean b = Looper.getMainLooper() != Looper.myLooper();
-                startActivity(new Intent(ActivitiesActivity.this, ActivityDetails.class));
+            public void onItemClickListener(CityActivityData.DataBean.ForumlistBean datas) {
+                intent = new Intent(ActivitiesActivity.this, ActivityDetails.class);
+                bundle = new Bundle();
+                if (datas.getUrls() != null && !"".equals(datas.getUrls())) {
+                    Log.d("ActivitiesActivity", datas.getUrls().toString());
+                    bundle.putString("URL",datas.getUrls().toString());
+                } else {
+                    bundle.putString("URL",datas.getGroupon_urls().toString());
+                }
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         cityActivityRecycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (isNoMoreData) {
+                    return;
+                }
                 if (manager.findLastVisibleItemPosition() == activityAdapter.getItemCount() - 1) {
-                    loadNextPageData();
+                    if (isLoadingMore) {
+                        Log.d("ActivitiesActivity", "正在加载中");
+                    } else {
+                        loadNextPageData();
+                    }
                 }
             }
         });
@@ -73,16 +92,27 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
 
     @Override
     public void onShowOwnerSayPageUpToDataFailed(String info) {
-        Log.d("ActivitiesActivity", info);
-
+        isLoadingMore = false;
+        activityAdapter.updataFooterState(CityActivityAdapter.STATE_LOAD_FAILED);
     }
 
     @Override
     public void onShowOwnerSayPageUpToDataSuccess(List<CityActivityData.DataBean.ForumlistBean> datas) {
-        if (datas.size() > 0) {
+        if (!isNoMoreData) {
             activityAdapter.addDatas(datas);
-            isLoading = false;
+            isLoadingMore = false;
         }
+    }
+
+    @Override
+    public void showFooterNoMoreData() {
+        isNoMoreData = true;
+        activityAdapter.updataFooterState(CityActivityAdapter.STATE_NO_MORE_DATA);
+    }
+
+    @Override
+    public void showFooterLoading() {
+        activityAdapter.updataFooterState(CityActivityAdapter.STATE_LOADING);
     }
 
     @Override
@@ -92,14 +122,18 @@ public class ActivitiesActivity extends BaseActivity implements ViewCityActivity
 
     @Override
     public void loadMore() {
+        isLoadingMore = true;
         loadNextPageData();
     }
 
     private void loadNextPageData() {
-        if (!isLoading) {
+        if (!isLoadingMore) {
+            isLoadingMore = true;
             presenterCityActivity.loadDatasCityActivityDatas();
         }
     }
 
-    private boolean isLoading;
+    private void refreshData() {
+        presenterCityActivity.refreshData();
+    }
 }

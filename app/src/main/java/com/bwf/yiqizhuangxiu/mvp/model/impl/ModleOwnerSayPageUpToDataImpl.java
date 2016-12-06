@@ -33,14 +33,11 @@ public class ModleOwnerSayPageUpToDataImpl implements ModleOwnerSayPageUpToData 
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.ModleOwnerSayPageUpToDataFailed("ModleOwnerSayPageUpToDataFailed------------哎呀，数据下载失败啦！！！");
-                Log.d("ModleOwnerSayPageUpToDa", e.toString());
             }
 
             @Override
             public void onResponse(String response, int id) {
-                Log.d("ModleOwnerSayPageUpToDa", response);
                 OwnerSayUpToDataPageData ownerSayUpToDataPageData = JSON.parseObject(response, OwnerSayUpToDataPageData.class);
-                Log.d("ModleOwnerSayPageUpToDa", ownerSayUpToDataPageData.getData().toString());
                 callBack.ModleOwnerSayPageUpToDataSuccess(ownerSayUpToDataPageData.getData());
             }
         });

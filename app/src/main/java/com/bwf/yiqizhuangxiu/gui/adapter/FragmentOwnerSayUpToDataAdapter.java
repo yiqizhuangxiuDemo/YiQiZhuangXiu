@@ -90,6 +90,12 @@ public class FragmentOwnerSayUpToDataAdapter extends RecyclerView.Adapter<Recycl
             myholder.fragmentOwnersayUptodataTitle.setText(dataBean.getSubject());
             myholder.fragmentOwnersayUptodataName.setText(dataBean.getAuthor());
             myholder.fragmentOwnersayUptodataData.setText(dataBean.getDateline());
+            if (dataBean.getAttachments() != null) {
+                myholder.fragmentOwnersayUptodataImg.setVisibility(View.VISIBLE);
+            } else {
+                myholder.fragmentOwnersayUptodataImg.setVisibility(View.GONE);
+            }
+
             if (dataBean.getViews() != null) {
                 myholder.fragmentOwnersayUptodataCheckCount.setText(dataBean.getViews() + "");
             }

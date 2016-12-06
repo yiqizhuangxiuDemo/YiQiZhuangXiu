@@ -23,8 +23,15 @@ public class PresenterCityActivityImpl implements PresenterCityActivity, ModleCi
 
     @Override
     public void loadDatasCityActivityDatas() {
+        viewCityActivity.showFooterLoading();
         page ++;
         modleCityActivity.downLoadCityActivity(this,page);
+    }
+
+    @Override
+    public void refreshData() {
+        page = 0;
+        loadDatasCityActivityDatas();
     }
 
     @Override
@@ -36,5 +43,10 @@ public class PresenterCityActivityImpl implements PresenterCityActivity, ModleCi
     public void ModleCityActivityDataFailed(String info) {
         page --;
         viewCityActivity.onShowOwnerSayPageUpToDataFailed(info);
+    }
+
+    @Override
+    public void noMoreData() {
+        viewCityActivity.showFooterNoMoreData();
     }
 }

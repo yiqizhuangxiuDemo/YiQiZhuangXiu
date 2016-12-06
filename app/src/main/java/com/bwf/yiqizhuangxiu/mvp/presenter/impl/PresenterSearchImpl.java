@@ -41,7 +41,6 @@ public class PresenterSearchImpl implements PresenterSearch, ModleSearch.SearchD
     @Override
     public void searchDataCallBankFailed(String info) {
         page--;
-        Log.d("PresenterSearchImpl--", info);
         viewSearch.showSearchDataFailed(info);
     }
 }

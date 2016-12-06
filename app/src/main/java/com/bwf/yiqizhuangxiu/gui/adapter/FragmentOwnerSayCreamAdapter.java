@@ -3,7 +3,6 @@ package com.bwf.yiqizhuangxiu.gui.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +79,6 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
             myViewHolder.itemView.setTag(mdatas.get(position));
             myViewHolder.ownersaypagecreamTitleImg.setImageURI(Uri.parse(dataBean.getAvtUrl()));
             myViewHolder.ownersaypagecreamTitleName.setText(dataBean.getAuthor());
-            Log.d("FragmentOwnerSayCreamAd", "business.get(i).getHouseInfo():" + dataBean.getHouseInfo());
             if (dataBean.getHouseInfo() != null) {
                 myViewHolder.ownersaypagecreamTitleContent.setText(
                         dataBean.getHouseInfo().getArea()+"平、"
@@ -95,7 +93,6 @@ public class FragmentOwnerSayCreamAdapter extends RecyclerView.Adapter<RecyclerV
             }
 
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
-            Log.d("F---------------", "business.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan()+"");
             myViewHolder.itemOwnersaypagecreamBottomCommentText.setText(dataBean.getReplies());
         }

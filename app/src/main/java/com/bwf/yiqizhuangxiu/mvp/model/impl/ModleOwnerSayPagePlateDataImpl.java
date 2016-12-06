@@ -24,13 +24,11 @@ public class ModleOwnerSayPagePlateDataImpl implements ModleOwnerSayPagePlateDat
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.ModleOwnerSayPagePlateDataFailed("------------哎呀，数据下载失败啦！！！"+e.toString());
-                Log.d("ModleOwnerSayPagePlateD", e.toString());
             }
 
             @Override
             public void onResponse(String response, int id) {
                 OwnerSayPlatePageData ownerSayPlatePageData = JSON.parseObject(response, OwnerSayPlatePageData.class);
-                Log.d("ModleOwnerSayPagePlateD", response);
                 callBack.ModleOwnerSayPagePlateDataSuccess(ownerSayPlatePageData.getData());
             }
         });

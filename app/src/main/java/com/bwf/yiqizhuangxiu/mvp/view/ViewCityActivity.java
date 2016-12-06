@@ -11,4 +11,6 @@ import java.util.List;
 public interface ViewCityActivity {
     void onShowOwnerSayPageUpToDataFailed(String info);
     void onShowOwnerSayPageUpToDataSuccess(List<CityActivityData.DataBean.ForumlistBean> datas);
+    void showFooterNoMoreData();
+    void showFooterLoading();
 }

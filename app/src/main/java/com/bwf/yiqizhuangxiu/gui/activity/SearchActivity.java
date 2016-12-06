@@ -164,14 +164,18 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
                 Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ownersaypagecream_title_img:
-                startActivity(new Intent(this, OwnerSaySubActivity.class));
-                Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
+                String author = bean.getAuthor();
+                String avtUrl = bean.getAvtUrl();
+                Intent intent1 = new Intent(this, OwnerSaySubActivity.class);
+                intent1.putExtra("author",author);
+                intent1.putExtra("avtUrl",avtUrl);
+                startActivity(intent1);
                 break;
             case R.id.item_ownersaypagecream:
                 String tid = bean.getTid();
-                Intent intent = new Intent(this, PostDetailsActivity.class);
-                intent.putExtra(PostDetailsActivity.TAG_ID_EXTRA, tid);
-                startActivity(intent);
+                Intent intent2 = new Intent(this, PostDetailsActivity.class);
+                intent2.putExtra(PostDetailsActivity.TAG_ID_EXTRA, tid);
+                startActivity(intent2);
         }
     }
 }

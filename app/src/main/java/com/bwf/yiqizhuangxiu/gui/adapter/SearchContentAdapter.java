@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public SearchContentAdapter(Context context) {
         this.datas = new ArrayList<>();
-        this.context = context;
+        SearchContentAdapter.context = context;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -46,6 +45,7 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addDatas(List<SearchData.DataBean> datas) {
+        this.datas.clear();
         this.datas.addAll(datas);
         notifyDataSetChanged();
     }
@@ -96,7 +96,7 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
                 if (start >= 0) {
                     int end = start + this.text.length();
                     SpannableStringBuilder builder = new SpannableStringBuilder(dataBean.getSubject());
-                    builder.setSpan(new ForegroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    builder.setSpan(new ForegroundColorSpan(Color.argb(255,0,160,81)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     myViewHolder.ownersaypagecreamContentText.setText(builder);
                 }
             }
@@ -106,7 +106,6 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
                 myViewHolder.ownersaypagecreamContentImg.setVisibility(View.GONE);
             }
             myViewHolder.itemOwnersaypagecreamBottomDate.setText(dataBean.getDateline());
-            Log.d("F---------------", "datas.get(i).getZan():" + dataBean.getZan());
             myViewHolder.itemOwnersaypagecreamBottomZanTitle.setText(dataBean.getZan() + "");
             myViewHolder.itemOwnersaypagecreamBottomCommentText.setText(dataBean.getReplies());
         }

@@ -13,5 +13,6 @@ public interface ModleCityActivity {
     interface ModleCityActivityDataCallBack {
         void ModleCityActivityDataSuccess(List<CityActivityData.DataBean.ForumlistBean> datas);
         void ModleCityActivityDataFailed(String info);
+        void noMoreData();
     }
 }

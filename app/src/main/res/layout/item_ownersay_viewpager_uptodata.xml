@@ -17,8 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="#66555555"
+            android:lines="1"
             android:gravity="center_vertical"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/fragment_ownersay_uptodata_data"
@@ -27,14 +28,14 @@
             android:textColor="#66555555"
             android:layout_marginLeft="5dp"
             android:gravity="center_vertical"
-            android:textSize="10sp"/>
+            android:lines="1"
+            android:textSize="12sp"/>
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
@@ -53,11 +54,11 @@
             android:layout_height="match_parent"/>
 
         <ImageView
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:id="@+id/fragment_ownersay_uptodata_comment"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:src="@mipmap/msg_comment_flag"/>
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:src="@mipmap/comment_normal"/>
         <TextView
             android:id="@+id/fragment_ownersay_uptodata_comment_count"
             android:layout_marginLeft="5dp"

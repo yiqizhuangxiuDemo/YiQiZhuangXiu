@@ -1,7 +1,5 @@
 package com.bwf.yiqizhuangxiu.mvp.presenter.impl;
 
-import android.util.Log;
-
 import com.bwf.yiqizhuangxiu.entity.OwnerSayPlatePageData;
 import com.bwf.yiqizhuangxiu.mvp.model.ModleOwnerSayPagePlateData;
 import com.bwf.yiqizhuangxiu.mvp.model.impl.ModleOwnerSayPagePlateDataImpl;
@@ -37,6 +35,5 @@ public class PresenterOwnerSayPagePlateDataImpl implements com.bwf.yiqizhuangxiu
     @Override
     public void ModleOwnerSayPagePlateDataFailed(String info) {
         viewOwnerSayPagePlateData.onShowOwnerSayPagePlateDataFailed(info);
-        Log.d("PresenterOwnerSayPagePl", info);
     }
 }

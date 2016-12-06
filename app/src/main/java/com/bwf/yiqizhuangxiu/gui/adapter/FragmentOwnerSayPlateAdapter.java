@@ -57,7 +57,7 @@ public class FragmentOwnerSayPlateAdapter extends RecyclerView.Adapter {
         this.callBack = callBack;
     }
     public interface ItemLisenerCallBack {
-        void itemLisener();
+        void itemLisener(OwnerSayPlatePageData.DataBean dataBean);
     }
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.fragment_ownersay_plate_sub_pic)
@@ -75,7 +75,7 @@ public class FragmentOwnerSayPlateAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-            callBack.itemLisener();
+            callBack.itemLisener(datas.get(getAdapterPosition()));
         }
     }
 }

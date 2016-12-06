@@ -3,14 +3,16 @@
               android:orientation="horizontal"
               android:gravity="center"
               android:id="@+id/more"
-              android:layout_marginTop="10dp"
+              android:layout_marginTop="20dp"
+              android:layout_marginBottom="20dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <ProgressBar
+        android:id="@+id/progressbar"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
     <TextView
-        android:text="正在加载..."
+        android:id="@+id/title"
         android:layout_marginLeft="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

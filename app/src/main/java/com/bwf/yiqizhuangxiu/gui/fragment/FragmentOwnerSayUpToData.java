@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayUpToDataPageData;
+import com.bwf.yiqizhuangxiu.gui.activity.OwnerSaySubActivity;
+import com.bwf.yiqizhuangxiu.gui.activity.PostDetailsActivity;
 import com.bwf.yiqizhuangxiu.gui.adapter.FragmentOwnerSayUpToDataAdapter;
 import com.bwf.yiqizhuangxiu.mvp.presenter.PresenterOwnerSayPageUpToData;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterOwnerSayPageUpToDataImpl;
@@ -96,10 +99,18 @@ public class FragmentOwnerSayUpToData extends BaseFragment implements ViewOwnerS
     public void onItemClick(View view, OwnerSayUpToDataPageData.DataBean dataBean) {
         switch (view.getId()) {
             case R.id.fragment_ownersay_uptodata_item:
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                String tid = dataBean.getTid();
+                Intent intent = new Intent(getActivity(),PostDetailsActivity.class);
+                intent.putExtra(PostDetailsActivity.TAG_ID_EXTRA,tid);
+                startActivity(intent);
                 break;
             case R.id.fragment_ownersay_uptodatahead_img:
-                Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
+                String author = dataBean.getAuthor();
+                String avtUrl = dataBean.getAvtUrl();
+                Intent intent2 = new Intent(getActivity(), OwnerSaySubActivity.class);
+                intent2.putExtra("author",author);
+                intent2.putExtra("avtUrl",avtUrl);
+                startActivity(intent2);
                 break;
             case R.id.fragment_ownersay_uptodata_check:
                 Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();

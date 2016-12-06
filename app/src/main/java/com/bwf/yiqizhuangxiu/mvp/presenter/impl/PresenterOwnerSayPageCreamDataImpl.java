@@ -42,7 +42,6 @@ public class PresenterOwnerSayPageCreamDataImpl implements PresenterOwnerSayPage
     @Override
     public void OwnerSayPageCreamDataFailed(String info) {
         page--;
-        Log.d("PresenterOwnerSayPageCr", info);
         view.onShowOwnerSayPageCreamDataFailed(info);
     }
 }

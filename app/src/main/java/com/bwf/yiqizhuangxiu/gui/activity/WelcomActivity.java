@@ -66,10 +66,6 @@ public class WelcomActivity extends BaseActivity {
 
     private boolean isFirstUse() {
         SharedPreferences sp = getSharedPreferences(App.SP_CONFIG, MODE_PRIVATE);
-        if (sp.getInt("user_progress", 0) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return sp.getInt("user_progress", 0) == 0;
     }
 }

@@ -31,7 +31,6 @@ public class ModleSearchImpl implements ModleSearch {
 
             @Override
             public void onResponse(String response, int id) {
-                Log.d("ModleSearchImpl-----", response);
                 SearchData datas = JSON.parseObject(response, SearchData.class);
                 callBank.searchDataCallBankSuccess(datas.getData());
             }

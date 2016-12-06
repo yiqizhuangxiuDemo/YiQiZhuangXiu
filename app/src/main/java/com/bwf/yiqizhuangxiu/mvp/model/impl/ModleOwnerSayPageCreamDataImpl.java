@@ -1,12 +1,9 @@
 package com.bwf.yiqizhuangxiu.mvp.model.impl;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
 import com.bwf.yiqizhuangxiu.entity.OwnerSayCreamPageData;
 import com.bwf.yiqizhuangxiu.mvp.model.ModleOwnerSayPageCreamData;
 import com.bwf.yiqizhuangxiu.utils.Apis;
-import com.bwf.yiqizhuangxiu.utils.LogUtils;
 import com.bwf.yiqizhuangxiu.utils.UrlHandler;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -32,13 +29,11 @@ public class ModleOwnerSayPageCreamDataImpl implements ModleOwnerSayPageCreamDat
             @Override
             public void onError(Call call, Exception e, int id) {
                 callBack.OwnerSayPageCreamDataFailed("OwnerSayPageCreamDataFailed------------哎呀，数据下载失败啦！！！");
-                LogUtils.e("OwnerSayPageCreamDataFailed",e.toString());
             }
 
             @Override
             public void onResponse(String response, int id) {
                 OwnerSayCreamPageData ownerSayCreamPageData = JSON.parseObject(response, OwnerSayCreamPageData.class);
-                Log.d("Modle-------------", "ownerSayCreamPageData.getData():" + ownerSayCreamPageData.getData());
                 callBack.OwnerSayPageCreamDataSuccess(ownerSayCreamPageData.getData());
             }
         });

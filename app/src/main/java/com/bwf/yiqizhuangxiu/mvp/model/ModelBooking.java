@@ -11,7 +11,7 @@ import java.util.List;
 public interface ModelBooking {
     void loadBookingData(int cityId, CallBack callBack);
 
-    public interface CallBack {
+    interface CallBack {
         void loadBookingSuccess(List<BookingData.DataBeanA> datas);
 
         void loadBookingFailed(String message);

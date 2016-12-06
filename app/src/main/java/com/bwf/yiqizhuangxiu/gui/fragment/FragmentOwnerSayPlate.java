@@ -3,7 +3,6 @@ package com.bwf.yiqizhuangxiu.gui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import com.bwf.yiqizhuangxiu.gui.adapter.FragmentOwnerSayPlateAdapter;
 import com.bwf.yiqizhuangxiu.mvp.presenter.PresenterOwnerSayPagePlateData;
 import com.bwf.yiqizhuangxiu.mvp.presenter.impl.PresenterOwnerSayPagePlateDataImpl;
 import com.bwf.yiqizhuangxiu.mvp.view.ViewOwnerSayPagePlateData;
-import com.bwf.yiqizhuangxiu.utils.RecycleViewDivider;
 
 import java.util.List;
 
@@ -53,7 +51,6 @@ public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayP
 
     @Override
     public void onShowOwnerSayPagePlateDataSuccess(List<List<OwnerSayPlatePageData.DataBean>> datas) {
-        Log.d("FragmentOwnerSayPlate", "datas:" + datas.toString());
         List<OwnerSayPlatePageData.DataBean> dataBeenOne = datas.get(0);
         List<OwnerSayPlatePageData.DataBean> dataBeenTwo = datas.get(1);
         FragmentOwnerSayPlateAdapter adapterOne = new FragmentOwnerSayPlateAdapter(getActivity(), dataBeenOne);
@@ -64,7 +61,7 @@ public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayP
         GridLayoutManager manager2 = new GridLayoutManager(getActivity(), 2);
         fragmentOwnersayPlateRecyclerview.setLayoutManager(manager);
         fragmentOwnersayPlateRecyclerview2.setLayoutManager(manager2);
-        fragmentOwnersayPlateRecyclerview2.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL,R.drawable.recycleview_divider_h));
+        //fragmentOwnersayPlateRecyclerview2.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL,R.drawable.recycleview_divider_h));
         fragmentOwnersayPlateRecyclerview.setAdapter(adapterOne);
         fragmentOwnersayPlateRecyclerview2.setAdapter(adapterTwo);
 
@@ -90,7 +87,7 @@ public class FragmentOwnerSayPlate extends BaseFragment implements ViewOwnerSayP
     }
 
     @Override
-    public void itemLisener() {
-        Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+    public void itemLisener(OwnerSayPlatePageData.DataBean dataBean) {
+        Toast.makeText(getActivity(), ""+dataBean.getTitle().toString(), Toast.LENGTH_SHORT).show();
     }
 }

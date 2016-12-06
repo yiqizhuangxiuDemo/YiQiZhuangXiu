@@ -1,7 +1,5 @@
 package com.bwf.yiqizhuangxiu.mvp.model.impl;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
 import com.bwf.yiqizhuangxiu.entity.CityActivityData;
 import com.bwf.yiqizhuangxiu.mvp.model.ModleCityActivity;
@@ -31,10 +29,12 @@ public class ModleCityActivityImpl implements ModleCityActivity {
 
             @Override
             public void onResponse(String response, int id) {
-                Log.d("ModleCityActivityImpl", response);
                 CityActivityData data = JSON.parseObject(response, CityActivityData.class);
                 if (data.toString() != null) {
                     callBack.ModleCityActivityDataSuccess(data.getData().getForumlist());
+                }
+                if (data.getCurrentPage() == 2) {
+                    callBack.noMoreData();
                 }
             }
         });

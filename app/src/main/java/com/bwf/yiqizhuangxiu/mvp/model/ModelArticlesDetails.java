@@ -17,7 +17,7 @@ public interface ModelArticlesDetails {
 
     void loadArticleDetailsCommentsData(String id, int page, CallBack callBack);
 
-    public interface CallBack {
+    interface CallBack {
         void onLoadNewsSuccess(ArticlesNewsData.DataBean data, Map<String, ArticleDetailsTagDataBean> tags);
 
         void onLoadNewsFailed(String message);

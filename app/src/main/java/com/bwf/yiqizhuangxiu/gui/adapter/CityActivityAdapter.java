@@ -3,24 +3,19 @@ package com.bwf.yiqizhuangxiu.gui.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.CityActivityData;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -32,6 +27,16 @@ public class CityActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<CityActivityData.DataBean.ForumlistBean> datas;
     private LayoutInflater inflater;
     private Context context;
+    public static final int STATE_GONE = 0;
+    public static final int STATE_LOADING = 1;
+    public static final int STATE_NO_MORE_DATA = 2;
+    public static final int STATE_LOAD_FAILED = 3;
+    private int state;
+
+    public void updataFooterState(int state) {
+        this.state = state;
+        notifyItemChanged(getItemCount() - 1);
+    }
 
     public CityActivityAdapter(Context context) {
         this.datas = new ArrayList<>();
@@ -41,7 +46,7 @@ public class CityActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void addDatas(List<CityActivityData.DataBean.ForumlistBean> datas) {
         if (datas.size() == 0) {
-
+            return;
         }
         this.datas.addAll(datas);
         notifyDataSetChanged();
@@ -50,7 +55,7 @@ public class CityActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = null;
 
     public interface OnRecyclerViewItemClickListener {
-        void onItemClickListener(View view, CityActivityData.DataBean.ForumlistBean datas);
+        void onItemClickListener(CityActivityData.DataBean.ForumlistBean datas);
     }
 
     public void setOnItemClickListener(OnRecyclerViewItemClickListener onRecyclerViewItemClickListener) {
@@ -90,58 +95,30 @@ public class CityActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (getItemViewType(position)==R.layout.item_load_more){
-
-        }else {
+        if (getItemViewType(position) == R.layout.item_load_more) {
+            LoadMoreViewHolder loadMoreViewHolder = (LoadMoreViewHolder)holder;
+            loadMoreViewHolder.bindLoadMoreViewHolder(loadMoreViewHolder,position);
+        } else {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             CityActivityData.DataBean.ForumlistBean bean = datas.get(position);
-            myViewHolder.itemView.setTag(bean);
             myViewHolder.cityActivityPic.setImageURI(Uri.parse(bean.getAttachments()));
-            if (bean.getLastpost() != null || bean.getLastpost() != "") {
-                timeCompare(myViewHolder, bean.getLastpost());
-            } else {
-                timeCompare(myViewHolder, "2016-8-25");
-            }
-            if (bean.getLastpost() != null) {
-                myViewHolder.activityEndTime.setText("报名截止日期:" + bean.getLastpost());
-            }
+            timeCompare(myViewHolder, bean.getExpiration());
         }
-//        if (holder instanceof LoadMoreViewHolder ) {
-//            callBack.loadMore();
-
-//        } else if (holder instanceof MyViewHolder) {
-//            MyViewHolder myViewHolder = (MyViewHolder) holder;
-//            CityActivityData.DataBean.ForumlistBean bean = datas.get(position);
-//            myViewHolder.itemView.setTag(bean);
-//            myViewHolder.cityActivityPic.setImageURI(Uri.parse(bean.getAttachments()));
-//            if (bean.getLastpost() != null || bean.getLastpost() != "") {
-//                timeCompare(myViewHolder, bean.getLastpost());
-//            } else {
-//                timeCompare(myViewHolder, "2016-8-25");
-//            }
-//            if (bean.getLastpost() != null) {
-//                myViewHolder.activityEndTime.setText("报名截止日期:" + bean.getLastpost());
-//            }
-//        }
     }
 
-    private void timeCompare(MyViewHolder myViewHolder, String str) {
-        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        Log.d("CityActivityAdapter", "--------------------------------------------------------------");
-        try {
-            Date parse = time.parse(str);
-            if (date.getTime() - parse.getTime() > 0) {
-                myViewHolder.cityActivityNoticeText.setText("活动已结束...");
-                myViewHolder.cityActivityNoticeText.setTextColor(0x55555555);
-                myViewHolder.cityActivityNoticePic.setImageResource(R.mipmap.activity_end_sign);
-            } else {
-                myViewHolder.cityActivityNoticeText.setText("火热报名中...");
-                myViewHolder.cityActivityNoticePic.setImageResource(R.mipmap.activity_hot_sign);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+    private void timeCompare(MyViewHolder myViewHolder, long str) {
+        SimpleDateFormat time = new SimpleDateFormat("yyyy年MM月dd日");
+        Date currentdate = new Date();
+        Date date = new Date(str);
+        if (currentdate.getTime() - date.getTime() > 0) {
+            myViewHolder.cityActivityNoticeText.setText("活动已结束...");
+            myViewHolder.cityActivityNoticeText.setTextColor(0x55555555);
+            myViewHolder.cityActivityNoticePic.setImageResource(R.mipmap.activity_end_sign);
+        } else {
+            myViewHolder.cityActivityNoticeText.setText("火热报名中...");
+            myViewHolder.cityActivityNoticePic.setImageResource(R.mipmap.activity_hot_sign);
         }
+        myViewHolder.activityEndTime.setText("报名截止日期:" + time.format(date));
     }
 
     @Override
@@ -167,19 +144,43 @@ public class CityActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, "--", Toast.LENGTH_SHORT).show();
             if (onRecyclerViewItemClickListener != null) {
-                onRecyclerViewItemClickListener.onItemClickListener(v, (CityActivityData.DataBean.ForumlistBean) v.getTag());
+                onRecyclerViewItemClickListener.onItemClickListener(datas.get(getAdapterPosition()));
             }
         }
     }
-    static class LoadMoreViewHolder extends RecyclerView.ViewHolder {
+
+    class LoadMoreViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.progressbar)
+        ProgressBar progressbar;
+        @Bind(R.id.title)
+        TextView title;
         @Bind(R.id.more)
         LinearLayout more;
 
         LoadMoreViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+
+        public void bindLoadMoreViewHolder(RecyclerView.ViewHolder holder,int position) {
+            switch (state) {
+                case STATE_GONE:
+                    return;
+                case STATE_LOADING:
+                    progressbar.setVisibility(View.VISIBLE);
+                    title.setText("正在加载中...");
+                    break;
+                case STATE_NO_MORE_DATA:
+                    progressbar.setVisibility(View.GONE);
+                    title.setText("没有更多数据了哦...");
+                    break;
+                case STATE_LOAD_FAILED:
+                    progressbar.setVisibility(View.GONE);
+                    title.setText("获取数据失败，点我重试！");
+                    title.setEnabled(true);
+                    break;
+            }
         }
     }
 }
