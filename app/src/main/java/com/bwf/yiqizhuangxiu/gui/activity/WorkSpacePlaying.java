@@ -75,7 +75,8 @@ public class WorkSpacePlaying extends BaseActivity implements WorkPlayingView {
         titlebarContent.setText(getString(R.string.workspace_playing));
         for (int i = 0; i < 4; i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.design_people, null);
-            linearDesignPeople.addView(view);
+            LinearLayout linearLayoutChild = (LinearLayout) linearDesignPeople.getChildAt(i);
+            linearLayoutChild.addView(view);
         }
         manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -130,17 +131,34 @@ public class WorkSpacePlaying extends BaseActivity implements WorkPlayingView {
         imageDecorator.setImageURI(Uri.parse(bean.getImageUrl()));
         textTitleBig.setText(bean.getOrderHouse().getCommunity());
         textTitleLittle.setText(bean.getOrderHouse().getLayout());
-        linearDesignPeople.removeAllViews();
+//        linearDesignPeople.removeAllViews();
         for (int i = 0; i < 4; i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.design_people, null);
             PeopleViewHolder holder = new PeopleViewHolder(view);
-            String avatar = bean.getMembers().get(i).getAvatar();
+            final String avatar = bean.getMembers().get(i).getAvatar();
             if (null != avatar) {
                 holder.imageDesign.setImageURI(Uri.parse(avatar));
             }
             holder.textDesign.setText(bean.getMembers().get(i).getVendorName());
+            final String name = bean.getMembers().get(i).getVendorName();
+            final String caseNumber = bean.getMembers().get(i).getNickName();
+            final String commentCount = bean.getMembers().get(i).getWorkYear()+"";
             holder.textDesignTag.setText(nameTag[i]);
-            linearDesignPeople.addView(view);
+            LinearLayout linearDesignPeopleChild = (LinearLayout) linearDesignPeople.getChildAt(i);
+            linearDesignPeopleChild.removeAllViews();
+            linearDesignPeopleChild.addView(view);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WorkSpacePlaying.this,TogetherPeople.class);
+                    intent.putExtra("avatar",avatar);
+                    intent.putExtra("vendorName",name);
+                    intent.putExtra("caseNumber",caseNumber);
+                    intent.putExtra("commentCount",commentCount);
+                    intent.putExtra("caseNumber","0");
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -154,7 +172,12 @@ public class WorkSpacePlaying extends BaseActivity implements WorkPlayingView {
         fragments = new ArrayList<>();
         for (int i = 0; i < bean.getProgress().size(); i++) {
             List<WorkPlayProgressData.DataBean> data1 = data.getData();
-            Fragment fragment = WorkPlayProgressFragment.newInstance(data);
+            Fragment fragment;
+            if ( i == 0){
+                fragment = WorkPlayProgressFragment.newInstance(data);
+            }else {
+                fragment = new WorkPlayProgressFragment();
+            }
             fragments.add(fragment);
         }
         showFragment(0);

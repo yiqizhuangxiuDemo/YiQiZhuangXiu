@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.entity.WorkPlayProgressData;
@@ -23,17 +24,19 @@ import butterknife.ButterKnife;
  */
 
 public class WorkPlayProgressFragment extends BaseFragment {
+    @Bind(R.id.linear_noMoreData)
+    LinearLayout linearNoMoreData;
     private WorkPlayProgressData playProgressData;
     public static final String TAG = "WorkPlayProgressData";
     private LinearLayoutManager manager;
     private ProgressAdatper progressAdatper;
 
-    public static WorkPlayProgressFragment newInstance(WorkPlayProgressData playProgressData){
+    public static WorkPlayProgressFragment newInstance(WorkPlayProgressData playProgressData) {
         WorkPlayProgressFragment progressFrogress = new WorkPlayProgressFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(TAG,playProgressData);
+        bundle.putSerializable(TAG, playProgressData);
         progressFrogress.setArguments(bundle);
-        return  progressFrogress;
+        return progressFrogress;
     }
 
     @Bind(R.id.progress_work_recycleview)
@@ -48,6 +51,12 @@ public class WorkPlayProgressFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
+        if (null == bundle) {
+            linearNoMoreData.setVisibility(View.VISIBLE);
+            return;
+        }else {
+            linearNoMoreData.setVisibility(View.GONE);
+        }
         WorkPlayProgressData data = (WorkPlayProgressData) bundle.getSerializable(TAG);
         List<WorkPlayProgressData.DataBean> data1 = data.getData();
         manager = new CustomLayoutManager(getContext());
