@@ -34,4 +34,11 @@ public class TimestampUtils {
         }
         return result;
     }
+    public static String miilisecondToTimes(String time){
+        String format = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        Date date = new Date(Long.parseLong(time));
+        String s = dateFormat.format(date);
+        return  s;
+    }
 }

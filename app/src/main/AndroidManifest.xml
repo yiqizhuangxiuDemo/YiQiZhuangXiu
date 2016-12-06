@@ -6,6 +6,17 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:name=".application.App"
         android:allowBackup="true"
@@ -39,7 +50,7 @@
 
         <activity android:name=".gui.activity.TogetherTream" />
         <activity android:name=".gui.activity.TogetherPeople" />
-
+        <activity android:name=".gui.activity.Fitment2Activity" />
         <activity
             android:name=".gui.activity.ArticleDetailsActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

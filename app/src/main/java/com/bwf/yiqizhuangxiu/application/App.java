@@ -2,8 +2,10 @@ package com.bwf.yiqizhuangxiu.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.DisplayMetrics;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.uuzuche.lib_zxing.DisplayUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -33,6 +35,7 @@ public class App extends Application {
         app = this;
         Fresco.initialize(getApplicationContext());//初始化Fresco
         initOkHttp();
+        initDisplayOpinion();
     }
 
     private void initOkHttp() {
@@ -50,5 +53,14 @@ public class App extends Application {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
+    }
+    private void initDisplayOpinion() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenhightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(getApplicationContext(), dm.widthPixels);
+        DisplayUtil.screenHightDip = DisplayUtil.px2dip(getApplicationContext(), dm.heightPixels);
     }
 }

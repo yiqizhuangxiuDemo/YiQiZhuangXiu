@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.bwf.yiqizhuangxiu"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -35,4 +35,6 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.github.jdsjlzx:LRecyclerView:1.0.8'
     compile 'me.relex:photodraweeview:1.1.2'
+    compile project (":lib-zxing")
+    compile 'com.cjj.materialrefeshlayout:library:1.3.0'
 }

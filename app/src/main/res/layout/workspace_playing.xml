@@ -4,25 +4,76 @@
     android:layout_height="match_parent">
     <include
         layout="@layout/titlebar_back"/>
-    <include
-        layout="@layout/decorate_playing_item"/>
-    <LinearLayout
-        android:gravity="center|center_vertical"
-        android:id="@id/linear_design_people"
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <View
-        android:layout_marginTop="10dp"
-        android:background="#d6d1d1"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-    <TextView
-        android:text="装修进度"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                layout="@layout/decorate_playing_item"/>
+            <LinearLayout
+                android:gravity="center"
+                android:id="@id/linear_design_people"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="10dp"
+                android:background="#d6d1d1"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+            <TextView
+                android:text="装修进度"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.bwf.yiqizhuangxiu.gui.custom.MyRectcleView
+                android:paddingLeft="12dp"
+                android:id="@id/decortae_progress_listview"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <FrameLayout
+                android:id="@id/fragmelayout_workpaly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

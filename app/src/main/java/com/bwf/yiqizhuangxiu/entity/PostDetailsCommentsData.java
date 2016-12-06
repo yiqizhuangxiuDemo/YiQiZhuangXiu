@@ -338,7 +338,7 @@ public class PostDetailsCommentsData {
             private String community;
             private int layout;
             private int area;
-            private int budget;
+            private String budget;
             private int style;
 
             public int getStage() {
@@ -373,11 +373,11 @@ public class PostDetailsCommentsData {
                 this.area = area;
             }
 
-            public int getBudget() {
+            public String getBudget() {
                 return budget;
             }
 
-            public void setBudget(int budget) {
+            public void setBudget(String budget) {
                 this.budget = budget;
             }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@id/decortae_name"
+            android:text="进行中 "
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/mainGreen"
+            android:layout_width="50dp"
+            android:layout_height="20dp" />
+        <ImageView
+            android:id="@id/imgae_decortae"
+            android:layout_marginTop="3dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/finish_icon"/>
+        <TextView
+            android:text="开工"
+            android:id="@id/text_progress"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:text="@id/text_line"
+        android:background="@color/gray"
+        android:layout_width="30dp"
+        android:layout_height="1dp" />
+
+
+</LinearLayout>

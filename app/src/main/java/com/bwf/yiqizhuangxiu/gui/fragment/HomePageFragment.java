@@ -36,6 +36,7 @@ import com.bwf.yiqizhuangxiu.gui.activity.DesignActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.DetailsPageActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.EffectActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.FitmentActivity;
+import com.bwf.yiqizhuangxiu.gui.activity.OwnerSaySubActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.PostDetailsActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.SchoolActivity;
 import com.bwf.yiqizhuangxiu.gui.activity.SearchActivity;
@@ -162,6 +163,7 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
             }
         });
 
+        //Item点击跳转
         adapter.setOnItemClickListener(new RecyclerViewWithHeaderOrFooterAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -174,6 +176,17 @@ public class HomePageFragment extends BaseFragment implements ViewHomepageHeadDa
                     intent.putExtra(PostDetailsActivity.TAG_ID_EXTRA, adapter.getItemData(position).getId());
                     HomePageFragment.this.startActivity(intent);
                 }
+            }
+        });
+
+        //头像点击事件
+        adapter.setOnAvtClickListener(new HomepageRecyclerViewAdapter.OnAvtClickListener() {
+            @Override
+            public void onAvtClickListener(HomepageContentData.DataBean data) {
+                Intent intent = new Intent(HomePageFragment.this.getContext(), OwnerSaySubActivity.class);
+                intent.putExtra("author",data.getAuthor());
+                intent.putExtra("avtUrl",data.getAvtUrl());
+                startActivity(intent);
             }
         });
 

@@ -49,6 +49,8 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
     TextView textviewNomroecommentsArticledetails;
     @Bind(R.id.commentnum_postdetails)
     TextView commentnumPostdetails;
+    @Bind(R.id.root)
+    LinearLayout root;
 
     private boolean isRefreshing;
     private PresenterArticleDetails presenter;
@@ -162,9 +164,23 @@ public class ArticleDetailsActivity extends BaseActivity implements ViewArticleD
         }
     }
 
-    @OnClick(R.id.titlebar_back)
-    public void onClick() {
-        finish();
+    private PopWindowUtils popWindowUtils;
+
+    @OnClick({R.id.titlebar_back, R.id.titlebar_collect, R.id.titlebar_share})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.titlebar_back:
+                finish();
+                break;
+            case R.id.titlebar_collect:
+                break;
+            case R.id.titlebar_share:
+                if (popWindowUtils == null) {
+                    popWindowUtils = new PopWindowUtils(this, root);
+                }
+                popWindowUtils.showPopWindow();
+                break;
+        }
     }
 
     public class ViewHolder implements View.OnClickListener {
