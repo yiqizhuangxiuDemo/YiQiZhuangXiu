@@ -24,10 +24,10 @@ public class FrescoImageUtils {
      * 设置SimpleDraweeView的Controller 根据给定的宽度按照图片比例设置宽高
      *
      * @param simpleDraweeView
-     * @param imagePath
+     * @param imageUri
      * @param imageWidth
      */
-    public static void setControllerListener(final SimpleDraweeView simpleDraweeView, String imagePath, final int imageWidth) {
+    public static void setControllerListener(final SimpleDraweeView simpleDraweeView, String imageUri, final int imageWidth) {
         final ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
         ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
             @Override
@@ -57,7 +57,7 @@ public class FrescoImageUtils {
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setAutoPlayAnimations(true)
                 .setControllerListener(controllerListener)
-                .setUri(Uri.parse(imagePath))
+                .setUri(Uri.parse(imageUri))
                 .build();
         simpleDraweeView.setController(controller);
     }
@@ -66,11 +66,11 @@ public class FrescoImageUtils {
      * 设置SimpleDraweeView的Controller 根据给定的宽度和高度按照图片比例设置宽高使宽高不会超过限定值导致部分图片无法显示
      *
      * @param simpleDraweeView
-     * @param imagePath
+     * @param imageUri
      * @param maxWidth
      * @param maxHeight
      */
-    public static void setControllerListener(final SimpleDraweeView simpleDraweeView, String imagePath, final int maxWidth, final int maxHeight) {
+    public static void setControllerListener(final SimpleDraweeView simpleDraweeView, String imageUri, final int maxWidth, final int maxHeight) {
         final ViewGroup.LayoutParams layoutParams = simpleDraweeView.getLayoutParams();
         ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
             @Override
@@ -106,7 +106,7 @@ public class FrescoImageUtils {
         DraweeController controller = Fresco.newDraweeControllerBuilder()
                 .setAutoPlayAnimations(true)
                 .setControllerListener(controllerListener)
-                .setUri(Uri.parse(imagePath))
+                .setUri(Uri.parse(imageUri))
                 .build();
         simpleDraweeView.setController(controller);
     }
@@ -117,11 +117,11 @@ public class FrescoImageUtils {
      * 2、控件大小应当剂量大
      *
      * @param photoDraweeView
-     * @param imagePath
+     * @param imageUri
      * @param maxWidth
      * @param maxHeight
      */
-    public static void setZoomableControllerListener(final PhotoDraweeView photoDraweeView, String imagePath, final int maxWidth, final int maxHeight) {
+    public static void setZoomableControllerListener(final PhotoDraweeView photoDraweeView, String imageUri, final int maxWidth, final int maxHeight) {
         final ViewGroup.LayoutParams layoutParams = photoDraweeView.getLayoutParams();
         ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
             @Override
@@ -148,7 +148,7 @@ public class FrescoImageUtils {
                 .setAutoPlayAnimations(true)
                 .setOldController(photoDraweeView.getController())
                 .setControllerListener(controllerListener)
-                .setUri(Uri.parse(imagePath))
+                .setUri(Uri.parse(imageUri))
                 .build();
         photoDraweeView.setController(controller);
     }
