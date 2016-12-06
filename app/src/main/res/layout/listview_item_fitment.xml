@@ -6,7 +6,7 @@
               android:divider="#223344"
               android:dividerHeight="1dp">
 
-    <com.bwf.yiqizhuangxiu.gui.activity.MyGridView
+    <com.bwf.yiqizhuangxiu.gui.custom.MyGridView
         android:id="@+id/gridView"
         android:background="@drawable/biankuang"
         android:layout_width="match_parent"
@@ -15,5 +15,5 @@
         android:divider="#223344"
         android:dividerHeight="1dp"
         >
-    </com.bwf.yiqizhuangxiu.gui.activity.MyGridView>
+    </com.bwf.yiqizhuangxiu.gui.custom.MyGridView>
 </LinearLayout>

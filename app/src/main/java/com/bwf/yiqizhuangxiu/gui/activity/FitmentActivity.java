@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.entity.EntityFitment;
+import com.bwf.yiqizhuangxiu.gui.custom.MyGridView;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.facebook.drawee.backends.pipeline.Fresco;

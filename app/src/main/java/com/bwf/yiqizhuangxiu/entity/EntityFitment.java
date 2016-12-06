@@ -1,4 +1,4 @@
-package com.bwf.yiqizhuangxiu.gui.activity;
+package com.bwf.yiqizhuangxiu.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

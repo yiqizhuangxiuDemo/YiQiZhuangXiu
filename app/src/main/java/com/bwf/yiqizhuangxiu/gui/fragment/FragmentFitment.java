@@ -1,4 +1,4 @@
-package com.bwf.yiqizhuangxiu.gui.activity;
+package com.bwf.yiqizhuangxiu.gui.fragment;
 
 import android.net.Uri;
 import android.os.Bundle;

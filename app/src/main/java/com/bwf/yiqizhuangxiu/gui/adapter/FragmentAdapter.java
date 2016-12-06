@@ -1,4 +1,4 @@
-package com.bwf.yiqizhuangxiu.gui.activity;
+package com.bwf.yiqizhuangxiu.gui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

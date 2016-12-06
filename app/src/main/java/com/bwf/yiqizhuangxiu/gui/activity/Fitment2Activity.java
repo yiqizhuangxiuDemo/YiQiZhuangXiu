@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bwf.yiqizhuangxiu.R;
+import com.bwf.yiqizhuangxiu.entity.EntityFitment;
+import com.bwf.yiqizhuangxiu.gui.adapter.FragmentAdapter;
+import com.bwf.yiqizhuangxiu.gui.fragment.FragmentFitment;
 
 import java.util.ArrayList;
 import java.util.List;
