@@ -3,9 +3,19 @@
               android:layout_width="100dp"
               android:gravity="center_horizontal|center_vertical"
               android:background="@drawable/biankuang"
-              android:layout_height="100dp">
+              android:layout_height="100dp"
+              android:paddingBottom="2dp"
+              android:paddingLeft="2dp"
+              android:paddingRight="2dp"
+              android:paddingTop="2dp">
     <TextView
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="2dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/item2_textview"/>
+        android:id="@+id/item2_textview"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"/>
 </LinearLayout>

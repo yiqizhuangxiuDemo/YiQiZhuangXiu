@@ -94,6 +94,7 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
                 search = innerSearchEduittext.getText().toString();
                 String encode = URLEncoder.encode(search);
                 adapter.sendText(search);
+                adapter.datas.clear();
                 presenterSearch.loadData(encode);
             }
         });
@@ -147,7 +148,6 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
     public void onItemClick(View v, SearchData.DataBean bean) {
         switch (v.getId()) {
             case R.id.item_ownersaypagecream_bottom_share:
-                Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
                 if (popWindowUtils == null) {
                     popWindowUtils = new PopWindowUtils(this,root);
                 }
@@ -155,7 +155,6 @@ public class SearchActivity extends BaseActivity implements ViewSearch, SearchCo
                 break;
             case R.id.item_ownersaypagecream_bottom_comment_img:
                 startActivity(new Intent(this, LoginActivity.class));
-                Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_ownersaypagecream_bottom_zan_img:
                 Toast.makeText(this, "未登录", Toast.LENGTH_SHORT).show();

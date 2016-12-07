@@ -21,11 +21,10 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:textSize="20dp"/>
-
         <Button
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:enabled="true"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:background="@mipmap/btn_new_back_nor"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
@@ -33,11 +32,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             android:id="@+id/btn"/>
-
-
     </RelativeLayout>
-
-
     <com.cjj.MaterialRefreshLayout
         android:id="@+id/refreshlayout"
         android:layout_width="match_parent"
@@ -54,9 +49,7 @@
                 android:divider="#112299"
                 android:dividerHeight="10px"
                 android:background="@drawable/biankuang"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+               />
 
     </com.cjj.MaterialRefreshLayout>
 </RelativeLayout>
