@@ -14,6 +14,7 @@
         android:numColumns="3"
         android:divider="#223344"
         android:dividerHeight="1dp"
+        android:drawingCacheQuality="high"
         >
     </com.bwf.yiqizhuangxiu.gui.custom.MyGridView>
 </LinearLayout>

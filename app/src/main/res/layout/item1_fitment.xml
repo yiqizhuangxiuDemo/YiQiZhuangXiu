@@ -5,18 +5,30 @@
               android:layout_height="100dp"
               android:background="@drawable/biankuang"
               android:gravity="center_vertical|center_horizontal"
-
+              android:paddingBottom="2dp"
+              android:paddingLeft="2dp"
+              android:paddingRight="2dp"
+              android:paddingTop="2dp"
 
     >
 
     <com.facebook.drawee.view.SimpleDraweeView
+
         android:id="@+id/item1_imageview"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        fresco:placeholderImage="@mipmap/ic_launcher"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        fresco:placeholderImage="@mipmap/ic_launcher"
+        />
 
     <TextView
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="2dp"
         android:id="@+id/item1_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        />
 </LinearLayout>

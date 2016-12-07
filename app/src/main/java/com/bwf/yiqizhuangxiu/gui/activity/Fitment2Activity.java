@@ -28,8 +28,7 @@ public class Fitment2Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Fitment2Activity.this,FitmentActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         Intent intent=getIntent();
