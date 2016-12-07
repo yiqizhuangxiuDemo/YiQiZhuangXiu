@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.bwf.yiqizhuangxiu.R;
 import com.bwf.yiqizhuangxiu.gui.adapter.EffectViewPagerAdapter;
+import com.bwf.yiqizhuangxiu.gui.fragment.BeautfFrament;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -16,7 +17,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/11/23.
  */
 
-public class EffectActivity extends BaseActivity {
+public class EffectActivity extends BaseActivity implements BeautfFrament.BackHandlerInterface {
     @Bind(R.id.titlebar_back)
     ImageView titlebarBack;
     @Bind(R.id.effcet_title_tablayout)
@@ -53,5 +54,34 @@ public class EffectActivity extends BaseActivity {
     @OnClick(R.id.titlebar_back)
     public void onClick() {
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+//        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+//        for (int i = 0; i < fragments.size(); i++) {
+//            Log.d("EffectActivity", "onBackPressed  1");
+//            if (fragments.get(i) instanceof BeautfFrament){
+//                Log.d("EffectActivity", "onBackPressed  2");
+//               if( ((BeautfFrament) fragments.get(i)).disMissPopupWindow()){
+//                   Log.d("EffectActivity", "onBackPressed  3");
+//                   return;
+//               }
+//            }
+//        }
+        if (frament.disMissPopupWindow()){
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
+    private BeautfFrament frament;
+
+
+    @Override
+    public void setSelectFragment(BeautfFrament fragment) {
+        this.frament = fragment;
     }
 }

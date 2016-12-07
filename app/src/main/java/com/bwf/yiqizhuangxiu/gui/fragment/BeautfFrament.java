@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.fragment;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -96,9 +97,9 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 viewHolder.imagePopupwindowSchool.setCurrentItem(position);
-                if(position == 0)
+                if (position == 0)
                     setCameraTitle(0);
-                popupWindowCearm.showAtLocation(parent, Gravity.CENTER,0,0);
+                popupWindowCearm.showAtLocation(parent, Gravity.CENTER, 0, 0);
             }
         });
         beautifulGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -109,7 +110,7 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (!beaufitIsLoading && beautifulGridView.getLastVisiblePosition() == beatifulAdapter.getCount()-1 ){
+                if (!beaufitIsLoading && beautifulGridView.getLastVisiblePosition() == beatifulAdapter.getCount() - 1) {
                     beatifulPresenter.loadData();
                     beaufitIsLoading = true;
                 }
@@ -117,6 +118,7 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
         });
 
     }
+
     private boolean beaufitIsLoading;
 
 
@@ -157,8 +159,9 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
         views[i] = LayoutInflater.from(getContext()).inflate(R.layout.popwindow_space_beautiful, null, false);
         holder = new PopwindowViewHolder(views[i]);
         popupWindows[i] = new PopupWindow(views[i], WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        popupWindows[i].setFocusable(true);
         popupWindows[i].setTouchable(true);
+        popupWindows[i].setFocusable(true);
+        popupWindows[i].setBackgroundDrawable(new BitmapDrawable());
         views[i].setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -167,6 +170,12 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
                 }
                 setCheckedTextViewIsNo();
                 return false;
+            }
+        });
+        popupWindows[i].setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                setCheckedTextViewIsNo();
             }
         });
         popupWindows[i].setAnimationStyle(R.style.popupwindow_effect_anim);
@@ -210,6 +219,7 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
                 break;
         }
     }
+
     @Override
     public void showEffectBeatifulSuccess(List<EffectBeatifulData.DataBean.ListBean> listBeen) {
         beaufitIsLoading = false;
@@ -228,11 +238,11 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
             popupWindowCearm.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
             popupWindowCearm.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
             popupWindowCearm.setTouchable(true);
-            popupWindowCearm.setFocusable(true);
+            popupWindowCearm.setBackgroundDrawable(new BitmapDrawable());
             popupWindowCearm.setAnimationStyle(R.style.popupwindow_anim_scale);
             creamAdatper = new EffectViewPagerPopuwindowAdatper(getContext());
             viewHolder.imagePopupwindowSchool.setAdapter(creamAdatper);
-            viewHolder.imagePopupwindowSchool.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            viewHolder.imagePopupwindowSchool.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
                 @Override
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
@@ -250,12 +260,27 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
         }
     }
 
+    public boolean disMissPopupWindow() {
+        if (null != popupWindowCearm && popupWindowCearm.isShowing()) {
+            popupWindowCearm.dismiss();
+            return true;
+        }
+        for (int i = 0; i < popupWindows.length; i++) {
+            if (popupWindows[i].isShowing()) {
+                popupWindows[i].dismiss();
+                setCheckedTextViewIsNo();
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void setCameraTitle(int position) {
         EffectBeatifulData.DataBean.ListBean bean = creamAdatper.getItemData(position);
         viewHolder.text_title_pop.setText(bean.getTitle());
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < bean.getTag().size(); i++) {
-            sb.append("#"+bean.getTag().get(i).getName());
+            sb.append("#" + bean.getTag().get(i).getName());
         }
 
         viewHolder.text_little_titel_pop.setText(sb.toString());
@@ -287,7 +312,9 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
         }
 
     }
+
     private ViewHolder viewHolder;
+
     static class ViewHolder {
         @Bind(R.id.image_popupwindow_back)
         ImageView imagePopupwindowBack;
@@ -311,4 +338,25 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
         }
     }
 
+    //定义回调函数及变量
+    public interface BackHandlerInterface{
+        void setSelectFragment(BeautfFrament fragment);
+    }
+    protected  BackHandlerInterface backHandlerInterface;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (! (getActivity() instanceof BackHandlerInterface)){
+
+        }else {
+            backHandlerInterface = (BackHandlerInterface) getActivity();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        backHandlerInterface.setSelectFragment(this);
+    }
 }
