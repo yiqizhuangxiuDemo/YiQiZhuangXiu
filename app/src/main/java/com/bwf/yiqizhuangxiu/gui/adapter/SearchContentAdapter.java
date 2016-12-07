@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  */
 
 public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<SearchData.DataBean> datas;
+    public List<SearchData.DataBean> datas;
     private LayoutInflater inflater;
     private String text;
     private static Context context;
@@ -45,7 +45,6 @@ public class SearchContentAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addDatas(List<SearchData.DataBean> datas) {
-        this.datas.clear();
         this.datas.addAll(datas);
         notifyDataSetChanged();
     }
