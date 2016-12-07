@@ -38,7 +38,7 @@
     <string name="comments_postdetails">回帖(%1$d)</string>
     <string name="house_classify">%1$s室%2$s厅</string>
     <string name="house_area">%1$d平</string>
-    <string name="house_budget">%1$d万</string>
+    <string name="house_budget">%1$s万</string>
     <string name="design_popupwindow_text">预付款抵货款活动</string>
     <string name="design_popupwindow_text_main">只要支付￥200定金，即可在转单时抵￥500使用</string>
     <string name="design_popupwindow_text_other">注：未使用前可随意退款，退款金额将直接返回原账户。只适用于整装套餐，支付成功后在我的订单里查看，转单时把订单出示给工作人员即可。</string>

@@ -60,7 +60,7 @@ public class OwnerSayFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         init();
-
+        mViewPager.setOffscreenPageLimit(2);
         OwnerSayFragmentAdapter adapter = new OwnerSayFragmentAdapter(getFragmentManager(), mTitleList, mFragmentList);
         mViewPager.setAdapter(adapter);
         mTabLayoout.setupWithViewPager(mViewPager);

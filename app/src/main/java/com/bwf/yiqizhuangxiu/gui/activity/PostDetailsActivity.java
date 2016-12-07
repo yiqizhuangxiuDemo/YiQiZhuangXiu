@@ -279,6 +279,7 @@ public class PostDetailsActivity extends BaseActivity implements ViewPostDetails
         List<PostDetailsContentDataBean.DataBean.TagsBean> tags = data.getTags();
         if (tags == null || tags.size() < 1)
             return;
+        tagContainerPostdetails.removeAllViews();
         for (PostDetailsContentDataBean.DataBean.TagsBean tag : tags) {
             TextView tv = (TextView) LayoutInflater.from(this).inflate(R.layout.postdetails_tag_item
                     , tagContainerPostdetails, false);
