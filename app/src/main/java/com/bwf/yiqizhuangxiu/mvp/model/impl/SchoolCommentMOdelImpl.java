@@ -32,7 +32,9 @@ public class SchoolCommentMOdelImpl implements SchoolComentModel {
             public void onResponse(String response, int id) {
                 Log.d("SchoolCommentMOdelImpl", response);
                 SchoolConmentData schoolConmentData = JSON.parseObject(response, SchoolConmentData.class);
-                callBack.loadDataSuccess(schoolConmentData.getData().getList());
+                if (schoolConmentData.getError() == 0)
+                    callBack.loadDataSuccess(schoolConmentData.getData().getList());
+                else callBack.loadFail();
             }
         });
     }

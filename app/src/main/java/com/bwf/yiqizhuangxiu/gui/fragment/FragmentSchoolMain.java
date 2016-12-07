@@ -101,15 +101,19 @@ public class FragmentSchoolMain extends BaseFragment implements SchoolTitleView,
                 }
             }
         });
+
         schoolListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SchoolConmentData.DataBean.ListBean bean = adatper.getItem(position);
-                Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
-                intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, bean.getNewsId() + "");
-                Toast.makeText(getContext(), "bean.getNewsId():" + bean.getNewsId(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-
+                if (position != adatper.getCount()-1) {
+                    SchoolConmentData.DataBean.ListBean bean = adatper.getItem(position);
+                    Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
+                    if (null == bean)
+                        return;
+                    intent.putExtra(ArticleDetailsActivity.TAG_ID_EXTRA, bean.getNewsId() + "");
+                    Toast.makeText(getContext(), "bean.getNewsId():" + bean.getNewsId(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
             }
         });
         textviewSubviewRecycleviewLoadfooter.setOnClickListener(new View.OnClickListener() {
@@ -232,8 +236,14 @@ public class FragmentSchoolMain extends BaseFragment implements SchoolTitleView,
     @Override
     public void showSchoolComment(List<SchoolConmentData.DataBean.ListBean> listBeen) {
         adatper.addData(listBeen);
+        Log.d("FragmentSchoolMain",listBeen.toString());
         isLoading=false;
-        updateFooterState(0);
+        if (null == listBeen || listBeen.size() == 0 || null == listBeen.get(0)){
+            Log.d("FragmentSchoolMain", "gong");
+            progressbarSubviewRecycleviewLoadfooter.setVisibility(View.GONE);
+            textviewSubviewRecycleviewLoadfooter.setVisibility(View.GONE);
+        }else
+            updateFooterState(0);
     }
 
     @Override

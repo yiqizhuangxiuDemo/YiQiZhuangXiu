@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -84,6 +85,8 @@ public class HouseOfNewActivity extends BaseActivity {
                     finish();
                 break;
             case R.id.linear_appointment:
+                Intent intent = new Intent(HouseOfNewActivity.this,LoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.linear_online_answer:
                 break;

@@ -1,5 +1,6 @@
 package com.bwf.yiqizhuangxiu.gui.activity;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -73,6 +74,7 @@ public class SchoolActivity extends BaseActivity {
                 setPopupwindowFlag(position);
             }
         });
+        viewPagerSchool.setOffscreenPageLimit(20);
         initPopWindow();
         setPopupwindowFlag(0);
     }
@@ -113,6 +115,8 @@ public class SchoolActivity extends BaseActivity {
                 }
             });
             popupWindow.setAnimationStyle(R.style.popupwindow_school);
+//            ColorDrawable colorDrawable = new ColorDrawable(0xff000000);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
             adatpers = new ArrayList<>();
             adatpers.add(new SchoolPopupwindowGridViewAdatper(this));
             adatpers.add(new SchoolPopupwindowGridViewAdatper(this));

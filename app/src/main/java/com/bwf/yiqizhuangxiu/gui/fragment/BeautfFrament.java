@@ -96,6 +96,8 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 viewHolder.imagePopupwindowSchool.setCurrentItem(position);
+                if(position == 0)
+                    setCameraTitle(0);
                 popupWindowCearm.showAtLocation(parent, Gravity.CENTER,0,0);
             }
         });
@@ -235,9 +237,7 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
                 public void onPageSelected(int position) {
                     super.onPageSelected(position);
                     creamAdatper.notifyDataSetChanged();
-                    EffectBeatifulData.DataBean.ListBean bean = creamAdatper.getItemData(position);
-                    viewHolder.text_title_pop.setText(bean.getTitle());
-                    viewHolder.text_little_titel_pop.setText("#"+ bean.getTag().get(0).getName()+"#"+bean.getTag().get(1).getName()+"#"+bean.getTag().get(2).getName());
+                    setCameraTitle(position);
 
                 }
             });
@@ -248,6 +248,17 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
                 }
             });
         }
+    }
+
+    private void setCameraTitle(int position) {
+        EffectBeatifulData.DataBean.ListBean bean = creamAdatper.getItemData(position);
+        viewHolder.text_title_pop.setText(bean.getTitle());
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < bean.getTag().size(); i++) {
+            sb.append("#"+bean.getTag().get(i).getName());
+        }
+
+        viewHolder.text_little_titel_pop.setText(sb.toString());
     }
 
     @Override
@@ -299,4 +310,5 @@ public class BeautfFrament extends BaseFragment implements EffectBeatifulView {
             ButterKnife.bind(this, view);
         }
     }
+
 }
