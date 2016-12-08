@@ -105,7 +105,7 @@ public class FragmentSchoolMain extends BaseFragment implements SchoolTitleView,
         schoolListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position != adatper.getCount()-1) {
+                if (position != adatper.getCount()) {
                     SchoolConmentData.DataBean.ListBean bean = adatper.getItem(position);
                     Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
                     if (null == bean)
